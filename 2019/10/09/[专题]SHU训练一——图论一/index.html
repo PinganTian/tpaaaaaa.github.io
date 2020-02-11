@@ -1,0 +1,2444 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/tpaaaaaa.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/tpaaaaaa.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/tpaaaaaa.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/tpaaaaaa.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/tpaaaaaa.github.io/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/tpaaaaaa.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/tpaaaaaa.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这题集里面多是模板题.有保留价值 :)  LightOJ 1251 Forming the Council （2-SAT问题） LightOJ 1026 Critical Links （求割边问题） LightOJ 1063 Ant Hills（求割点问题） LightOJ 1291 Real Life Traffic （边双连通） LightOJ 1308 Ant Network （点双连通）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[专题]SHU训练一——图论一">
+<meta property="og:url" content="https:&#x2F;&#x2F;tpaaaaaa.github.io&#x2F;2019&#x2F;10&#x2F;09&#x2F;[%E4%B8%93%E9%A2%98]SHU%E8%AE%AD%E7%BB%83%E4%B8%80%E2%80%94%E2%80%94%E5%9B%BE%E8%AE%BA%E4%B8%80&#x2F;index.html">
+<meta property="og:site_name" content="Tian&#39;s Blog">
+<meta property="og:description" content="这题集里面多是模板题.有保留价值 :)  LightOJ 1251 Forming the Council （2-SAT问题） LightOJ 1026 Critical Links （求割边问题） LightOJ 1063 Ant Hills（求割点问题） LightOJ 1291 Real Life Traffic （边双连通） LightOJ 1308 Ant Network （点双连通）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-04T06:26:46.222Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tpaaaaaa.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tpaaaaaa.github.io/2019/10/09/[专题]SHU训练一——图论一/"/>
+
+
+
+
+
+  <title>[专题]SHU训练一——图论一 | Tian's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tpaaaaaa.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来真正的慷慨，在于把一切都献给现在.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/tpaaaaaa.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/tpaaaaaa.github.io/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tpaaaaaa.github.io/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/tpaaaaaa.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" target="_blank" rel="noopener" onclick="return false;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/09/%5B%E4%B8%93%E9%A2%98%5DSHU%E8%AE%AD%E7%BB%83%E4%B8%80%E2%80%94%E2%80%94%E5%9B%BE%E8%AE%BA%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[专题]SHU训练一——图论一</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T22:21:47+08:00">
+                2019-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这题集里面多是模板题.有保留价值 <strong>:)</strong></p>
+<ol>
+<li><a href="https://vjudge.net/problem/LightOJ-1251" target="_blank" rel="noopener"><strong>LightOJ 1251</strong></a> Forming the Council （2-SAT问题）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1026" target="_blank" rel="noopener"><strong>LightOJ 1026</strong></a> Critical Links （求割边问题）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1063" target="_blank" rel="noopener"><strong>LightOJ 1063</strong></a> Ant Hills（求割点问题）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1291" target="_blank" rel="noopener"><strong>LightOJ 1291</strong></a> Real Life Traffic （边双连通）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1308" target="_blank" rel="noopener"><strong>LightOJ 1308</strong></a> Ant Network （点双连通）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1074" target="_blank" rel="noopener"><strong>LightOJ 1074</strong></a> Extended Traffic (SPFA求负环 )</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1108" target="_blank" rel="noopener"><strong>LightOJ 1108</strong></a> Instant View of Big Bang (SPFA 求负环)</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1221" target="_blank" rel="noopener"><strong>LightOJ 1221</strong></a> Travel Company （比率环，SPFA）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1002" target="_blank" rel="noopener"><strong>LightOJ 1002</strong></a> Country Roads （Dijkstral求最小瓶颈树）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1029" target="_blank" rel="noopener"><strong>LightOJ 1029</strong></a> Civil and Evil Engineer（Kruskal求生成树）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1040" target="_blank" rel="noopener"><strong>LightOJ 1040</strong></a> Donation （最小生成树）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1041" target="_blank" rel="noopener"><strong>LightOJ 1041</strong></a> Road Construction</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1059" target="_blank" rel="noopener"><strong>LightOJ 1059</strong></a> Air Ports</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1123" target="_blank" rel="noopener"><strong>LightOJ 1123</strong></a> Trail Maintenance</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1124" target="_blank" rel="noopener"><strong>LightOJ 1124</strong></a> Cricket Ranking</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1380" target="_blank" rel="noopener"><strong>LightOJ 1380</strong></a> Teleport</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1384" target="_blank" rel="noopener"><strong>LightOJ 1384</strong></a> Stream My Contest</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1348" target="_blank" rel="noopener"><strong>LightOJ 1348</strong></a> Aladdin and the Return Journey</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1250" target="_blank" rel="noopener"><strong>LightOJ 1250</strong></a> Village Postman</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1256" target="_blank" rel="noopener"><strong>LightOJ 1256</strong></a> Word Puzzle（欧拉回路）</li>
+<li><a href="https://vjudge.net/problem/LightOJ-1003" target="_blank" rel="noopener"><strong>LightOJ 1003</strong></a> Drunk (拓扑排序判断环)</li>
+</ol>
+<p>逐题：</p>
+<ol>
+<li><a href="https://vjudge.net/problem/LightOJ-1251" target="_blank" rel="noopener"><strong>LightOJ 1251</strong></a> Forming the Council</li>
+</ol>
+<p>In a city there are <strong>n</strong> voters, and <strong>m</strong> people formed the Govt. council. The council members are numbered from <strong>1</strong> to <strong>m</strong>. Now everyone is complaining that the council is biased. So, they made a plan. The plan is that the voters are given a chance to vote again to form the new council. A vote will be like <strong>±i ±j</strong>.** ‘+’** means the voter wants that member to be in the council, ‘<strong>-</strong>‘ means the voter doesn’t want the member to be in the council. For example, there are 4 voters, they voted like</p>
+<p>*<em>+1 -3    *</em>the voter wants member 1 to be kept in the council or member 3 to be thrown out</p>
+<p>*<em>+2 +3  *</em>the voter wants member 2 to be kept in the council or member 3 to be kept in the council</p>
+<p>*<em>-1 -2     *</em>the voter wants member 1 to be thrown out or member 2 to be thrown out</p>
+<p>*<em>-4 +1    *</em>the voter wants member 4 to be thrown out or member 1 to be kept in the council</p>
+<p>A voter will be satisfied if at least one of his wishes becomes true. Now your task is to form the council such that all the voters are happy.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 20)**, denoting the number of test cases.</p>
+<p>Each case starts with a line containing two integers <strong>n (1 ≤ n ≤ 20000)</strong> and <strong>m (1 ≤ m ≤ 8000)</strong>. Each of the next <strong>n</strong> lines contains a vote in the form <strong>±i ±j (1 ≤ i, j ≤ m)</strong>.Output</p>
+<p>For each case, print the case number and <strong>‘Yes’</strong> if a solution exists, or <strong>‘No’</strong> if there is no solution. Then if the result is yes, print another line containing the number of members in the council followed by the members in ascending order. And print a single space between two numbers. There can be many solutions. Any valid one will do.Sample Input</p>
+<p>3</p>
+<p>4 3</p>
+<p>+1 +3</p>
+<p>+2 -1</p>
+<p>+2 -3</p>
+<p>-1 -2</p>
+<p>4 2</p>
+<p>+1 -2</p>
+<p>+1 +2</p>
+<p>-1 -2</p>
+<p>-1 +2</p>
+<p>1 3</p>
+<p>+1 -3Sample Output</p>
+<p>Case 1: Yes</p>
+<p>2 2 3</p>
+<p>Case 2: No</p>
+<p>Case 3: Yes</p>
+<p>0</p>
+<p>Note</p>
+<p>This is a special judge problem. Wrong output format may cause wrong answer</p>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>将一个点分成两个状态.变成2-SAT问题</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><pre><code>#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 2e4 + 10;
+const int MAXM = 8e3 + 10;
+int cnt, head[2 * MAXM], dfsSum, ans[2 * MAXM];
+bool mark[MAXM * 2];
+struct Edge
+{
+    int v, next;
+}edge[2 * MAXN];
+void addEdge(int u, int v)
+{
+    cnt ++;
+    edge[cnt].v = v;
+    edge[cnt].next = head[u];
+    head[u] = cnt;
+}
+int oth(int a)
+{
+    if(a % 2)   return a + 1;
+    else        return a - 1;
+}
+void init()
+{
+    memset(head, -1, sizeof head);
+    cnt = 0;
+}
+bool dfs(int u)
+{
+    if(mark[oth(u)]) return false;
+    if(mark[u])     return true;
+    mark[u] = true;
+    ans[++dfsSum] = u;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        int v = edge[i].v;
+        if(dfs(v) == false) return false;
+    }
+    return true;
+}
+bool solve(int m)
+{
+    memset(mark, false, sizeof mark);
+    for(int i = 1; i &lt;= 2 * m; i += 2)
+        if(mark[i] == false &amp;&amp; mark[i + 1] == false)
+        {
+            dfsSum = 0;
+            if(dfs(i) == false)
+            {
+                for(int j = 1; j &lt;= dfsSum; j++)
+                    mark[ans[j]] = mark[oth(ans[j])] = false;
+                if(dfs(oth(i)) == false)
+                    return false;
+            }
+        }
+    return true;
+}
+
+int main()
+{
+    int t, n, m, kase = 0;
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        init();
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        for(int i = 1; i &lt;= n; i++)
+        {
+            int a, b;
+            scanf(&quot;%d %d&quot;, &amp;a, &amp;b);
+            if(a &gt; 0)   a = 2 * a;
+            if(b &gt; 0)   b = 2 * b;
+            if(a &lt; 0)   a = - 1 - 2 * a;
+            if(b &lt; 0)   b = - 1 - 2 * b;
+            addEdge(oth(a), b);
+            addEdge(oth(b), a);
+        }
+        printf(&quot;Case %d: &quot;, ++kase);
+        if(solve(m))
+        {
+            printf(&quot;Yes\n&quot;);
+            int sum = 0;
+            for(int i = 1; i &lt;= 2 * m; i += 2)
+                if(mark[i + 1]) sum+
+            printf(&quot;%d&quot;, sum);
+            for(int i = 1; i &lt;= 2 * m; i += 2)
+                if(mark[i + 1])
+                    printf(&quot; %d&quot;, (i + 1) / 2);
+            printf(&quot;\n&quot;);
+        }
+        else
+            printf(&quot;No\n&quot;);
+    }
+    return 0;
+}</code></pre><p><a href="https://vjudge.net/problem/LightOJ-1026" target="_blank" rel="noopener"><strong>LightOJ 1026</strong></a> Critical Links</p>
+<p>In a computer network a link <strong>L</strong>, which interconnects two servers, is considered critical if there are at least two servers <strong>A</strong> and <strong>B</strong> such that all network interconnection paths between <strong>A</strong> and <strong>B</strong> pass through <strong>L</strong>. Removing a critical link generates two disjoint sub-networks such that any two servers of a sub-network are interconnected. For example, the network shown in figure <strong>1</strong> has three critical links that are marked red: <strong>0 - 1</strong>, <strong>3 - 4</strong> and <strong>6 - 7</strong> in figure <strong>2</strong>.</p>
+<p>Figure 1: Original Graph</p>
+<p>Figure 2: The Critical Links</p>
+<p>It is known that:</p>
+<ol>
+<li><p>The connection links are bi-directional.</p>
+</li>
+<li><p>A server is not directly connected to itself.</p>
+</li>
+<li><p>Two servers are interconnected if they are directly connected or if they are interconnected with the same server.</p>
+</li>
+<li><p>The network can have stand-alone sub-networks.</p>
+</li>
+</ol>
+<p>Write a program that finds all critical links of a given computer network.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 15)**, denoting the number of test cases.</p>
+<p>Each case starts with a blank line. The next line will contain <strong>n (0 ≤ n ≤ 10000)</strong> denoting the number of nodes. Each of the next n lines will contain some integers in the following format:</p>
+<p><strong>u (k) v1 v2 … vk</strong></p>
+<p>Where <strong>u</strong> is the node identifier, <strong>k</strong> is the number of adjacent nodes; <strong>v1, v2 … vk</strong> are the adjacent nodes of <strong>u</strong>. You can assume that there are at most <strong>100000</strong> edges in total in a case. Dataset is huge, so use faster i/o methods.Output</p>
+<p>For each case, print the case number first. Then you should print the number of critical links and the critical links, one link per line, starting from the beginning of the line, as shown in the sample output below. The links are listed in ascending order according to their first element and then second element. Since the graph is bidirectional, print a link <strong>u v</strong> if <strong>u &lt; v</strong>.Sample Input</p>
+<p>3</p>
+<p>8</p>
+<p>0 (1) 1</p>
+<p>1 (3) 2 0 3</p>
+<p>2 (2) 1 3</p>
+<p>3 (3) 1 2 4</p>
+<p>4 (1) 3</p>
+<p>7 (1) 6</p>
+<p>6 (1) 7</p>
+<p>5 (0)</p>
+<p>0</p>
+<p>2</p>
+<p>0 (1) 1</p>
+<p>1 (1) 0Sample Output</p>
+<p>Case 1:</p>
+<p>3 critical links</p>
+<p>0 - 1</p>
+<p>3 - 4</p>
+<p>6 - 7</p>
+<p>Case 2:</p>
+<p>0 critical links</p>
+<p>Case 3:</p>
+<p>1 critical links</p>
+<p>0 - 1</p>
+<p>Note</p>
+<p>Dataset is huge, use faster I/O methods.</p>
+<h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>求割边的模板.</p>
+<h3 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h3><pre><code>#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e5 + 10;
+const int MAXM = 1e5 + 10;
+int cnt, tot, head[MAXN], fron[MAXN], dfn[MAXN], low[MAXN];
+struct Edge
+{
+    int v, next;
+}edge[MAXM * 2], cut[MAXM * 2];
+void addEdge(Edge *edge, int u, int v, int *head)
+{
+    cnt++;
+    edge[cnt].v = v;
+    edge[cnt].next = head[u];
+    head[u] = cnt;
+}
+void init()
+{
+    tot = cnt = 0;
+    memset(head, -1, sizeof head);
+    memset(dfn, 0, sizeof dfn);
+    memset(fron, -1, sizeof fron);
+}
+void Tarjan(int u, int root)
+{
+    ++tot;
+    dfn[u] = low[u] = tot;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        int v = edge[i].v;
+        if(v == root)   continue;   //双向边
+        if(dfn[v] == 0)
+        {
+            Tarjan(v, u);
+            low[u] = min(low[u], low[v]);
+            if(low[v] &gt; dfn[u])                 //AC
+                if(u &lt; v)
+                    addEdge(cut, u, v, fron);
+                else addEdge(cut, v, u, fron);
+        }
+        else low[u] = min(low[u], dfn[v]);
+    }
+}
+int solve(int n)
+{
+    for(int i = 0; i &lt; n; i++)
+        if(dfn[i] == 0) Tarjan(i, i);
+    int ans = 0;
+    for(int u = 0; u &lt; n; u++)
+        for(int i = fron[u]; i != -1; i = cut[i].next)
+            ans ++;
+    return ans;
+}
+int main()
+{
+    int t, n;
+    cin &gt;&gt; t;
+    for(int kase = 1; kase &lt;= t; kase ++)
+    {
+        //点的数目
+        init();
+        scanf(&quot;%d&quot;, &amp;n);
+        for(int i = 1; i &lt;= n; i++)
+        {
+            int u, k, v;
+            scanf(&quot;%d (%d)&quot;, &amp;u, &amp;k);
+            while(k--)
+            {
+                scanf(&quot;%d&quot;, &amp;v);
+                addEdge(edge, u, v, head);
+            }
+        }
+        cnt = 0;
+        int ans = solve(n);
+        printf(&quot;Case %d:\n&quot;, kase);
+        printf(&quot;%d critical links\n&quot;, ans);
+        for(int u = 0; u &lt; n; u++)          //点的编号从0开始
+        {
+            vector &lt; int &gt; vec;
+            vec.clear();
+            for(int i = fron[u]; i != -1; i = cut[i].next)
+                vec.push_back(cut[i].v);
+            sort(vec.begin(), vec.end());
+            for(int i = 0; i &lt; vec.size(); i++)
+                printf(&quot;%d - %d\n&quot;, u, vec[i]);
+        }
+    }
+    return 0;
+}</code></pre><p><a href="https://vjudge.net/problem/LightOJ-1063" target="_blank" rel="noopener"><strong>LightOJ 1063</strong></a> Ant Hills</p>
+<p>After many years of peace, an ant-war has broken out.</p>
+<p>In the days leading up to the outbreak of war, the ant government devoted a great deal of resources toward gathering intelligence on ant hills. It discovered the following:</p>
+<ol>
+<li><p>The ant empire has a large network of ant-hills connected by bidirectional tracks.</p>
+</li>
+<li><p>It is possible to send a message from any ant hill to any other ant hill.</p>
+</li>
+</ol>
+<p>Now you want to stop the war. Since they sometimes attack your house and disturb you quite a lot. So, you have made a plan. You have a gun which can destroy exactly one ant-hill. So, you want to hit an ant hill if it can stop at least two other ant hills passing messages between them. Now you want the total number of ant hills you may choose to fire.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 20)**, denoting the number of test cases.</p>
+<p>Each test case contains a blank line and two integers <strong>n (1 ≤ n ≤ 10000), m (1 ≤ m ≤ 20000)</strong>. <strong>n</strong>denotes the number of ant hills and <strong>m</strong> denotes the number of bi-directional tracks. Each of the next <strong>m</strong> lines will contain two different integers <strong>a b (1 ≤ a, b ≤ n)</strong> denoting that there is a track between <strong>a</strong> and <strong>b</strong>.Output</p>
+<p>For each case, print the case number and the total number of ant hills you may choose to fire.Sample Input</p>
+<p>2</p>
+<p>5 4</p>
+<p>2 1</p>
+<p>1 3</p>
+<p>5 4</p>
+<p>4 1</p>
+<p>3 3</p>
+<p>1 2</p>
+<p>2 3</p>
+<p>1 3</p>
+<p>Sample Output</p>
+<p>Case 1: 2</p>
+<p>Case 2: 0</p>
+<h3 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h3><p>求割点模板</p>
+<h3 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h3><pre><code>/*
+Date              : 2019-10-08    20:43:05
+By                : Tpaaaaaa
+File_Name         ：Ant hills LightOJ - 1063 .cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+
+求割点，模板题
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e4 + 10;
+const int MAXM = 2e4 + 10;
+int cnt, head[MAXN], dfn[MAXN], root, low[MAXN], tot;
+bool cut[MAXN];
+struct Edge
+{
+    int v, next;
+}edge[MAXM * 2];
+void addEdge(int u, int v)
+{
+    cnt++;
+    edge[cnt].v = v;
+    edge[cnt].next = head[u];
+    head[u] = cnt;
+}
+void Tarjan(int u, int root)
+{
+    int child = 0;
+    tot++;
+    dfn[u] = tot;
+    low[u] = tot;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        int v = edge[i].v;
+        if(dfn[v] == 0)
+        {
+            Tarjan(v, root);
+            low[u] = min(low[u], low[v]);
+            if(u != root &amp;&amp; low[v] &gt;= dfn[u])   cut[u] = true;
+            if(u == root)   child++;
+        }
+        else    low[u] = min(low[u], dfn[v]);
+    }
+    if(u == root &amp;&amp; child &gt;= 2) cut[root] = true;
+}
+int solve(int n, int m)
+{
+    for(int i = 1; i &lt;= n; i++)
+        if(dfn[i] == 0)
+            Tarjan(i, i);
+    int ans = 0;
+    for(int i = 1; i &lt;= n; i++)
+        if(cut[i])  ans++;
+    return ans;
+    /*
+    for(int i = 1; i &lt;= n; i++)
+        if(cut[i])  printf(&quot;%d&quot;, i);    //输出割点编号
+    */
+}
+void init()
+{
+    cnt = tot = 0;
+    memset(head, -1, sizeof head);
+    memset(cut, false, sizeof cut);
+    memset(dfn, 0, sizeof dfn);
+
+}
+int main()
+{
+    int t, kase = 0, n, m;
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        init();
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        for(int i = 1; i &lt;= m; i++)
+        {
+            int a, b;
+            scanf(&quot;%d%d&quot;, &amp;a, &amp;b);
+            addEdge(a, b);
+            addEdge(b, a);
+        }
+        int ans = solve(n, m);
+        printf(&quot;Case %d: %d\n&quot;, ++kase, ans);            //割点的数目
+    }
+    return 0;
+}</code></pre><p><a href="https://vjudge.net/problem/LightOJ-1291" target="_blank" rel="noopener"><strong>LightOJ 1291</strong></a> Real Life Traffic</p>
+<p>Dhaka city is full of traffic jam and when it rains, some of the roads become unusable. So, you are asked to redesign the traffic system of the city such that if exactly one of the roads becomes unusable, it’s still possible to move from any place to another using other roads.</p>
+<p>You can assume that Dhaka is a city containing some places and bi directional roads connecting the places and it’s possible to go from any place to another using the roads. There can be at most one road between two places. And of course there is no road that connects a place to itself. To be more specific there are <strong>n</strong> places in Dhaka city and for simplicity, assume that they are numbered from <strong>0</strong> to <strong>n-1</strong> and there are <strong>m</strong> roads connecting the places.</p>
+<p>Your plan is to build some new roads, but you don’t want to build a road between two places where a road already exists. You want to build the roads such that if any road becomes unusable, there should be an alternate way to go from any place to another using other roads except that damaged road. As you are a programmer, you want to find the minimum number of roads that you have to build to make the traffic system as stated above.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 30)**, denoting the number of test cases.</p>
+<p>Each case starts with a blank line. The next line contains two integers: <strong>n (3 ≤ n ≤ 10000)</strong> and <strong>m (≤ 20000)</strong>. Each of the next <strong>m</strong> lines contains two integers <strong>u v (0 ≤ u, v &lt; n, u ≠ v)</strong> meaning that there is a bidirectional road between place <strong>u</strong> and <strong>v</strong>. The input follows the above constraints.Output</p>
+<p>For each case, print the case number and the minimum number of roads you have to build such that if one road goes down, it’s still possible to go from any place to another.Sample Input</p>
+<p>2</p>
+<p>4 3</p>
+<p>1 2</p>
+<p>2 3</p>
+<p>2 0</p>
+<p>3 3</p>
+<p>1 2</p>
+<p>2 0</p>
+<p>0 1Sample Output</p>
+<p>Case 1: 2</p>
+<p>Case 2: 0</p>
+<p>Note</p>
+<ol>
+<li><p>Dataset is huge, use faster I/O methods.</p>
+</li>
+<li><p>For case 1, one of the solutions is to construct two roads in (0, 1) and (1, 3).</p>
+</li>
+</ol>
+<h3 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h3><p>边双连通；由树构成连通图。</p>
+<h3 id="代码：-3"><a href="#代码：-3" class="headerlink" title="代码："></a>代码：</h3><pre><code>/*
+Date              : 2019-10-09    10:22:12
+By                : Tpaaaaaa
+File_Name         ：RealLifeTrafficLightOJ1291.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+
+边双连通
+构造边双连通图
+Tarjan可以求双连通分量
+如何用Tarjan求双连通分量，并将其缩点呢
+首先用Tarjan求出割边，然后将割边去掉（标记一下）
+然后再对整个图进行一遍DFS，染色一下
+同色的就代表是一个边双连通分量中的点了
+
+然后压缩为一个点
+
+
+求出来然后将其缩点
+缩点后就成了一颗树
+统计树中度为1的节点的数目
+也就是叶子节点的数目leaf
+则再添加(leaf + 1) / 2个边即可;
+
+*/
+
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e4 + 10;
+const int MAXM = 2e4 + 10;
+int cnt, tot, dfn[MAXN], low[MAXN], head[MAXN], belong[MAXN], degree[MAXN];
+bool vis[MAXN];
+struct Edge
+{
+    int v, next, avai;
+}edge[MAXM * 2];
+void addEdge(int u, int v)
+{
+    cnt++;
+    edge[cnt].v = v;
+    edge[cnt].avai = 1;
+    edge[cnt].next = head[u];
+    head[u] = cnt;
+}
+void init()
+{
+    cnt = tot = 0;
+    memset(head, -1, sizeof head);
+    memset(dfn, 0, sizeof dfn);
+    memset(degree, 0, sizeof degree);
+    memset(vis, false, sizeof vis);
+}
+void Tarjan(int u, int root)
+{
+    ++tot;
+    dfn[u] = low[u] = tot;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        int v = edge[i].v;
+        if(v == root)   continue;
+        if(!dfn[v])
+        {
+            Tarjan(v, u);
+            low[u] = min(low[u], low[v]);
+            if(low[v] &gt; dfn[u])
+            {
+                edge[i].avai = 0;           //标记为割边，即去掉他
+                //双向边
+                for(int j = head[v]; j != -1; j = edge[j].next)
+                    if(u == edge[j].v)
+                    {
+                        edge[j].avai = 0;
+                        break;
+                    }
+            }
+        }
+        else low[u] = min(low[u], dfn[v]); 
+    }
+}
+void DFS(int u, int root)
+{
+    vis[u] = true;
+    belong[u] = root;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        if(edge[i].avai == 0)   continue;
+        int v = edge[i].v;
+        if(!vis[v])
+            DFS(v, root);
+    }
+}
+//求构造边双连通图
+int solve(int n)
+{
+    for(int i = 0; i &lt; n; i++)
+        if(!dfn[i]) Tarjan(i, i);
+    //然后进行一下DFS，缩一下点，染一下色.
+    for(int i = 0; i &lt; n; i++)
+        if(!vis[i])
+            DFS(i, i);
+    //求一下度
+    for(int u = 0; u &lt; n; u++)
+        for(int i = head[u]; i != -1; i = edge[i].next)
+        {
+            int v = edge[i].v;
+            if(belong[v] != belong[u])
+                degree[belong[v]]++;
+        }
+    int sum = 0;            //记录度为1的点的数目，即为叶子节点的数目
+    for(int i = 0; i &lt; n; i++)
+        if(degree[i] == 1)  sum++;
+    return (sum + 1) / 2; 
+}
+int main()
+{
+    int t, n, m;
+    cin &gt;&gt; t;
+    for(int kase = 1; kase &lt;= t; kase++)
+    {
+        //n个点，m个边
+        init();
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        for(int i = 1; i &lt;= m; i++)
+        {
+            int u, v;
+            scanf(&quot;%d%d&quot;, &amp;u, &amp;v);
+            addEdge(u, v);
+            addEdge(v, u);  //无向图
+        }
+        //求一下割边
+        int ans = solve(n);
+        printf(&quot;Case %d: %d\n&quot;,kase, ans);
+    }
+    return 0;
+}</code></pre><p><a href="https://vjudge.net/problem/LightOJ-1308" target="_blank" rel="noopener"><strong>LightOJ 1308</strong></a> Ant Network</p>
+<p>Ants made a large underground network for their communication, consisting of <strong>n</strong> junctions, and junctions are connected by <strong>m</strong> underground tunnels. As there are animals/insects that can attack them outside the ground, they made the full network under the ground such that it becomes a safe hideout for them.</p>
+<p>The junctions and tunnels are strong but if there is any kind of natural disasters like earthquakes or tornadoes, there is a chance that a junction may collapse. That’s why they want to built some escape shafts in junctions (at most one shaft in one junction) that lead them to the surface. Now they want to build minimum number of shafts such that if any of the junctions (only one) collapses, ants that survive the collapse, still have a path to the surface. Now your task is to find the minimum number of shafts, and the number of ways the minimum shafts can be built.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 30)**, denoting the number of test cases.</p>
+<p>Each case starts with a blank line. The next line contains two integers: <strong>n (2 ≤ n ≤ 10000)</strong> and <strong>m (0 ≤ m ≤ 20000)</strong>. Each of the next <strong>m</strong> lines contains two integers <strong>u v (0 ≤ u, v &lt; n, u ≠ v)</strong> meaning that there is a bidirectional tunnel between junction <strong>u</strong> and <strong>v</strong>. The input follows the above constraints. And no tunnel is reported more than once. All junctions are connected.Output</p>
+<p>For each case, print the case number, the minimum number of escape shafts and the number of ways they can build the minimum shafts modulo <strong>264</strong>.Sample Input</p>
+<p>2</p>
+<p>6 6</p>
+<p>0 3</p>
+<p>0 1</p>
+<p>1 4</p>
+<p>4 2</p>
+<p>2 5</p>
+<p>5 0</p>
+<p>5 4</p>
+<p>2 1</p>
+<p>1 3</p>
+<p>0 4</p>
+<p>4 1Sample Output</p>
+<p>Case 1: 2 4</p>
+<p>Case 2: 3 1Note</p>
+<p>Dataset is huge, use faster I/O methods.</p>
+<h3 id="分析：-4"><a href="#分析：-4" class="headerlink" title="分析："></a>分析：</h3><p>割点的问题</p>
+<h3 id="代码：-4"><a href="#代码：-4" class="headerlink" title="代码："></a>代码：</h3><pre><code>/*
+Date              : 2019-10-09    11:33:42
+By                : Tpaaaaaa
+File_Name         ：AntNetworkLightOJ1308.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+
+mdzz
+首先求出割点
+然后对每个连通块进行分析（无向图叫连通块）
+如果一个连通块里面割点的数目大于1的话，我们就不需要放了
+割点为0，我们要放一个lift
+割点为1，我们也要放一个lift
+组合数都是这个连通块里面的非割点数目.
+
+然后记得特判一下全图是一个连通块的时候
+要放2个list
+
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e4 + 10;
+const int MAXM = 2e4 + 10;
+ull temp;
+int cutSum;
+int tot, cnt, head[MAXN], dfn[MAXN], low[MAXN];
+bool cut[MAXN], vis[MAXN];
+struct Edge
+{
+    int v, next;
+}edge[MAXM * 2];
+void addEdge(int u, int v)
+{
+    cnt++;
+    edge[cnt].v = v;
+    edge[cnt].next = head[u];
+    head[u] = cnt;
+}
+void init()
+{
+    tot = cnt = 0;
+    memset(head, -1, sizeof head);
+    memset(dfn, 0, sizeof dfn);
+    memset(cut, false, sizeof cut);
+    memset(vis, false, sizeof vis);
+}
+//Tarjan求割点模板
+void Tarjan(int u, int root)
+{
+    int child = 0;
+    ++tot;
+    dfn[u] = low[u] = tot;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        int v = edge[i].v;   
+        if(!dfn[v])
+        {
+            Tarjan(v, root);
+            low[u] = min(low[u], low[v]);
+            if(u != root &amp;&amp; low[v] &gt;= dfn[u])   cut[u] = true;
+            if(u == root)   child++;
+        }
+        else    low[u] = min(low[u], dfn[v]);
+    }
+    if(u == root &amp;&amp; child &gt;= 2) cut[root] = true;
+}
+set &lt;int&gt; st;
+void DFS(int u)
+{
+    temp++;
+    vis[u] = true;
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        int v = edge[i].v;
+        if(cut[v])  
+            st.insert(v);
+        if(vis[v] == false &amp;&amp; cut[v] == false)
+            DFS(v);
+    }
+}
+void solve(int kase, int n)
+{
+    for(int i = 0; i &lt; n; i++)
+        if(!dfn[i]) Tarjan(i, i);
+    int sum = 0;
+    for(int i = 0; i &lt; n; i++)
+        if(cut[i])  sum++;
+    ull ans = 1;
+    int s = 0;
+    if(sum == 0)
+    {
+        s = 2;
+        ans = n * (n - 1) / 2;
+    }
+    else
+    {
+        for(int i = 0; i &lt; n; i++)
+            if(!cut[i] &amp;&amp; !vis[i])   //遍历去掉割点得到的双连通分量
+            {
+                st.clear();
+                temp = 0;       //非割点的数目
+                DFS(i);
+                if(st.size() &lt;= 1)
+                {
+                    s++;
+                    ans = ans * temp;
+                }
+            }
+    }
+    printf(&quot;Case %d: %d %llu\n&quot;,kase, s, ans);
+
+}
+int main()
+{
+    int t, n, m;
+    cin &gt;&gt; t;
+    for(int kase = 1; kase &lt;= t; kase++)
+    {
+        init();
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        for(int i = 1; i &lt;= m; i++)
+        {
+            int u, v;
+            scanf(&quot;%d%d&quot;, &amp;u, &amp;v);
+            addEdge(u, v);
+            addEdge(v, u);
+        }
+        solve(kase, n);
+    }
+    return 0;
+}</code></pre><p><a href="https://vjudge.net/problem/LightOJ-1108" target="_blank" rel="noopener"><strong>LightOJ 1108</strong></a> Instant View of Big Bang</p>
+<p>Have you forgotten about wormholes? Oh my god! Ok, let me explain again.</p>
+<p>A wormhole is a subspace tunnel through space and time connecting two star systems. Wormholes have a few peculiar properties:</p>
+<ol>
+<li><p>Wormholes are one-way only.</p>
+</li>
+<li><p>The time it takes to travel through a wormhole is negligible.</p>
+</li>
+<li><p>A wormhole has two end points, each situated in a star system.</p>
+</li>
+<li><p>A star system may have more than one wormhole end point within its boundaries.</p>
+</li>
+<li><p>Between any pair of star systems, there is at most one wormhole in each direction.</p>
+</li>
+<li><p>There are no wormholes with both end points in the same star system.</p>
+</li>
+</ol>
+<p>All wormholes have a constant time difference between their end points. For example, a specific wormhole may cause the person traveling through it to end up 15 years in the future. Another wormhole may cause the person to end up 42 years in the past.</p>
+<p>A brilliant physicist wants to use wormholes to study the Big Bang. Since warp drive has not been invented yet, it is not possible for her to travel from one star system to another one directly. Thiscan be done using wormholes, of course.</p>
+<p>The scientist can start her journey from any star system. Then she wants to reach a cycle of wormholes somewhere in the universe that causes her to end up in the past. By traveling along this cycle a lot of times, the scientist is able to go back as far in time as necessary to reach the beginning of the universe and see the Big Bang with her own eyes. Write a program to help her to find such star systems where she can start her journey.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 125)**, denoting the number of test cases.</p>
+<p>Each case starts with a blank line. The next line contains two numbers <strong>n</strong> and <strong>m</strong> . These indicate the number of star systems <strong>(1 ≤ n ≤ 1000)</strong> and the number of wormholes <strong>(0 ≤ m ≤ 2000)</strong>. The star systems are numbered from <strong>0</strong> to <strong>n-1</strong>. For each wormhole a line containing three integer numbers <strong>x</strong>, <strong>y</strong> and <strong>t</strong> is given. These numbers indicate that this wormhole allows someone to travel from the star system numbered <strong>x</strong> to the star system numbered <strong>y</strong>, thereby ending up <strong>t (-1000 ≤ t ≤ 1000)</strong>years in the future or past, a negative integer denotes past, positive integer denotes future.Output</p>
+<p>For each case, print the case number first. Then print the star systems (in ascending order) where she can start her journey. If no such star system is found, print <strong>‘impossible’</strong>.Sample Input</p>
+<p>2</p>
+<p>3 3</p>
+<p>0 1 1000</p>
+<p>1 2 15</p>
+<p>2 1 -42</p>
+<p>4 4</p>
+<p>0 1 10</p>
+<p>1 2 20</p>
+<p>2 3 30</p>
+<p>3 0 -60</p>
+<p>Sample Output</p>
+<p>Case 1: 0 1 2</p>
+<p>Case 2: impossible</p>
+<h3 id="分析：-5"><a href="#分析：-5" class="headerlink" title="分析："></a>分析：</h3><p>找负环，输出负环上的点，以及能够到达负环的点.</p>
+<p>找到负环上的点，可以用反向建图。</p>
+<h3 id="代码：-5"><a href="#代码：-5" class="headerlink" title="代码："></a>代码：</h3><pre><code>/*
+Date              : 2019-10-09    13:37:48
+By                : Tpaaaaaa
+File_Name         ：InstantViewofBigBangLightOJ1108.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+判断负环.bellman_ford spfa
+然后输出负环里面所有的点即可.
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e3 + 10;
+const int MAXM = 2e3 + 10;
+int cnt, dis[MAXN], head[MAXN], in[MAXN]; 
+bool vis[MAXN], ans[MAXN];
+struct Edge
+{
+    int v, w, next;
+}edge[MAXM];
+void addEdge(int u, int v, int w)
+{
+    cnt++;
+    edge[cnt].v = v;
+    edge[cnt].w = w;
+    edge[cnt].next = head[u];
+    head[u] = cnt;
+}
+void init()
+{
+    cnt = 0;
+    memset(head, -1, sizeof head);
+    memset(ans, false, sizeof ans);
+}
+set &lt;int&gt; st;
+void bellman_ford(int n)
+{
+    bool flag;
+    for(int i = 0; i &lt; n; i++)  
+        dis[i] = INF;
+    for(int i = 1; i &lt; n; i++)
+    {
+        flag = true;
+        for(int u = 0; u &lt; n; u++)
+            for(int i = head[u]; i != -1; i = edge[i].next)
+            {
+                int v = edge[i].v;
+                if(dis[v] &gt; dis[u] + edge[i].w)
+                {
+                    dis[v] = dis[u] + edge[i].w;
+                    flag = false;
+                }
+            }
+        if(flag)    break;
+    }
+    //好吧原来可以反向建图
+}
+void dfs(int u)
+{
+    ans[u] = true;          //u能到达环
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        int v = edge[i].v;
+        if(ans[v] == false)
+            dfs(v);
+    }
+}
+void spfa(int s, int n)
+{
+    for(int i = 0; i &lt; n; i++)
+        dis[i] = INF;
+    dis[s] = 0;
+    queue &lt;int&gt; Q;
+    Q.push(s);
+    vis[s] = true;
+    while(!Q.empty())
+    {
+        int u = Q.front();
+        vis[u] = false;
+        Q.pop();
+        if(ans[u])  continue;           //已经访问过了
+        for(int i = head[u]; i != -1; i = edge[i].next)
+        {
+            int v = edge[i].v;
+            if(dis[v] &gt; dis[u] + edge[i].w)
+            {
+                dis[v] = dis[u] + edge[i].w;
+                if(vis[v] == false)
+                {
+                    Q.push(v);
+                    vis[v] = true;
+                    ++in[v];        //入队次数大于等于元素数,说明该点是负环上面的点
+                    if(in[v] &gt;= n)
+                        dfs(v);     //从v开始bfs标记一下.
+                }
+            }
+        }
+    }
+}
+void solve(int n)
+{
+    for(int i = 0; i &lt; n; i++)
+    {
+        memset(in, 0, sizeof in);           //入队的次数
+        memset(vis, false, sizeof vis);     //spfa的入队标记
+        if(ans[i] == false)
+            spfa(i, n);
+    }
+}
+int main()
+{
+    int t, n, m;
+    cin &gt;&gt; t;
+    for(int kase = 1; kase &lt;= t; kase++)
+    {
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        init();
+        for(int i = 1; i &lt;= m; i++)
+        {
+            int x, y, w;
+            scanf(&quot;%d%d%d&quot;, &amp;x, &amp;y, &amp;w);
+            addEdge(y, x, w);               //反向建图
+        }
+        solve(n);
+        int sum = 0;
+        printf(&quot;Case %d:&quot;, kase);
+        for(int i = 0; i &lt; n; i++)
+            if(ans[i])
+            {
+                sum++;
+                printf(&quot; %d&quot;, i);
+            }
+         if(sum == 0)
+            printf(&quot; impossible&quot;);
+        printf(&quot;\n&quot;); 
+    }
+    return 0;
+}</code></pre><p><a href="https://vjudge.net/problem/LightOJ-1221" target="_blank" rel="noopener"><strong>LightOJ 1221</strong></a> Travel Company</p>
+<p>A travel company is planning to launch their bus service in a new route. So they conducted a survey and made a list of all possible roads connecting different cities. Each of the roads has a certain amount of income based on current fare. But at the same time, each road has some expenses too (this includes fuel and maintenance cost, staff payments, taxes and tribute to labor union which is recently approved by the Government). The travel company is looking for a cyclic route. That is, the bus will start from any city, then visit one or more cities each exactly once and return to the starting city. The company is also concerned with the profit on the route. In fact the directors of the company have a strict requirement of a profit ratio strictly greater than <strong>P</strong>. Otherwise they will not launch the service. A profit ratio for a route is the ratio between the total incomes to the total expenses for that route.</p>
+<p>One of your friends works in that company and he asks for a little help from you. All you have to do is to determine if there exists such route, so that the company has a profit ratio of <strong>P</strong>.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 100)**, denoting the number of test cases.</p>
+<p>Each case starts with a blank line and three integers <strong>N, R, P (2 ≤ N ≤ 100, 0 ≤ R ≤ 9900, 1 ≤ P ≤ 100)</strong>. <strong>N</strong>, <strong>R</strong> and <strong>P</strong> represents number of cities, number of road links and the expected profit ratio respectively. Then <strong>R</strong> lines follow. Each line contains four integers <strong>Ai, Bi, Ii, Ei (0 ≤ Ai, Bi &lt; N, 0 ≤ Ii≤ 5000, 1 ≤ Ei ≤ 5000)</strong>. <strong>(Ai, Bi)</strong> represents directed road link from city <strong>Ai</strong> to <strong>Bi</strong>. <strong>Ii</strong> and <strong>Ei</strong> are the incomes and expenses of the road link respectively. You may assume that <strong>(Ai, Bi) ≠ (Aj, Bj)</strong>, if <strong>i ≠ j</strong>and <strong>Ai ≠ Bi</strong> for any <strong>i</strong>.Output</p>
+<p>For each case, print the case number and <strong>“YES”</strong> if there is a cyclic route for which the profit ratio is greater than <strong>P</strong> or <strong>“NO”</strong>, if there is no such route.Sample Input</p>
+<p>3</p>
+<p>5 8 3</p>
+<p>0 1 17 8</p>
+<p>1 0 10 5</p>
+<p>1 2 11 5</p>
+<p>1 4 5 3</p>
+<p>2 3 13 7</p>
+<p>3 1 9 4</p>
+<p>4 3 11 1</p>
+<p>3 0 11 6</p>
+<p>5 8 3</p>
+<p>0 1 17 8</p>
+<p>1 0 10 5</p>
+<p>1 2 11 5</p>
+<p>1 4 5 3</p>
+<p>2 3 13 7</p>
+<p>3 1 9 4</p>
+<p>4 3 11 2</p>
+<p>3 0 11 6</p>
+<p>5 8 2</p>
+<p>0 1 17 8</p>
+<p>1 0 10 5</p>
+<p>1 2 11 5</p>
+<p>1 4 5 3</p>
+<p>2 3 13 7</p>
+<p>3 1 9 4</p>
+<p>4 3 11 5</p>
+<p>3 0 11 6Sample Output</p>
+<p>Case 1: YES</p>
+<p>Case 2: NO</p>
+<p>Case 3: YES</p>
+<p>Note</p>
+<p>Dataset is huge. Use faster I/O methods.</p>
+<h3 id="分析：-6"><a href="#分析：-6" class="headerlink" title="分析："></a>分析：</h3><p>首先利用<strong>分数规划</strong>，得出将每条边的权值设为 income - p * cost</p>
+<p>然后问题转化为求解 图中存不存在正环. 用SPFA</p>
+<h3 id="代码：-6"><a href="#代码：-6" class="headerlink" title="代码："></a>代码：</h3><pre><code>/*
+Date              : 2019-10-09    20:34:54
+By                : Tpaaaaaa
+File_Name         ：LightOJ1221TravelCompany.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+题意：
+每个边的权值为 income - p * cost
+
+问是否存在正
+
+oh, beautifulllllllll.
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e2 + 10;
+const int MAXM = 1e5;
+int cnt, head[MAXN], dis[MAXN], vis[MAXN], in[MAXN];
+struct Edge
+{
+    int v, w, next;
+}edge[MAXM];
+void addEdge(int u, int v, int w)
+{
+    cnt++;
+    edge[cnt].v = v;
+    edge[cnt].w = w;
+    edge[cnt].next = head[u];
+    head[u] = cnt;
+}
+bool spfa(int s, int n)
+{
+    for(int i = 0; i &lt; n; i++)
+        dis[i] = 0;
+    dis[s] = 0;
+    queue &lt;int&gt; Q;
+    Q.push(s);
+    vis[s] = true;
+    while(!Q.empty())
+    {
+        int u = Q.front();
+        Q.pop();
+        vis[u] = false;
+        for(int i = head[u]; i != -1; i = edge[i].next)
+        {
+            int v = edge[i].v;
+            if(dis[v] &lt; dis[u] + edge[i].w) 
+            {
+                dis[v] = dis[u] + edge[i].w;
+                if(vis[v] == false)
+                {
+                    vis[v] = true;
+                    Q.push(v);
+                    in[v]++;
+                    if(in[v] &gt;= n)
+                        return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+void init()
+{
+    memset(head, -1, sizeof head);
+    memset(vis, false, sizeof vis);
+    memset(in, 0, sizeof in);
+    cnt = 0;
+}
+int main()
+{
+    int n, r, p;
+    int t;
+    cin &gt;&gt;t;
+    for(int kase = 1; kase &lt;= t; kase++)
+    {
+        init();
+        scanf(&quot;%d%d%d&quot;, &amp;n, &amp;r, &amp;p);
+        for(int i = 1; i &lt;= r; i++)
+        {
+            int a, b, m, e;
+            scanf(&quot;%d%d%d%d&quot;, &amp;a, &amp;b, &amp;m, &amp;e);
+            addEdge(a, b, m - p * e);
+        }
+        printf(&quot;Case %d: &quot;, kase);
+        bool flag = false;
+        //这里怎么优化？？
+        //好像都是酱紫耶
+        for(int i = 0; i &lt; n; i++)
+            if(spfa(i, n))
+            {
+                flag = true;
+                break;
+            }
+        if(flag)    printf(&quot;YES\n&quot;);
+        else        printf(&quot;NO\n&quot;);    
+    }
+    return 0;
+}</code></pre><p><a href="https://vjudge.net/problem/LightOJ-1003" target="_blank" rel="noopener"><strong>LightOJ 1003</strong></a> Drunk</p>
+<p>One of my friends is always drunk. So, sometimes I get a bit confused whether he is drunk or not. So, one day I was talking to him, about his drinks! He began to describe his way of drinking. So, let me share his ideas a bit. I am expressing in my words.</p>
+<p>There are many kinds of drinks, which he used to take. But there are some rules; there are some drinks that have some pre requisites. Suppose if you want to take wine, you should have taken soda, water before it. That’s why to get real drunk is not that easy.</p>
+<p>Now given the name of some drinks! And the prerequisites of the drinks, you have to say that whether it’s possible to get drunk or not. To get drunk, a person should take all the drinks.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 50)**, denoting the number of test cases.</p>
+<p>Each case starts with an integer <strong>m (1 ≤ m ≤ 10000)</strong>. Each of the next <strong>m</strong> lines will contain two names each in the format <strong>a b</strong>, denoting that you must have <strong>a</strong> before having <strong>b</strong>. The names will contain at most <strong>10</strong> characters with no blanks.Output</p>
+<p>For each case, print the case number and <strong>‘Yes’</strong> or <strong>‘No’</strong>, depending on whether it’s possible to get drunk or not.Sample Input</p>
+<p>2</p>
+<p>2</p>
+<p>soda wine</p>
+<p>water wine</p>
+<p>3</p>
+<p>soda wine</p>
+<p>water wine</p>
+<p>wine waterSample Output</p>
+<p>Case 1: Yes</p>
+<p>Case 2: No</p>
+<h3 id="分析：-7"><a href="#分析：-7" class="headerlink" title="分析："></a>分析：</h3><p>将不同的酒抽象为不同的点，先后喝的关系抽象为边</p>
+<p>问的是这个图中存不存在环.判断图中存不存在环，可以用拓扑排序进行判环</p>
+<h3 id="代码：-7"><a href="#代码：-7" class="headerlink" title="代码："></a>代码：</h3><pre><code>/*
+Date              : 2019-10-10    18:43:01
+By                : Tpaaaaaa
+File_Name         ：DrunkLightOJ-1003.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+
+//判断有没有环
+拓扑排序判断有没有环
+我们先建边, 然后开始拓扑
+将入度为0的点分离出来，然后将这个点有边存在的其他点的入度减1
+一直做该操作
+如果之后不存在入度为0的点，说明有环
+即已经拓扑排序的点的数目要小于总的数目
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 2e4 + 10;
+const int MAXM = 1e4 + 10;
+int cnt, tot, head[MAXN], n, m, in[MAXN];
+map &lt;string, int&gt; mp;
+struct Edge
+{
+    int v, next;
+}edge[MAXM];
+void addEdge(int u, int v)
+{
+    cnt++;
+    edge[cnt].v = v;
+    edge[cnt].next = head[u];
+    head[u] = cnt;
+}
+int getId(string s)
+{
+    if(mp[s])   return mp[s];
+    else        return mp[s] = ++n;
+}
+void init()
+{
+    mp.clear();
+    memset(head, -1, sizeof head);
+    memset(in, 0, sizeof in);
+    cnt = n = 0;
+}
+//无环返回true
+bool solve()
+{
+    int sum = 0;
+    queue &lt;int&gt; q;
+    for(int i = 1; i &lt;= n; i++)
+        if(in[i] == 0) 
+            q.push(i);
+    while(!q.empty())
+    {
+        int u = q.front();
+        q.pop();
+        sum++;
+        for(int i = head[u]; i != -1; i = edge[i].next)
+        {
+            int v = edge[i].v;
+            in[v]--;
+            if(in[v] == 0)
+                q.push(v);
+        }
+    }
+    if(sum &lt; n) return false;
+    else        return true;
+}
+int main()
+{
+    int t;
+    cin &gt;&gt; t;
+    for(int kase = 1; kase&lt;= t; kase++)
+    {   //m为边数，n为点数
+        scanf(&quot;%d&quot;, &amp;m);
+        init();
+        for(int i = 1; i &lt;= m; i++)
+        {
+            int u, v;   
+            string a, b;
+            cin &gt;&gt; a &gt;&gt; b;
+            u = getId(a);
+            v = getId(b);
+            in[v]++;
+            addEdge(u, v);
+        }
+        printf(&quot;Case %d: &quot;, kase);
+        if(solve()) printf(&quot;Yes\n&quot;);
+        else        printf(&quot;No\n&quot;);
+    }
+    return 0;
+}</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/tpaaaaaa.github.io/2019/10/09/%5B%E5%9B%BE%E8%AE%BA%5DBron%E2%80%93Kerbosch%E7%AE%97%E6%B3%95/" rel="next" title="[图论]Bron–Kerbosch算法">
+                <i class="fa fa-chevron-left"></i> [图论]Bron–Kerbosch算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/tpaaaaaa.github.io/2019/10/11/POJ3744ScoutYYFI/" rel="prev" title="POJ3744 Scout YYF I">
+                POJ3744 Scout YYF I <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/tpaaaaaa.github.io/images/avatar.gif"
+                alt="我玩维恩不学q" />
+            
+              <p class="site-author-name" itemprop="name">我玩维恩不学q</p>
+              <p class="site-description motion-element" itemprop="description">个人blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/tpaaaaaa.github.io/archives">
+              
+                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/tpaaaaaa.github.io/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tpaaaaaa.github.io/tags/index.html">
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析："><span class="nav-number">1.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">2.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析：-1"><span class="nav-number">3.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-1"><span class="nav-number">4.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析：-2"><span class="nav-number">5.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-2"><span class="nav-number">6.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析：-3"><span class="nav-number">7.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-3"><span class="nav-number">8.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析：-4"><span class="nav-number">9.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-4"><span class="nav-number">10.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析：-5"><span class="nav-number">11.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-5"><span class="nav-number">12.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析：-6"><span class="nav-number">13.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-6"><span class="nav-number">14.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析：-7"><span class="nav-number">15.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-7"><span class="nav-number">16.</span> <span class="nav-text">代码：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我玩维恩不学q</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/tpaaaaaa.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/tpaaaaaa.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

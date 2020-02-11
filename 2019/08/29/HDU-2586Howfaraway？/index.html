@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/tpaaaaaa.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/tpaaaaaa.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/tpaaaaaa.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/tpaaaaaa.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/tpaaaaaa.github.io/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/tpaaaaaa.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/tpaaaaaa.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="LCA问题，Tarjan解法， LCA转RMQ问题，模板," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目大意：勇气小镇是一个有着n个房屋的小镇，为什么把它叫做勇气小镇呢，这个故事就要从勇气小镇成立的那天说起了，修建小镇的时候，为了让小镇有特色，镇长特地只修了n-1条路，并且规定说，所有在勇气小镇的村民，每一次出门必须规划好路线,路线必须满足在到达终点之前绝对不走回头路。每个人都要这样，不然那个人就不配在小镇生活下去，因为他没有这个勇气。事实上，这并不能算一项挑战，因为n-1条路已经连通了每户人家">
+<meta name="keywords" content="LCA问题，Tarjan解法， LCA转RMQ问题，模板">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDU - 2586 How far away ？">
+<meta property="og:url" content="https:&#x2F;&#x2F;tpaaaaaa.github.io&#x2F;2019&#x2F;08&#x2F;29&#x2F;HDU-2586Howfaraway%EF%BC%9F&#x2F;index.html">
+<meta property="og:site_name" content="Tian&#39;s Blog">
+<meta property="og:description" content="题目大意：勇气小镇是一个有着n个房屋的小镇，为什么把它叫做勇气小镇呢，这个故事就要从勇气小镇成立的那天说起了，修建小镇的时候，为了让小镇有特色，镇长特地只修了n-1条路，并且规定说，所有在勇气小镇的村民，每一次出门必须规划好路线,路线必须满足在到达终点之前绝对不走回头路。每个人都要这样，不然那个人就不配在小镇生活下去，因为他没有这个勇气。事实上，这并不能算一项挑战，因为n-1条路已经连通了每户人家">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-04T06:26:46.219Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tpaaaaaa.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tpaaaaaa.github.io/2019/08/29/HDU-2586Howfaraway？/"/>
+
+
+
+
+
+  <title>HDU - 2586 How far away ？ | Tian's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tpaaaaaa.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来真正的慷慨，在于把一切都献给现在.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/tpaaaaaa.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/tpaaaaaa.github.io/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tpaaaaaa.github.io/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/tpaaaaaa.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" target="_blank" rel="noopener" onclick="return false;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/29/HDU-2586Howfaraway%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HDU - 2586 How far away ？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T09:38:56+08:00">
+                2019-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h2><p>勇气小镇是一个有着n个房屋的小镇，为什么把它叫做勇气小镇呢，这个故事就要从勇气小镇成立的那天说起了，<br>修建小镇的时候，为了让小镇有特色，镇长特地只修了n-1条路，并且规定说，所有在勇气小镇的村民，每一次出门必须规划好路线,<br>路线必须满足在到达终点之前绝对不走回头路。每个人都要这样，不然那个人就不配在小镇生活下去，因为他没有这个勇气。<br>事实上，这并不能算一项挑战，因为n-1条路已经连通了每户人家，不回头地从起点到终点，只是一个时间上的问题。<br>由于小镇上的福利特别好，所以小懒入住了这个小镇，他规划了m次的行程，每次从L房屋到R房屋,他想问你他每次从L房屋到R房屋需要走多远的路。</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>给你一棵树，让你求出任意两点的最短距离。 树上点的最短距离问题，可以用最近公共祖先来解决。 dis[i]数组表示i节点距离根节点的距离。对于L和R，我们首先得到LCA， 然后则L到R的最短距离路径就是L往上走，走到LCA，再往下走走到R。</p>
+<p>因此最短距离就是 <strong>dis[L] + dis[R] - 2 * dis[LCA]</strong></p>
+<p>所以问题就变成了如何求树上两点的LCA了。用离线算法Tarjan可以，或者将LCA转化为RMQ问题求解也可以。下面就依这个题目为依据，将两个方法都具体的解释一遍</p>
+<h2 id="Tarjan："><a href="#Tarjan：" class="headerlink" title="Tarjan："></a>Tarjan：</h2><p>首先是输入部分：将边和询问关系全部录入相应的结构体数组中</p>
+<pre><code>for(int i = 1; i &lt; n; i++)  // n 个点， 一棵树的话就有n - 1条边
+{
+    int x, y, w;
+    scanf(&quot;%d%d%d&quot;, &amp;x, &amp;y, &amp;w);
+    addEdge(x, y, w);     //无向边
+    addEdge(y, x, w);
+}
+for(int i = 1; i &lt;= m; i++) //问题的编号1.2    3.4   5.6   ....
+{
+    int x, y;
+    scanf(&quot;%d%d&quot;,&amp;x, &amp;y);
+    addQues(x, y);            
+    addQues(y, x);
+}</code></pre><p>接下来以1为根节点，开始Tarjan （其本质就是DFS）</p>
+<pre><code>void Tarjan(int s)        //根节点为s
+{
+    vis[s] = true;        //标记已访问
+    pre[s] = s;           //都是自己
+    for(int i = head[s]; i != -1; i = edge[i].next) // 开始遍历自己的子节点
+        if(vis[edge[i].to] == false)  //这个节点没有访问过
+        {
+            int v = edge[i].to;
+            int w = edge[i].w;
+            dis[v] = dis[s] + w;      //更新这个节点的dis数组
+            Tarjan(v);                //从这个节点开始继续dfs
+            pre[v] = pre[s];          //这个节点dfs回来后，将子树与根合并
+            //合并
+        }
+    for(int i = Qhead[s]; i != -1; i = ques[i].next) //开始遍历每个与s相关的询问
+    {
+        if(vis[ques[i].to] == true)          //如果这个点已经访问过了。
+        {
+            int v = ques[i].to;
+            if(i%2)
+                ques[i].lca = ques[i + 1].lca = findRoot(v);
+            else
+                ques[i].lca = ques[i - 1].lca = findRoot(v);
+        }
+    }
+}</code></pre><p>所有处理完后，开始输出答案</p>
+<pre><code>for(int i = 1; i &lt;= m; i++)
+{
+    int j = i * 2; // 因为ques[1]ques[2]； ques[3]ques[4] ...是同一个询问
+    int u = ques[j].from, v = ques[j].to;
+    int lca = ques[j].lca; // 这是这个询问的LCA
+    printf(&quot;%d\n&quot;, dir[u] + dir[v] - 2 * dir[lca]);
+}</code></pre><h2 id="LCA转RMQ："><a href="#LCA转RMQ：" class="headerlink" title="LCA转RMQ："></a>LCA转RMQ：</h2><p>首先是输入部分：因为是在线算法，所以不需要提前将询问录入</p>
+<pre><code>for(int i = 1; i &lt; n; i++)
+{
+    int u, v, w;
+    scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);
+    addEdge(u, v, w);          //无向边
+    addEdge(v, u, w);
+}</code></pre><p>接下来也是从根节点开始DFS，生成ver数组（DFS的欧拉序列），depth数组（DFS每次的深度）, dis数组（节点距离根节点的距离），first数组（每个节点第一次出现在ver数组之中的下标）。</p>
+<pre><code>void dfs(int u, int dep)
+{
+    vis[u] = true;  //dfs 的标记           
+    ver[++tot] = u; //ver记录的是欧拉序列, tot记录的是节点的访问编号
+    first[u] = tot; //u这个点第一次出现的位置
+    depth[tot] = dep;   //深度表
+    for(int k = head[u]; k != -1; k = edge[k].next) //遍历下一个点
+    {
+        int v = edge[k].v;
+        if(vis[v] == false)
+        {
+            int w = edge[k].w;
+            dis[v] = dis[u] + w;    //更新距离
+            dfs(v, dep + 1);        // 向下dfs
+            ver[++tot] = u;         //递归下去又上来了
+            depth[tot] = dep;
+        }
+    }
+}</code></pre><p>这RMQ求的是区间里面深度最小的点。</p>
+<p>如果欧拉序列ver:1 <strong>2</strong> 5 2 6 2 1 3 1 <strong>4</strong> 1；深度序列Depth为: 0 <strong>1</strong> 2 1 2 1 <strong>0</strong> 1 0 <strong>1</strong> 0，first(u)为:1 <strong>2</strong> 8 <strong>10</strong> 3 5。 如果我们要求 2号点到4号点的LCA。则首先利用first数组知道2号点第一次出现在ver数组中的第2个位置，4号点第一次出现在ver数组的第10个位置，那么我们要找的就是depth数组中[2, 10]这个区间里面深度最小的点，显然为depth第7个位置(深度为0)，其对应在ver数组中为 1号点，也就是说2号点和4号点的最近公共祖先是1号点。</p>
+<p>求完以上几个数组，还有一个重要的数组要求，就是dp数组，用的是动态规划的思想, dp[i][j] 表示的是从ver第i个点开始的2^j 个点中的深度最小的点的编号，我们用ST函数求。</p>
+<pre><code>void ST(int len)                    //len是ver数组的长度
+{
+    int k = (int) (log((double) len ) / log(2.0) ); //意思是最长的长度为len == 2^k次 
+    for(int i = 1; i &lt;= len; i++)   //初始化
+        dp[i][0] = i;               //这记得的深度最下的点的下标
+    for(int j = 1; j &lt;= k; j++)     //首先枚举j
+        for(int i = 1; i + _pow[j] - 1 &lt;= len; i++) // 枚举起点
+                                     //这一次枚举考虑的区间就是[i, i + 2^j - 1]
+        {
+            int a = dp[i][j - 1];    //这个区间的最值，就是将这个区间分成a，b两个区间的这两个区间中的最值的最值。因为原区间为从i开始，连续的2^j个点，所以a区间就是从i开始，连续的2^(j-1)个点，b区间就是从i + 2^(j - 1)开始的连续的2^(j-1)个点
+            int b = dp[i + _pow[j - 1]] [j - 1];
+            if(depth[a] &lt; depth[b])
+                dp[i][j] = a;
+            else
+                dp[i][j] = b;
+        }
+}</code></pre><p>然后求的是RMQ函数，作用是返回ver区间中[x, y]这个区间里面深度最小的点的下标。</p>
+<pre><code>int RMQ(int x, int y)
+{
+    int k = (int)(log((double)(y-x+1)) / log(2.0));
+    int a = dp[x][k];
+    int b = dp[y - _pow[k] + 1][k];
+    if(depth[a] &lt; depth[b])
+        return a;
+    else
+        return b;
+}</code></pre><p>然后就是LCA函数了，返回的是u号点和v号点的LCA点的编号</p>
+<pre><code>int LCA(int u, int v)   // 求的是u 和v的LCA
+{
+    int x = first[u], y = first[v]; 
+    if(x &gt; y)
+        swap(x, y);          //要保证x在前，y在后
+    int res = RMQ(x, y);    //返回的是在ver的下标
+    return ver[res];
+}</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tpaaaaaa.github.io/tags/LCA%E9%97%AE%E9%A2%98%EF%BC%8CTarjan%E8%A7%A3%E6%B3%95%EF%BC%8C-LCA%E8%BD%ACRMQ%E9%97%AE%E9%A2%98%EF%BC%8C%E6%A8%A1%E6%9D%BF/" rel="tag"># LCA问题，Tarjan解法， LCA转RMQ问题，模板</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/tpaaaaaa.github.io/2019/08/28/%5B%E7%AE%97%E6%B3%95%5DRMQ%E5%8C%BA%E9%97%B4%E6%9C%80%E5%80%BC%E6%9F%A5%E8%AF%A2/" rel="next" title="[算法]RMQ区间最值查询">
+                <i class="fa fa-chevron-left"></i> [算法]RMQ区间最值查询
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/tpaaaaaa.github.io/2019/08/29/HDU-2874Connectionsbetweencities/" rel="prev" title="HDU - 2874 Connections between cities">
+                HDU - 2874 Connections between cities <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/tpaaaaaa.github.io/images/avatar.gif"
+                alt="我玩维恩不学q" />
+            
+              <p class="site-author-name" itemprop="name">我玩维恩不学q</p>
+              <p class="site-description motion-element" itemprop="description">个人blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/tpaaaaaa.github.io/archives">
+              
+                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/tpaaaaaa.github.io/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tpaaaaaa.github.io/tags/index.html">
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目大意："><span class="nav-number">1.</span> <span class="nav-text">题目大意：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析："><span class="nav-number">2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tarjan："><span class="nav-number">3.</span> <span class="nav-text">Tarjan：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCA转RMQ："><span class="nav-number">4.</span> <span class="nav-text">LCA转RMQ：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我玩维恩不学q</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/tpaaaaaa.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/tpaaaaaa.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

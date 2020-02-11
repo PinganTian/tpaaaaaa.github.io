@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/tpaaaaaa.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/tpaaaaaa.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/tpaaaaaa.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/tpaaaaaa.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/tpaaaaaa.github.io/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/tpaaaaaa.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/tpaaaaaa.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="博客链接：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;shao0099876&#x2F;p&#x2F;7366852.html 求解欧拉回路的算法：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Ash-ly&#x2F;p&#x2F;5397702.html 一、基本概念：欧拉路：欧拉路是指从图中任意一个点开始到图中任意一个点结束的路径，并且图中每条边通过的且只通过一次。 欧拉回路:欧拉回路是指起点和终点相同的欧拉路。 二、存在欧拉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[算法]欧拉路径问题与欧拉回路问题">
+<meta property="og:url" content="https:&#x2F;&#x2F;tpaaaaaa.github.io&#x2F;2019&#x2F;09&#x2F;01&#x2F;[%E7%AE%97%E6%B3%95]%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E9%97%AE%E9%A2%98&#x2F;index.html">
+<meta property="og:site_name" content="Tian&#39;s Blog">
+<meta property="og:description" content="博客链接：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;shao0099876&#x2F;p&#x2F;7366852.html 求解欧拉回路的算法：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Ash-ly&#x2F;p&#x2F;5397702.html 一、基本概念：欧拉路：欧拉路是指从图中任意一个点开始到图中任意一个点结束的路径，并且图中每条边通过的且只通过一次。 欧拉回路:欧拉回路是指起点和终点相同的欧拉路。 二、存在欧拉">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;localhost&#x2F;wp-content&#x2F;uploads&#x2F;2019&#x2F;09&#x2F;%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF-2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;localhost&#x2F;wp-content&#x2F;uploads&#x2F;2019&#x2F;09&#x2F;%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF-3.png">
+<meta property="og:updated_time" content="2019-12-04T06:26:46.219Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;localhost&#x2F;wp-content&#x2F;uploads&#x2F;2019&#x2F;09&#x2F;%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF-2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tpaaaaaa.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tpaaaaaa.github.io/2019/09/01/[算法]欧拉路径问题与欧拉回路问题/"/>
+
+
+
+
+
+  <title>[算法]欧拉路径问题与欧拉回路问题 | Tian's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tpaaaaaa.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来真正的慷慨，在于把一切都献给现在.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/tpaaaaaa.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/tpaaaaaa.github.io/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tpaaaaaa.github.io/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/tpaaaaaa.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" target="_blank" rel="noopener" onclick="return false;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/01/%5B%E7%AE%97%E6%B3%95%5D%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[算法]欧拉路径问题与欧拉回路问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-01T10:52:33+08:00">
+                2019-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>博客链接：<a href="https://www.cnblogs.com/shao0099876/p/7366852.html" target="_blank" rel="noopener">https://www.cnblogs.com/shao0099876/p/7366852.html</a></p>
+<p>求解欧拉回路的算法：<a href="https://www.cnblogs.com/Ash-ly/p/5397702.html" target="_blank" rel="noopener">https://www.cnblogs.com/Ash-ly/p/5397702.html</a></p>
+<h3 id="一、基本概念："><a href="#一、基本概念：" class="headerlink" title="一、基本概念："></a><strong>一、基本概念：</strong></h3><p><strong>欧拉路</strong>：欧拉路是指从图中任意一个点开始到图中任意一个点结束的路径，并且<strong>图中每条边通过的且只通过一次</strong>。</p>
+<p><strong>欧拉回路:</strong>欧拉回路是指起点和终点相同的欧拉路。</p>
+<h2 id="二、存在欧拉路和欧拉回路的条件"><a href="#二、存在欧拉路和欧拉回路的条件" class="headerlink" title="二、存在欧拉路和欧拉回路的条件:"></a><strong>二、存在欧拉路和欧拉回路的条件:</strong></h2><p>1.<strong>无向连通图</strong>存在欧拉路的条件：</p>
+<blockquote>
+<p><strong>所有点度都是偶数，或者恰好有两个点度是奇数，则有欧拉路。</strong>若有奇数点度，则奇数点度点一定是欧拉路的起点和终点，否则可取任意一点作为起点。</p>
+</blockquote>
+<p>2.<strong>有向连通图</strong>存在欧拉路的条件：</p>
+<ul>
+<li><strong>每个点的入度等于出度，则存在欧拉回路</strong>（任意一点有度的点都可以作为起点）</li>
+<li><strong>除两点外，所有入度等于出度。</strong>这两点中一点的出度比入度大，另一点的出度比入度小，则存在欧拉路。取出度大者为起点，入度大者为终点。</li>
+</ul>
+<p><strong>3.有向连通图</strong>存在欧拉回路的条件</p>
+<p>图连通，所有的顶点<strong>出度=入度</strong>。</p>
+<p><strong>4.无向连通图</strong>存在欧拉回路的条件</p>
+<p>图连通，所有顶点都是<strong>偶数度</strong>。</p>
+<hr>
+<h2 id="三、无向图欧拉路径的求解方法"><a href="#三、无向图欧拉路径的求解方法" class="headerlink" title="三、无向图欧拉路径的求解方法"></a>三、无向图欧拉路径的求解方法</h2><p>　　欧拉路径的求解方法一般是使用深度优先搜索（以下简称DFS）来做。</p>
+<p>　　首先我们需要确定搜索的起点。<strong>如果度数全为偶数</strong>，由欧拉回路在无向图中存在的充要条件（图中顶点度数全为偶数）可知，搜索结果必定为一条环，<strong>所以用任何一个顶点当做起点都可以得到一条欧拉路径</strong>。<strong>如果有两个奇度数顶点</strong>，那么欧拉路径必<strong>定以一个顶点作为出发点，以另一个顶点作为终点</strong>。因此从两个顶点中选一个出来即可。关于这一点可以解释为：欧拉路径如果要经过所有的边，对于度数为偶数的点必定是“到达-&gt;离开”这样的访问形式，不会在此停留（也就是中间点），这可以解释两个奇度数顶点的情况，<strong>全偶度数顶点的情况可以理解为奇度数的出发点与奇度数的终点重合为同一个偶度数的点。</strong></p>
+<p>　　欧拉路径在无向图中的求解可以用“过河拆桥”来形容。通过定义我们可以得到：<strong>如果我们经过了一条边，那么在以后的搜索过程中我们不能再次经过这条边，因此要把这条边删除掉，使得搜索的过程中不会出现重复的情况。</strong>计算过程如下：</p>
+<p>　　1.用图的数据初始化顶点，vis标记设为false。</p>
+<p>　　2.按上述方法寻找起点，同时排除不合法情况。</p>
+<p>　　3.从起点开始DFS，每次访问到顶点x的时候，将vis标记设为true，枚举x的邻接边，如果边没有被删除（del标记为false），那么就删除这条边（del设为true），同时找到下一个顶点，也删除这条边（无向图），DFS下一顶点，直到无法扩展，将顶点压栈。最后得到的栈按顺序出栈得到的序列就是顶点的访问顺序。</p>
+<p>　　4.检查顶点的访问情况，如果有<strong>没有访问到的顶点</strong>就说明图<strong>不是连通图</strong>，不是合法情况。</p>
+<h2 id="四、有向图欧拉路径求解方法"><a href="#四、有向图欧拉路径求解方法" class="headerlink" title=" 四、有向图欧拉路径求解方法"></a> 四、有向图欧拉路径求解方法</h2><p>　　与无向图欧拉路径求解方法类似，但是有以下改动：</p>
+<p>　　1.如果顶点的入度和出度均相等，情况同无向图全偶度数顶点。如果顶点中有一个 出度 - 入度 = 1，有一个 入度 - 出度 = 1，那么用 入度 - 出度 = 1的顶点作为起点</p>
+<p>　　2.删除边的时候只需要从起点删除一次即可</p>
+<h2 id="update：-下面找到的是更好的博文"><a href="#update：-下面找到的是更好的博文" class="headerlink" title="update： 下面找到的是更好的博文"></a>update： 下面找到的是更好的博文</h2><p>求解欧拉回路的算法：<a href="https://www.cnblogs.com/Ash-ly/p/5397702.html" target="_blank" rel="noopener">https://www.cnblogs.com/Ash-ly/p/5397702.html</a></p>
+<p><strong>基本(套圈)法</strong>：</p>
+<p>首先从一个节点(v0)出发，随便往下走(走过的边需要标记一下，下次就别走了)，当走到不能再走的时候，<strong>所停止的点必然也是起点</strong>(因为所有的点的度数都是偶数，能进去肯定还会出来，再者中间有可能再次经过起点，但是如果起点还能继续走，那么就要继续往下搜索，直到再次回来时不能往下搜索为止)，<strong>然后停止时，走过的路径形成了一个圈</strong>，但因为是随便走的，所以可能有些边还没走就回来了，那些剩下的边肯定也会形成一个或者多个环，然后可以从刚才终止的节点往前回溯，找到第一个可以向其他方向搜索的节点(vi)，然后再以这个点继续往下搜索，同理还会继续回到该点(vi)，于是这个环加上上次那个环就构成了一个更大的环，即可以想象成形成了一条从 v0 到 vi的路径，再由 vi 走了一个环回到 vi，然后到达v0 的一条更长的路径，如果当前的路径还不是最长的，那么继续按照上面的方法扩展。只需要在回溯时记录下每次回溯的边，最后形成的边的序列就是一条欧拉回路。如果要记录点的顺序的话，那么每访问一个点，就把这个点压入栈中，当某个点不能继续搜索时，即在标记不能走的边是，这个点成为了某种意义上的孤点，然后把这个点输出最后得到的就是一条欧拉回路路径的点的轨迹。</p>
+<p>　　总之，求欧拉回路的方法是，使用深度优先搜索，如果某条边被搜索到，则标记这条边为已选择，并且即使回溯也不能将当前边的状态改回未选择，每次回溯时，记录回溯路径。深度优先搜索结束后，记录的路径就是欧拉回路。</p>
+<p><strong>下面用图描述一遍：</strong></p>
+<p><img src="http://localhost/wp-content/uploads/2019/09/%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF-2.png" alt=""></p>
+<p><img src="http://localhost/wp-content/uploads/2019/09/%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF-3.png" alt=""></p>
+<p>假设我们选择从v1开始走,由于随便走，所以可能出现以下走法</p>
+<p>第一步：v1 – v9</p>
+<p>第二步：v9 – v8</p>
+<p>第三步：v8 – v10</p>
+<p>第四步：v10 – v1</p>
+<p>此时由于走过的边不能再走，那么从 v1 就无法继续向下探索,所以往前回溯,记录边集Eu{&lt;v1, v10&gt;}，此时回溯到 v10 ,发现可以继续走，那么</p>
+<p>第五步: v10 – v3</p>
+<p>第六步: v3 – v2</p>
+<p>第七步: v2 – v4</p>
+<p>第八步: v4 – v10</p>
+<p>发现已经无路可走，那么继续回溯，记录回溯路径得到Eu{&lt;v1,v10&gt;, &lt;v10, v4&gt;, &lt;v4, v2&gt;, &lt;v2, v3&gt;, &lt;v3, v10&gt;, &lt;v10, v8&gt;}，此时回溯到了 v8.发现可以向其他方向搜索, 那么</p>
+<p>第九步：v8 – v6</p>
+<p>第十步：v6 –v7</p>
+<p>第十一步：v7– v8</p>
+<p>又无路可走，继续回溯Eu{&lt;v1,v10&gt;, &lt;v10, v4&gt;, &lt;v4, v2&gt;, &lt;v2, v3&gt;, &lt;v3, v10&gt;, &lt;v10, v8&gt;, &lt;v8, v7&gt;, &lt;v7, v6&gt;,&lt;v6,v8&gt;,&lt;v8,v9&gt;,&lt;v9,v1&gt;}，到这里整个DFS就结束了，我们得到的边集Eu就是一条欧拉回路。</p>
+<p><strong>具体实现与分析:</strong></p>
+<p>使用链式前向星和DFS实现寻找欧拉回路的算法，用链式前向星存无向边时每条边要存储两次。</p>
+<p>代码已经测试数据</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;stack&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+const int MAXV = 100 + 7;
+const int MAXE = 100 * 100 + 7;
+int head[MAXV];
+int V, E;
+
+typedef struct EdgeNode
+{
+    int to;
+    int w;
+    int next;
+}edgeNode;
+edgeNode Edges[MAXE];
+
+bool visit[2 * MAXE];
+stack&lt;int&gt; stv;
+queue&lt;int&gt; quv;//点集
+queue&lt;int&gt; que;//边集
+
+void EulerDFS(int now)
+{
+    printf(&quot;Now = %d\n&quot;, now);
+    stv.push(now);//每访问一个点，就把该点压入栈
+   // printf(&quot;stack 中\n&quot;);
+
+    printf(&quot;\n&quot;);
+    for(int k = head[now]; k != -1; k = Edges[k].next)
+    {
+        if(!visit[k])
+        {
+            visit[k] = true;            //有向图每条边保存了两次，也要标记两次
+            if(k &amp; 1)
+                visit[k + 1] = true;
+            else
+                visit[k - 1] = true;
+            EulerDFS(Edges[k].to);
+            que.push(k);//回溯时记录
+            printf(&quot;插入了\n&quot;);
+            printf(&quot;%d号边\n&quot;, k);
+            printf(&quot;%d &lt; - &gt; %d&quot;, now, Edges[k].to);
+            printf(&quot;\n&quot;);
+        }
+    }
+    printf(&quot;栈顶元素为\n&quot;);
+    printf(&quot;%d\n&quot;, stv.top());
+    quv.push(stv.top());//记录点
+    stv.pop();
+}
+
+int main()
+{
+    //freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);
+    scanf(&quot;%d%d&quot;, &amp;V, &amp;E);
+    memset(head, -1, sizeof(head));
+    for(int i = 1; i &lt;= E; i++)
+    {
+        int u, v, w;
+        scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);
+        Edges[2 * i - 1].to = v;                //双向储存边
+        Edges[2 * i - 1].w = w;
+        Edges[2 * i - 1].next = head[u];
+        head[u] = 2 * i - 1;
+        Edges[2 * i].to = u;
+        Edges[2 * i].w = w;
+        Edges[2 * i].next = head[v];
+        head[v] = 2 * i;
+    }
+    memset(visit, false, sizeof(visit));
+    EulerDFS(1);
+    return 0;
+}
+/ * 
+10 11
+1 9 1
+1 10 2
+9 8 3
+10 8 4
+10 3 5
+3 2 6
+2 4 7
+10 4 8
+8 6 9
+6 7 10
+8 7 11
+
+*/</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/tpaaaaaa.github.io/2019/08/31/HDU-3072IntelligenceSystem/" rel="next" title="HDU - 3072  Intelligence System">
+                <i class="fa fa-chevron-left"></i> HDU - 3072  Intelligence System
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/tpaaaaaa.github.io/2019/09/01/poj1041John'strip/" rel="prev" title="poj 1041 John's trip">
+                poj 1041 John's trip <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/tpaaaaaa.github.io/images/avatar.gif"
+                alt="我玩维恩不学q" />
+            
+              <p class="site-author-name" itemprop="name">我玩维恩不学q</p>
+              <p class="site-description motion-element" itemprop="description">个人blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/tpaaaaaa.github.io/archives">
+              
+                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/tpaaaaaa.github.io/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tpaaaaaa.github.io/tags/index.html">
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本概念："><span class="nav-number">1.</span> <span class="nav-text">一、基本概念：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、存在欧拉路和欧拉回路的条件"><span class="nav-number"></span> <span class="nav-text">二、存在欧拉路和欧拉回路的条件:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、无向图欧拉路径的求解方法"><span class="nav-number"></span> <span class="nav-text">三、无向图欧拉路径的求解方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、有向图欧拉路径求解方法"><span class="nav-number"></span> <span class="nav-text"> 四、有向图欧拉路径求解方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update：-下面找到的是更好的博文"><span class="nav-number"></span> <span class="nav-text">update： 下面找到的是更好的博文</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我玩维恩不学q</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/tpaaaaaa.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/tpaaaaaa.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

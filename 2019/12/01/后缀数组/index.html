@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/tpaaaaaa.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/tpaaaaaa.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/tpaaaaaa.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/tpaaaaaa.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/tpaaaaaa.github.io/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/tpaaaaaa.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/tpaaaaaa.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="好的博文： https:&#x2F;&#x2F;blog.sengxian.com&#x2F;algorithms&#x2F;suffix-array 好的模板： https:&#x2F;&#x2F;blog.csdn.net&#x2F;clover_hxy&#x2F;article&#x2F;details&#x2F;51173982 第二篇链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;ruoruo_cheng&#x2F;article&#x2F;details&#x2F;52269746 简介KMP 字符串匹配算法，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后缀数组">
+<meta property="og:url" content="https:&#x2F;&#x2F;tpaaaaaa.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84&#x2F;index.html">
+<meta property="og:site_name" content="Tian&#39;s Blog">
+<meta property="og:description" content="好的博文： https:&#x2F;&#x2F;blog.sengxian.com&#x2F;algorithms&#x2F;suffix-array 好的模板： https:&#x2F;&#x2F;blog.csdn.net&#x2F;clover_hxy&#x2F;article&#x2F;details&#x2F;51173982 第二篇链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;ruoruo_cheng&#x2F;article&#x2F;details&#x2F;52269746 简介KMP 字符串匹配算法，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;oi-wiki.org&#x2F;string&#x2F;images&#x2F;sa1.png">
+<meta property="og:updated_time" content="2019-12-04T06:26:46.223Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;oi-wiki.org&#x2F;string&#x2F;images&#x2F;sa1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tpaaaaaa.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tpaaaaaa.github.io/2019/12/01/后缀数组/"/>
+
+
+
+
+
+  <title>后缀数组 | Tian's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tpaaaaaa.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">对未来真正的慷慨，在于把一切都献给现在.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/tpaaaaaa.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/tpaaaaaa.github.io/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tpaaaaaa.github.io/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/tpaaaaaa.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" target="_blank" rel="noopener" onclick="return false;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/12/01/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">后缀数组</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-01T20:25:33+08:00">
+                2019-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>好的博文： <a href="https://blog.sengxian.com/algorithms/suffix-array" target="_blank" rel="noopener">https://blog.sengxian.com/algorithms/suffix-array</a></p>
+<p>好的模板： <a href="https://blog.csdn.net/clover_hxy/article/details/51173982" target="_blank" rel="noopener">https://blog.csdn.net/clover_hxy/article/details/51173982</a></p>
+<p>第二篇链接：<a href="https://blog.csdn.net/ruoruo_cheng/article/details/52269746" target="_blank" rel="noopener">https://blog.csdn.net/ruoruo_cheng/article/details/52269746</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>KMP 字符串匹配算法，它可以在 O(m + n)<em>O</em>(<em>m</em>+<em>n</em>) 的时间内完成对模版串的匹配。然而，对于多模版串的匹配，每一次都要预处理，十分不高效。这时有 AC 自动机的出现，虽然可以多模匹配，但每次匹配仍然要遍历整个字符串，对于很长很长的字符串，例如 DNA 信息，有上亿的数据，这时候每一次查询遍历就不太科学了。这时就要预处理文本串。</p>
+<h2 id="一些约定¶"><a href="#一些约定¶" class="headerlink" title="一些约定¶"></a>一些约定<a href="https://oi-wiki.org/string/sa/#_1" target="_blank" rel="noopener">¶</a></h2><p>字符串相关的定义请参考 <a href="https://oi-wiki.org/string/basic/" target="_blank" rel="noopener">字符串基础</a> 。</p>
+<p>字符串下标从  开始。</p>
+<p>“ 后缀  “ 代指以第  个字符开头的后缀。</p>
+<h2 id="后缀数组是什么？¶"><a href="#后缀数组是什么？¶" class="headerlink" title="后缀数组是什么？¶"></a>后缀数组是什么？<a href="https://oi-wiki.org/string/sa/#_2" target="_blank" rel="noopener">¶</a></h2><p>后缀数组（Suffix Array）主要是两个数组：  和  。</p>
+<p>其中，  表示将所有后缀排序后第  小的后缀的编号。  表示后缀  的排名。</p>
+<p>这两个数组满足性质：  。</p>
+<p>后缀数组示例：</p>
+<p><a href="https://wenku.baidu.com/view/5b886b1ea76e58fafab00374.html" target="_blank" rel="noopener"><img src="https://oi-wiki.org/string/images/sa1.png" alt=""></a></p>
+<p>另一篇比较好的</p>
+<p>后缀数组（Suffix Array）是某一字符串的所有后缀按照字典序的一个排列。本文数组的索引从0开始。称s[j..len(s)-1]为后缀j。sa[i] = j，表示原串的所有后缀按字典序排列，排在第i个的是后缀j。一个字符串的后缀数组是唯一的。</p>
+<p>sa根据排名查后缀编号，与之对应的是rank数组，根据后缀编号查排名。sa[i] = j &lt;=&gt; rank[j] = i。</p>
+<p>给后缀排序有什么作用呢？一个字符串的所有子串，都可以表示为它某个后缀的前缀。对于一个有序的序列，我们可以二分查找。设文本串的长度为n，模板串的长度为m。直接二分，可以做到O(n lg n)+O(m lg n)的时间复杂度。用height数组进行优化，则可以做到O(n lg n)+O(m+lg n)。height是后缀数组中相邻两个后缀的最长公共前缀。</p>
+<p>后缀数组的构造<br>从上一段可以看出，我们能用O(n lg n)的时间构造一个字符串的后缀数组——倍增算法。存在O(n)的算法，在OI中似乎不常用。</p>
+<p>给数排序有很多方法。基于比较的排序，最快可做到O(n lg n)，理论上不能进一步优化。在我们的模型中，数之间的比较是O(1)的，然而，字符串的比较是O(n)的。所以，我们得另辟蹊径。</p>
+<p>除了基于比较的排序，我们还有计数排序、基数排序等。字符串的集合太大，计数排序不可行。但是字符集往往很小，我们应该试试基于计数排序的基数排序。每次计数排序用时O(n)，进行n轮计数排序，总共是O(n^2)，仍然不理想。</p>
+<p>字典序有什么特性？把s和t都拆成[0..i]，[i+1..len-1]两截，则s &lt; t &lt;=&gt; (s[0..i] &lt; t[0..i]) 或 (s[0..i] = t[0..i] 且 s[i+1..len(s)-1] &lt; t[i+1..len(t)-1])。从中看出两点：一，我们可以递归或者递推地比较两个字符串；二，这和二元组之间的比较很像！</p>
+<p>设sa_k为只取每个后缀的前缀k得到的“后缀数组”，rank_k类似。我们能根据它们计算出sa_2k和rank_2k。图示如下：</p>
+<p>取二元组(rank_k[i], rank_k[i+k])为后缀i的关键字排序，就得到了sa_2k。相当于rank_k能帮助我们快速地比较两个后缀。再根据sa_2k计算出rank_2k。如果i+k越界怎么办？我采用的方法是令它的rank等于-1。后面，我们将看到，置rank[n]=-1即可。</p>
+<p>如果用快速排序，至此，我们已经得到O(n lg^2 n)构造后缀数组的算法。</p>
+<p>rank的取值范围是0~n-1，统计一下每个rank对应多少个后缀是可接受的，能不能用先前提到的基数排序呢？基数排序从低位到高位循环，每一趟以这一位为关键字采用某种稳定排序算法（如计数排序）排序，最后就得到了有序的序列。以上面banana例子中k=4时的二元组为例：</p>
+<p>Pretty cool !</p>
+<p>一种简单的实现方法是，以rank_k[i+k]为关键字，对所有后缀计数排序，得到pre。再以rank_k[i]为关键字，对pre计数排序，得到sa_2k。</p>
+<p>有没有可以优化的地方？</p>
+<p>sa_k是什么？以rank_k[i]为关键字，对所有后缀排序的结果。现在取rank_k[i+k]为关键字，对于那些满足i+k &lt; n的后缀，它们的先后顺序保持不变，而对于那些i+k &gt;= n的后缀，根据上面的约定，其第二关键字等于-1，应该排在pre的最前面。所以，我们可以直接从sa_k得到pre。</p>
+<p>开始写代码吧。以下代码仅作说明之用，为了叙述方便打乱了顺序。</p>
+<h1 id="include"><a href="#include" class="headerlink" title="include"></a>include</h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include"></a>include</h1><p>void build_SA(char s[], int n)<br>{<br>memset(b, 0, sizeof(int)*SIGMA_SIZE);<br>for (int i = 0; i &lt; n; ++i) ++b[s[i]-‘a’]; for (int i = 1; i &lt; SIGMA_SIZE; ++i) b[i] += b[i-1]; for (int i = n-1; i &gt;= 0; –i)<br>sa[–b[s[i]-‘a’]] = i;<br>int m = rank[sa[0]] = 0;<br>for (int i = 1; i &lt; n; ++i) rank[sa[i]] = m += s[sa[i]] != s[sa[i-1]]; ++m; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 这一段求出sa_1和rank_1。假定SIGMA_SIZE &gt; MAX_N。如果字符集比较大，std::sort即可，不影响渐近的运行时间。m是不同rank的种数。</p>
+<pre><code>int *&amp;pre = t;
+for (int k = 1; m &lt; n; k *= 2, ++m) {
+    for (int i = 0, p = k; i &lt; n; ++i)
+        if (sa[i] &gt;= k)
+            pre[p++] = sa[i]-k;
+    for (int i = 0; i &lt; k; ++i)
+        pre[i] = n-k+i;</code></pre><p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>这一段求出pre。t是一个指针，定义为全局变量。</p>
+<p>int b[MAX_N], buff[2][MAX_N+1], *t = buff[0];<br>1<br>接下来根据第一关键字计数排序。</p>
+<pre><code>memset(b, 0, sizeof(int)*m);
+for (int i = 0; i &lt; n; ++i)
+    ++b[rank[i]];
+for (int i = 1; i &lt; m; ++i)
+    b[i] += b[i-1];
+for (int i = n-1; i &gt;= 0; --i)
+    sa[--b[rank[pre[i]]]] = pre[i];</code></pre><p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>至此，已求出新的sa。接着，我们来计算rank。</p>
+<pre><code>    m = r[sa[0]] = 0;
+    for (int i = 1; i &lt; n; ++i)
+        r[sa[i]] = m += rank[sa[i]] != rank[sa[i-1]] || rank[sa[i]+k] != rank[sa[i-1]+k];
+    swap(r, rank);
+}</code></pre><p>1<br>2<br>3<br>4<br>5<br>r是一个中间“数组”。这时pre数组已经没用了，所以它们可以共用一块内存。rank也定义为指针。</p>
+<pre><code>int *&amp;pre = t, *&amp;r = t;</code></pre><p>1<br>现在可以看到定义数组指针的用意。无须copy，无须memcpy，swap即可。DP里搞滚动数组也可以借鉴这个技巧。</p>
+<p>int b[MAX_N], sa[MAX_N], buff[2][MAX_N+1], *t = buff[0], *rank = buff[1];<br>1<br>别忘了在for k外面加上这句！</p>
+<pre><code>rank[n] = r[n] = -1;</code></pre><p>1<br>两个后缀i、j，设i &lt; j。若j+k &lt;= n，则rank[i+k]和rank[j+k]有定义。若j+k &gt; n，则必有rank[j] &lt; rank[i]，根据短路法则，无须再比较rank[i+k]和rank[j+k]。</p>
+<p>最后，还有：</p>
+<p>}<br>1<br>最长公共前缀<br>设后缀sa[i]和sa[j]的最长公共前缀为LCP(i, j)，有定理：LCP(i, j) = min{height[k] | min{i, j} &lt; k &lt;= max{i, j}}。</p>
+<p>一开始，刘汝佳告诉我这很显然，我是拒绝的。然而现在我也想建议大家使用显然法……</p>
+<p>还是证一下吧。先证一个引理，设i &lt; k &lt;= j，则LCP(i, j) = min{LCP(i, k), LCP(k, j)}。当k = j时显然成立。以下说明k &lt; j时的情形。</p>
+<p>设LCP(i, k)=a，LCP(j, k)=b，LCP(i, j)=c，sa[i]=x，sa[j]=y，sa[k]=z，不妨设a &lt;= b。那么，s[x..x+a-1] = s[z..z+a-1]，s[z..z+b-1] = s[y..y+b-1]，由传递性，s[x..x+a-1] = s[y+a-1..y+a-1]，故LCP(i, j) &gt;= a。由字典序的定义，后缀数组中i~k项后缀的前c个字符相等，故a &gt;= LCP(i, j)。证毕。</p>
+<p>结合这个引理和数学归纳法，上述定理成立。</p>
+<p>所以说height数组很重要啦。有了它，再求求RMQ，任意两后缀的最长公共前缀就搞定了。</p>
+<p>上面这个定理有个推论，帮我们线性时间求height：height[rank[i]] &gt;= height[rank[i-1]]-1。后缀i和i-1，拿掉i-1的第一个字符，二者就相等了。考虑sa[rank[i-1]-1]=p-1，则后缀p-1&lt;后缀i-1。如果它俩的第一个字符相等，那么，有后缀p &lt; 后缀i，由定理，有height[rank[i-1]]-1 = LCP(sa[p], sa[i]) &lt;= height[rank[i]]。如果它俩的第一个字符不等，则height[rank[i-1]] = 0，显然成立。推论得证。</p>
+<p>height[rank[i]]相对于前一项只能增加或减1，最多累计减少(n-1)个1，且height[rank[i]] &lt;= n。于是，按照height[rank[0]], height[rank[1]], height[rank[2]], …的顺序愉快地递推吧！</p>
+<p>UOJ #35是一道模板题，我的代码：<a href="http://uoj.ac/submission/93286。" target="_blank" rel="noopener">http://uoj.ac/submission/93286。</a></p>
+<p>写在最后<br>后缀数组最初是从兄弟学校的MYJ学长那里学的。研究了一下刘汝佳老师的代码，然后默写了一遍……UOJ #35始终是0分，CodeVS的模板题过了。那时我还没发现UOJ可以看一部分数据啊……我自己也不太清楚自己在写什么，这就是照着别人代码打的坏处。但是自己写不出来啊。于是这个数据结构和莫队算法等等在今年1~4月于匆忙中囫囵吞枣的知识一样，属于不可用的。</p>
+<p>这次是自己重新写的，但心底里对于以前的代码还是有个模糊的印象。根据刘汝佳老师的代码修改的。有两个地方比我更优：一是他通过共用pre和r（原代码变量名不一样），只用4n的空间；二是引入m变量。</p>
+<p>本文参考了刘汝佳、陈锋编著的《算法竞赛入门经典训练指南》和国家集训队2004年许智磊前辈的《后缀数组》一文。</p>
+<p>模板</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#define N 200003
+using namespace std;
+char ch[200003];
+int a[N],v[N],sa[2][N],rk[2][N];//sa[i]表示排名为i的后缀的起点下标，rk[i]表示第i位的后缀的优先级
+//之所以有两维是因为2^k是由两段2^k-1推来的，所以两维分别表示的是两段 
+int n,m,k;
+void calcsa(int sa[N],int rank[N],int SA[N],int Rank[N])
+{
+     for(int i=1;i&lt;=n;++i)v[rank[sa[i]]]=i;//v[i]表示排名为i的后缀，最靠后的位置在哪一位
+     for(int i=n;i&gt;=1;--i)
+         if(sa[i]&gt;k)
+             SA[v[rank[sa[i]-k]]--]=sa[i]-k;
+     for(int i=n-k+1;i&lt;=n;++i)
+         SA[v[rank[i]]--]=i;
+     for(int i=1;i&lt;=n;++i)
+         Rank[SA[i]]=Rank[SA[i-1]]+(rank[SA[i-1]]!=rank[SA[i]]||rank[SA[i-1]+k]!=rank[SA[i]+k]);//双关键字排序
+}
+void work()
+{
+    int p=0,q=1;
+    for (int i=1;i&lt;=n;i++) v[a[i]]++;//统计每个字符出现了多少次 
+    for (int i=1;i&lt;=256;i++) v[i]+=v[i-1];//统计出前缀和即可知道每个字符在串中的排名 
+    for (int i=1;i&lt;=n;i++)
+     sa[p][v[a[i]]--]=i;//因为每个字符不一定只出现了一次，但是不同的后缀不能用同样的排名，所以每次--，有效的防止了重复，并且保证了后面长度短的后缀排名更靠前 
+    for (int i=1;i&lt;=n;i++)//rk 与sa 互为逆运算，知道另一个就可以O(n)求出另一个 
+     rk[p][sa[p][i]]=rk[p][sa[p][i-1]]+(a[sa[p][i-1]]!=a[sa[p][i]]);//如果相邻两个相同，那么他们的优先级也是相同的 
+    k=1;//字符串的初始长度，因为是双关键字计数排序，所以刚开始sa[q]为0，相当于只看第一个关键字 
+    while (k&lt;n)
+    {
+        calcsa(sa[p],rk[p],sa[q],rk[q]);
+        p^=1; q^=1; k&lt;&lt;=1;
+    }
+    for (int i=1;i&lt;=n;i++)
+     {
+         printf(&quot;%d &quot;,sa[p][i]);
+     } 
+    printf(&quot;\n&quot;);
+    for (int i=1;i&lt;=n;i++)//sa[p]中存储的就是最终后缀数组的排名 
+    {
+        if (sa[p][i]&lt;=n/2)
+         printf(&quot;%c&quot;,ch[sa[p][i]+n/2-1]);//这里是为什么呢?以样例为例展环为链后为JSOI07JSOI07 ，那么根据排名sa[p]最终会变成 0077IIJJOOSS,因为是读最后一列，所以是sa[p][i]+n/2-1，即当前点的前一位，因为是环嘛，划一划就明白了。 
+    }
+}
+int main()
+{
+    scanf(&quot;%s&quot;,ch+1);
+    int len=strlen(ch+1);
+    for (int i=1;i&lt;=len;i++)//展环为链 
+    {
+        a[i]=int(ch[i]);
+        a[i+len]=a[i];
+        ch[i+len]=ch[i];
+    }
+    n=len&lt;&lt;1;
+    work();
+}</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/tpaaaaaa.github.io/2019/12/01/%E6%9C%80%E5%A4%A7%E6%B5%81%E6%9C%80%E5%B0%8F%E5%89%B2/" rel="next" title="最大流最小割">
+                <i class="fa fa-chevron-left"></i> 最大流最小割
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/tpaaaaaa.github.io/2019/12/03/1036%5BZJOI2008%5D%E6%A0%91%E7%9A%84%E7%BB%9F%E8%AE%A1Count/" rel="prev" title="1036: [ZJOI2008]树的统计Count">
+                1036: [ZJOI2008]树的统计Count <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/tpaaaaaa.github.io/images/avatar.gif"
+                alt="我玩维恩不学q" />
+            
+              <p class="site-author-name" itemprop="name">我玩维恩不学q</p>
+              <p class="site-description motion-element" itemprop="description">个人blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/tpaaaaaa.github.io/archives">
+              
+                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/tpaaaaaa.github.io/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tpaaaaaa.github.io/tags/index.html">
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些约定¶"><span class="nav-number">2.</span> <span class="nav-text">一些约定¶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后缀数组是什么？¶"><span class="nav-number">3.</span> <span class="nav-text">后缀数组是什么？¶</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include"><span class="nav-number"></span> <span class="nav-text">include</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-1"><span class="nav-number"></span> <span class="nav-text">include</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我玩维恩不学q</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tpaaaaaa.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/tpaaaaaa.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/tpaaaaaa.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/tpaaaaaa.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
