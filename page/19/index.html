@@ -282,6 +282,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/07/%5B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%5D%E5%8D%95%E8%B0%83%E6%A0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/09/07/%5B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%5D%E5%8D%95%E8%B0%83%E6%A0%88/" itemprop="url">[数据结构]单调栈</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-07T15:37:03+08:00">
+                2019-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是单调栈？"><a href="#什么是单调栈？" class="headerlink" title="什么是单调栈？"></a><strong>什么是单调栈？</strong></h2><p>单调栈分为单调递增栈和单调递减栈，单调递增栈即栈内元素保持单调递增的栈，同理单调递减栈即栈内元素保持单调递减的栈，跟单调队列差不多，但是只用到它的一端，利用它可以用来解决一些ACM/ICPC和OI的题目，如RQNOJ 的诺诺的队列等。</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><p>单调递增栈</p>
+<pre><code>for(int i = 0; i &lt; T.size(); i++){
+  while(! stk.empty() &amp;&amp; stk.top() &gt; T[i]){
+    ​stk.pop();
+  }
+  stk.push(A[i]);
+}</code></pre><h2 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h2><p>可以以 O(1) 的时间复杂度得知某个位置左右两侧比他大（或小）的数的位置，当你需要高效率获取某个位置左右两侧比他大（<strong>或小</strong>）的数的位置的的时候就可以用到单调栈。</p>
+<p>求解数组中元素右边第一个比它小的元素的下标，从前往后，构造单调递增栈；<br>求解数组中元素右边第一个比它大的元素的下标，从前往后，构造单调递减栈；<br>求解数组中元素左边第一个比它小的元素的下标，从后往前，构造单调递减栈；<br>求解数组中元素左边第一个比它小的元素的下标，从后往前，构造单调递增栈。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/06/%5B%E6%95%B0%E8%AE%BA%5D%E7%B4%A0%E6%95%B0%E7%AD%9B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2867,330 +3017,6 @@ while( R - L &gt; eps)            // 如果是 R &lt;= L,  则 L = mid - 1
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/03/HDU-1824Let'sgohome/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/09/03/HDU-1824Let'sgohome/" itemprop="url">HDU - 1824 Let's go home</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-03T22:03:33+08:00">
-                2019-09-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h2><p>小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头。<br>                        —— 余光中 </p>
-<p>集训是辛苦的，道路是坎坷的，休息还是必须的。经过一段时间的训练，lcy决定让大家回家放松一下，但是训练还是得照常进行，lcy想出了如下回家规定，每一个队（三人一队）或者队长留下或者其余两名队员同时留下；每一对队员，如果队员A留下，则队员B必须回家休息下，或者B留下，A回家。由于今年集训队人数突破往年同期最高记录，管理难度相当大，lcy也不知道自己的决定是否可行，所以这个难题就交给你了，呵呵，好处嘛~，免费**漂流一日。 </p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>同样的，根据题目给的条件，建立约束边。a1表示队长离开，a2表示队长留下，b1表示第一个队员离开 …..</p>
-<p>那么对于第一个规定，如果队长留下了那么 其他队员肯定要离开，则形成了约束条件</p>
-<p>a2 -&gt; b1 ; a2 -&gt; c1; //选了a2 就必选b1 c1</p>
-<p>对于第一个规定，如果队长离开了，那么必然有其他两名队友留下</p>
-<p>a1 -&gt; b2; a1 - &gt; c2 //</p>
-<p>同样的，在第一种情况里面，如果b留下了，c肯定一同留下，b走了，c肯定一同走了，所以存在约束条件</p>
-<p>b1 - &gt; c1; b2 - &gt; c2;</p>
-<p>同样的b留下了， a肯定走， b走了，a肯定留下。。。。</p>
-<p>对此会有一大堆约束条件</p>
-<p>我们尽量以点来分类，对每个点的情况进行全方面的约束分析。</p>
-<p>另外的规范的分析法</p>
-<p>对于a点，如果a留下了，b肯定会走，c肯定会走</p>
-<p>得到约束条件 a2 - &gt; b1, a2 - &gt; c1;</p>
-<p>对于a点，如果a走了，b肯定会留下，c肯定会留下</p>
-<p>得到约束条件 a1 - &gt; b2, a1 - &gt; c2;</p>
-<p>对于b点，如果b走了，那么a肯定会留下，c肯定会走</p>
-<p>b1 - &gt; a2; b1 - &gt; c1;</p>
-<p>对于b点，如果b留下了，那么a肯定会离开，c肯定会留下</p>
-<p>b2 - &gt; c2, b2 - &gt; a1;</p>
-<p>对于c点，如果c走了，那么a肯定会留下，b肯定会走</p>
-<p>c1 - &gt; a2, c1 - &gt;b1;</p>
-<p>对于c点，如果c留下了，那么a肯定会离开，b肯定会走</p>
-<p>c2 - &gt; a1; c2 - &gt; b2;</p>
-<p>所以第一个规则下，诞生了12个约束条件</p>
-<p>对于第二个规则，相对而言更直接，就不加赘述了。</p>
-<p>此后，图建完了，跑一边Tarjan看看同一个点的两个状态是否在同一个环内，如果是则说明不符合条件..</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
- Date              : 2019-09-03-12.55.06
- Question_Number   ：hdu 1824
- Question_Name     ：2 sat
- Description       :
- 枚举每个队伍的情况，如果队长回去，然后继续枚举其他队伍，如果存在，则ok
- 否则 队员回去..继续dfs
- 题解比较硬核，就直接全部分析了
- 好蠢的方法，但真香。
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-using namespace std;
-typedef long long ll;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 1e3 + 10;
-const int MAXM = 6 * MAXN;
-stack &lt; int &gt; st;
-int head[MAXM], low[MAXM], dfn[MAXM], belong[MAXM];
-bool vis[MAXM];
-int cnt, sum, n, m, tot;
-struct Edge
-{
-    int v, next;
-};
-Edge edge[MAXM*MAXM];
-void addEdge(int u, int v)
-{
-    cnt ++;
-    edge[cnt].v = v;
-    edge[cnt].next = head[u];
-    head[u] = cnt;
-}
-void Tarjan(int u)
-{
-    vis[u] = true;
-    st.push(u);
-    low[u] = dfn[u] = ++tot;
-    for(int i = head[u]; i != -1; i = edge[i].next)
-    {
-        int v = edge[i].v;
-        if(dfn[v] == 0)
-        {
-            Tarjan(v);
-            low[u] = min(low[u], low[v]);
-        }
-        else if(vis[v])
-            low[u] = min(low[u], dfn[v]);
-    }
-    if(dfn[u] == low[u])
-    {
-        sum ++;
-        while(st.top() != u)
-        {
-            int temp = st.top();
-            st.pop();
-            vis[temp] = false;
-            belong[temp] = sum;
-        }
-        st.pop();
-        vis[u] = false;
-        belong[u] = sum;
-    }
-   // printf(&quot;?&quot;);
-}
-bool solve()
-{
-    for(int i = 0; i &lt; 2 * n; i++)
-        if(dfn[i] == 0)
-            Tarjan(i);
-   // printf(&quot;?&quot;);
-    for(int i = 0; i &lt; n; i++)
-        if(belong[i * 2] == belong[i * 2 + 1])
-            return false;
-    return true;
-}
-void init()
-{
-    cnt = sum = tot = n = 0;
-    memset(head, -1, sizeof head);
-    memset(vis, false, sizeof vis);
-    memset(dfn, 0, sizeof dfn);
-}
-int main()
-{
-    int t;
-    while(scanf(&quot;%d%d&quot;, &amp;t, &amp;m) != EOF)
-    {
-        init();
-        for(int i = 1; i &lt;= t; i++)
-        {
-            int a, b, c;
-
-            scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;c);
-            n = max(n, a);
-            n = max(n, b);
-            n = max(n, c);
-            int a1 = a * 2;
-            int a2 = a * 2 + 1;
-            int b1 = b * 2;
-            int b2 = b * 2 + 1;
-            int c1 = c * 2;
-            int c2 = c * 2 + 1;
-            addEdge(a1, b2);    //a走b留
-            addEdge(a1, c2);    //a  c
-            addEdge(b1, c1);    //b走c走
-            addEdge(b1, a2);
-            addEdge(c1, b1);    //c走b走
-            addEdge(c1, a2);
-
-            addEdge(a2, b1);
-            addEdge(a2, c1);
-            addEdge(b2, a1);
-            addEdge(b2, c2);
-            addEdge(c2, a1);
-            addEdge(c2, b2);
-
-        }
-        for(int i = 1; i &lt;= m; i++)
-        {
-            int a, b;
-            scanf(&quot;%d%d&quot;, &amp;a, &amp;b);
-            n = max(n, a);
-            n = max(n, b);
-            int a1 = a * 2;         //a 回去
-            int a2 = a * 2 + 1;     //a 不回去
-            int b1 = b * 2;
-            int b2 = b * 2 + 1;
-            addEdge(a1, b2);    //a回去，b就不能回去
-            addEdge(b1, a2);    //b回去了，a就不能回去
-        }
-      //  printf(&quot;n = %d\n&quot;, n);
-      //  printf(&quot;?&quot;);
-        if(solve())
-            printf(&quot;yes\n&quot;);    //直接用Tarjan缩点就行
-        else
-            printf(&quot;no\n&quot;);
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3243,7 +3069,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -3254,7 +3080,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -3265,7 +3091,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

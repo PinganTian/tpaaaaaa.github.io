@@ -282,6 +282,418 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/15/UVA-11551ExperiencedEndeavour/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/15/UVA-11551ExperiencedEndeavour/" itemprop="url">UVA - 11551 Experienced Endeavour</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-15T22:28:34+08:00">
+                2019-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">数论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p><a href="https://vjudge.net/problem/UVA-11551" target="_blank" rel="noopener">UVA - 11551 Experienced Endeavour</a></p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>随便推推然后用矩阵解决了。越来越不爱写分析了</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
+Date              : 2019-10-15    10:52:10
+By                : Tpaaaaaa
+File_Name         ：ExperiencedEndeavourUVA11551.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 60;
+ll a[MAXN], ans[MAXN];
+int n;
+ll r;
+int siz;           //矩阵的大小.
+const int MOD = 1000;           //矩阵快速幂的模数.
+struct Mat//定义矩阵  
+{  
+    int mat[MAXN][MAXN];  
+    void init()                //初始化为一个单位阵
+    {  
+        memset(mat, 0, sizeof(mat));  
+        for(int i = 0; i &lt; siz; i++)
+             mat[i][i] = 1;
+     }   
+};  
+Mat mul(Mat a,Mat b)//矩阵乘法   
+{  
+    Mat ans;  
+    ans.init();  
+    for(int i = 0; i &lt; siz; i++)  
+    {  
+        for(int j = 0; j &lt; siz; j++)  
+        {  
+            ans.mat[i][j] = 0;  
+            for(int k = 0; k &lt; siz; k++)  
+                ans.mat[i][j] += a.mat[i][k] * b.mat[k][j];  
+            ans.mat[i][j] %= MOD;  
+        }  
+    }  
+    return ans;  
+}  
+Mat power(Mat a,ll num)//矩阵快速幂模板   
+{  
+    Mat ans;  
+    ans.init();  
+    while(num)  
+    {  
+        if(num &amp; 1)  
+            ans = mul(ans, a);
+        num &gt;&gt;= 1;  
+        a = mul(a, a);  
+    }  
+    return ans;  
+} 
+int main()
+{
+    int t;
+    cin &gt;&gt;t;
+    for(int kase = 1; kase &lt;= t; kase++)
+    {
+        scanf(&quot;%d%lld&quot;, &amp;n, &amp;r);
+        siz = n;
+        Mat p;
+        memset(p.mat, 0, sizeof p.mat);
+        for(int i = 0; i &lt; n; i++)  scanf(&quot;%lld&quot;, &amp;a[i]);
+        for(int i = 0; i &lt; n; i++)
+        {
+            int m;
+            scanf(&quot;%d&quot;, &amp;m);
+            for(int j = 0; j &lt; m; j++)
+            {
+                int c;
+                scanf(&quot;%d&quot;, &amp;c);
+                p.mat[i][c] = 1;
+            }
+        }
+        p = power(p, r);
+        for(int i = 0; i &lt; n; i++)
+        {
+            ans[i] = 0;
+            for(int j = 0; j &lt; n; j++)
+            {
+                ans[i] += p.mat[i][j] * a[j];
+                ans[i] %= MOD;
+            }
+        }
+        for(int i = 0; i &lt; n; i++)
+          if(i == n - 1)
+            printf(&quot;%lld\n&quot;, ans[i]);
+         else 
+            printf(&quot;%lld &quot;, ans[i]);
+    }
+    return 0;
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/15/%5B%E6%95%B0%E5%AD%A6%5D%E5%8D%9A%E5%BC%88%E8%AE%BA%E8%BF%9B%E9%98%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/15/%5B%E6%95%B0%E5%AD%A6%5D%E5%8D%9A%E5%BC%88%E8%AE%BA%E8%BF%9B%E9%98%B6/" itemprop="url">[数学]博弈论进阶</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-15T19:16:30+08:00">
+                2019-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">数论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>先放链接在这</p>
+<p>阶级博弈：<a href="https://blog.csdn.net/try__jhf/article/details/75011381" target="_blank" rel="noopener">https://blog.csdn.net/try__jhf/article/details/75011381</a></p>
+<p>Anti-Nim / Anti-SG 见ipad上下的论文。</p>
+<p>green 博弈 见pdf</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/14/1142-SummingupPowers(II)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2737,549 +3149,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/13/1279-GraphColoring/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/13/1279-GraphColoring/" itemprop="url">1279 - Graph Coloring</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-13T22:47:27+08:00">
-                2019-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E8%AE%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">数论</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://lightoj.com/volume_submit.php?problem=1279" target="_blank" rel="noopener"> </a>  <a href="http://udebug.com/LOJ/1279" target="_blank" rel="noopener"></a></p>
-<p><a href="http://lightoj.com/volume_showproblem.php?problem=1279&language=english&type=pdf" target="_blank" rel="noopener">PDF (English)</a></p>
-<p><a href="http://lightoj.com/volume_problemstat.php?problem=1279" target="_blank" rel="noopener">Statistics</a></p>
-<p><a href="http://lightoj.com/forum_showproblem.php?problem=1279" target="_blank" rel="noopener">Forum</a></p>
-<p>Time Limit: 2 second(s)</p>
-<p>Memory Limit: 32 MB</p>
-<p>Given an undirected graph <strong>G</strong>, you want to color each vertex of the graph using <strong>K</strong> colors. The colors are numbered from <strong>0</strong> to <strong>K-1</strong>. But there is one restriction. Let <strong>v</strong> be any vertex of the graph and <strong>u1, u2 … um</strong> be the adjacent vertices of <strong>v</strong>, then</p>
-<p><strong>color(v) = color(u1) + color(u2) + … + color(um) (modulo K)</strong></p>
-<p>Now you have to find the number of ways you can color the graph maintaining this restriction.</p>
-<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>Input starts with an integer <strong>T (**</strong>≤ 200)**, denoting the number of test cases.</p>
-<p>Each case starts with a line containing three integers <strong>N</strong>, <strong>M **and</strong> K (1 ≤ N ≤ 100, 2 ≤ K ≤ 109 and K is a prime) <strong>where **N</strong> denotes the number of vertices and <strong>M</strong> denotes the number of edges of the graph.Each of the next <strong>M</strong> lines contains two integers <strong>u v (1 ≤ u, v ≤ N, u ≠ v)</strong> denoting that there is an edge between vertex <strong>u</strong> and <strong>v</strong>. You can safely assume that there is at most one edge between any two vertices.</p>
-<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>For each case, print the case number and the result modulo <strong>1000000007</strong>.</p>
-<p>Sample Input</p>
-<p>Output for Sample Input</p>
-<p>26 0 55 4 31 21 32 43 5</p>
-<p>Case 1: 1Case 2: 3</p>
-<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>For the second case, let the colors be red (0), green (1) and blue (2). Then the possible results are:</p>
-<p><img src="http://lightoj.com/data/problems/desc/1279/a1.png" alt=""></p>
-<p><img src="http://lightoj.com/data/problems/desc/1279/a2.png" alt=""></p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>高斯消元法 模线性方程组。一些细节要注意，能做模板。</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
-Date              : 2019-10-13    15:50:11
-By                : Tpaaaaaa
-File_Name         ：1279 Graph Coloring.cpp
-Description       : 
-目前正在专项刷题，为了保证效果。
-必须做到：
-   1，先想出完整思路，并分析复杂度。
-   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
-   3. 编写代码的时候，规范风格（例如变量名）
-   4. 模块化答题
-高斯消元法解模线性方程组。模板题
-用链式前向星保存图
-对于每个点他的连接的边，我们可以得到一个方程
-他自己的系数为1，其他与他相连的系数为-1，其余为0.
-得到n个方程，之后求解.
-
-注意考虑系数是负数！！
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-#define md(x, y)  (x + y) / 2
-#define ls(x)      x &lt;&lt; 1
-#define rs(x)      x &lt;&lt; 1 | 1
-#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
-#define fileclose fclose(stdin); fclose(stdout)
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 110;
-const int MOD  = 1000000007;
-ll a[MAXN][MAXN];
-int n, m;
-ll k;
-ll gcd(ll a, ll b)
-{
-    if(b == 0)  return a;
-    return gcd(b, a%b);
-}
-ll lcm(ll a, ll b)
-{
-    return a/gcd(a, b) * b;
-}
-int Gauss(int equ, int var)
-{
-    int col = 1, row = 1, max_r;
-    for(; col &lt;= var &amp;&amp; row &lt;= equ; col++, row++)
-    {
-        max_r = row;
-        for(int i = row + 1; i &lt;= equ; i++)
-            if(abs(a[max_r][col]) &lt; abs(a[i][col]))   max_r = i;
-        if(max_r != row)
-            for(int i = row; i &lt;= var + 1; i++)
-                swap(a[max_r][i], a[row][i]);
-        if(a[row][col] == 0)
-        {
-            row--;
-            continue;
-        }
-        for(int i = row + 1; i &lt;= equ; i++)
-        {
-            if(a[i][col] != 0)
-            {
-                ll LCM = lcm(abs(a[row][col]), abs(a[i][col]));
-                ll ta = LCM / a[i][col];
-                ll tb = LCM / a[row][col];
-                for(int j = col; j &lt;= var + 1; j++)
-                    a[i][j] = ((a[i][j] * ta - a[row][j] * tb) % k + k) % k; 
-            }
-        }
-    }
-    return equ - row + 1;
-}
-ll qpow(ll a, int b)
-{
-    ll ret = 1;
-    while(b)
-    {
-        if(b &amp; 1)
-            ret = (ret * a) % MOD;
-        a = (a * a) % MOD; 
-        b &gt;&gt;= 1;
-    }
-    return ret;
-}
-int main()
-{
-    int t;
-    cin &gt;&gt; t;
-    for(int kase = 1; kase &lt;= t; kase++)
-    {
-        memset(a, 0, sizeof a);
-        //n点，m边，模k，点的编号从1开始
-        scanf(&quot;%d%d%lld&quot;, &amp;n, &amp;m, &amp;k);
-        for(int i = 1; i &lt;= n; i++)
-            a[i][i] = 1;
-        for(int i = 1; i &lt;= m; i++)
-        {
-            int u, v;
-            scanf(&quot;%d%d&quot;, &amp;u, &amp;v);
-            a[u][v] = -1;
-            a[v][u] = -1;
-        }
-        //增广矩阵建立完了。
-        int free_num = Gauss(n, n);
-        ll ans = qpow(k, free_num);
-        //传出来的是自由变量的数目
-        if(free_num == 0)
-            printf(&quot;Case %d: 1\n&quot;, kase);
-        else
-            printf(&quot;Case %d: %lld\n&quot;, kase, ans);
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/12/LightOJ-1027ADangerousMaze/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/12/LightOJ-1027ADangerousMaze/" itemprop="url">LightOJ - 1027 A Dangerous Maze</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-12T22:25:53+08:00">
-                2019-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index">
-                    <span itemprop="name">动态规划</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>You are in a maze; seeing <strong>n</strong> doors in front of you in beginning. You can choose any door you like. The probability for choosing a door is equal for all doors.</p>
-<p>If you choose the <strong>ith</strong> door, it can either take you back to the same position where you begun in <strong>xi</strong>minutes, or can take you out of the maze after <strong>xi</strong> minutes. If you come back to the same position, you can’t remember anything. So, every time you come to the beginning position, you have no past experience.</p>
-<p>Now you want to find the expected time to get out of the maze.Input</p>
-<p>Input starts with an integer <strong>T (**</strong>≤ 100)**, denoting the number of test cases.</p>
-<p>Each case contains a blank line and an integer <strong>n (1 ≤ n ≤ 100)</strong> denoting the number of doors. The next line contains <strong>n</strong> space separated integers. If the <strong>ith</strong> integer <strong>(xi)</strong> is positive, you can assume that the <strong>ith</strong> door will take you out of maze after <strong>xi</strong> minutes. If it’s negative, then the <strong>ith</strong> door will take you back to the beginning position after <strong>abs(xi)</strong> minutes. You can safely assume that <strong>1 ≤ abs(xi) ≤ 10000</strong>.Output</p>
-<p>For each case, print the case number and the expected time to get out of the maze. If it’s impossible to get out of the maze, print <strong>‘inf’</strong>. Print the result in <strong>p/q</strong> format. Where <strong>p</strong> is the numerator of the result and <strong>q</strong> is the denominator of the result and they are relatively prime. See the samples for details.Sample Input</p>
-<p>3</p>
-<p>1</p>
-<p>1</p>
-<p>2</p>
-<p>-10 -3</p>
-<p>3</p>
-<p>3 -6 -9Sample Output</p>
-<p>Case 1: 1/1</p>
-<p>Case 2: inf</p>
-<p>Case 3: 18/1</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>水题</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
-Date              : 2019-10-12    08:25:38
-By                : Tpaaaaaa
-File_Name         ：A DangerousMazeLightOJ1027.cpp
-Description       : 
-目前正在专项刷题，为了保证效果。
-必须做到：
-   1，先想出完整思路，并分析复杂度。
-   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
-   3. 编写代码的时候，规范风格（例如变量名）
-   4. 模块化答题
-//
-设dp[0]为在起点处走出迷宫的期望时间
-dp[i] 为在第i个门上走出迷宫的期望时间
-
-if(x[i] &gt; 0)    dp[i] = x[i];
-else            dp[i] = -x[i] + dp[0];
-
-得到递推公式
-dp[0] = 1/n(dp[1] + dp[2] .... dp[n]);
-得到
-n*dp[0] = dp[1] + dp[2] ... + dp[n]
-
-化简得到
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-#define md(x, y)  (x + y) / 2
-#define ls(x)      x &lt;&lt; 1
-#define rs(x)      x &lt;&lt; 1 | 1
-#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
-#define fileclose fclose(stdin); fclose(stdout)
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 1e2 + 10;
-int x;
-int gcd(int a, int b)
-{
-    if(b == 0)  return a;
-    else        return gcd(b, a % b);
-
-}
-int main()
-{
-    int t, n;
-    int left, right;
-    cin &gt;&gt; t;
-    for(int kase = 1; kase &lt;= t; kase++)
-    {
-        scanf(&quot;%d&quot;, &amp;n);
-        left = n;
-        right = 0;
-        for(int i = 1; i &lt;= n; i++)
-        {
-            scanf(&quot;%d&quot;, &amp;x);
-            if(x &lt; 0)
-            {
-                right -= x;
-                left--;
-            }
-            else
-                right += x;
-        }
-        printf(&quot;Case %d: &quot;, kase);
-        if(left == 0)
-            printf(&quot;inf\n&quot;);
-        else
-        {
-            int d = gcd(left, right);
-            left /= d;
-            right /= d;
-            printf(&quot;%d/%d\n&quot;, right, left);
-        }
-
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3332,7 +3201,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -3343,7 +3212,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -3354,7 +3223,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

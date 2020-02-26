@@ -282,6 +282,353 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2020/02/12/YAML%20%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2020/02/12/YAML%20%E8%AF%AD%E6%B3%95/" itemprop="url">YAML语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-12T08:34:27+08:00">
+                2020-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/YAML/" itemprop="url" rel="index">
+                    <span itemprop="name">YAML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="YAML-语法"><a href="#YAML-语法" class="headerlink" title="YAML 语法"></a>YAML 语法</h1><h3 id="What-is-YAML"><a href="#What-is-YAML" class="headerlink" title="What is YAML"></a>What is YAML</h3><p>YAML 是 “YAML Ain’t a Markup Language”（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：”Yet Another Markup Language”（仍是一种标记语言）。</p>
+<p>YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲（例如：许多电子邮件标题格式和YAML非常接近）。</p>
+<p>YAML 的配置文件后缀为 <strong>.yml</strong></p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><ul>
+<li>大小写敏感</li>
+<li>使用缩进表示层级关系</li>
+<li>缩进不允许使用tab，只允许空格</li>
+<li>缩进的空格数不重要，只要相同层级的元素左对齐即可</li>
+<li>‘#’表示注释</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>YAML 支持以下几种数据类型：</p>
+<ul>
+<li>对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary）</li>
+<li>数组：一组按次序排列的值，又称为序列（sequence） / 列表（list）</li>
+<li>纯量（scalars）：单个的、不可再分的值</li>
+</ul>
+<h3 id="YAML对象"><a href="#YAML对象" class="headerlink" title="YAML对象"></a>YAML对象</h3><p>对象键值对：</p>
+<p>​    可使用冒号结构表示 <strong>key: value</strong>，<strong>冒号后面要加一个空格</strong>。</p>
+<p>​    也可以使用 <strong>key:{key1: value1, key2: value2, …}</strong>。</p>
+<p>​    还可以使用缩进表示层级关系；</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">1.key:</span> <span class="string">value</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="number">2.</span><span class="string">key:&#123;key1:</span> <span class="string">value1,</span> <span class="attr">key2:</span> <span class="string">value2,</span> <span class="string">...&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="attr">3.key:</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      <span class="attr">child-key1:</span> <span class="string">value1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      <span class="attr">child-key2:</span> <span class="string">value2</span></span></pre></td></tr></table></figure>
+
+<h3 id="YAML数组"><a href="#YAML数组" class="headerlink" title="YAML数组"></a>YAML数组</h3><p>以 <strong>-</strong> 开头的行表示构成一个数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">- A</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">- B</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">- C</span></pre></td></tr></table></figure>
+
+<p>个相对复杂的例子：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">companies:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        <span class="attr">id:</span> <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="attr">name:</span> <span class="string">company1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="attr">price:</span> <span class="string">200W</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="attr">id:</span> <span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="attr">name:</span> <span class="string">company2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="attr">price:</span> <span class="string">500W</span></span></pre></td></tr></table></figure>
+
+<p>意思是 companies 属性是一个数组，每一个数组元素又是由 id、name、price 三个属性构成。</p>
+<p>数组和对象可以构成复合结构，例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">languages:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="bullet">-</span> <span class="string">Ruby</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="bullet">-</span> <span class="string">Perl</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="bullet">-</span> <span class="string">Python</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">websites:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">YAML:</span> <span class="string">yaml.org</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">Ruby:</span> <span class="string">ruby-lang.org</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">Python:</span> <span class="string">python.org</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">Perl:</span> <span class="string">use.perl.org</span></span></pre></td></tr></table></figure>
+
+<h3 id="YAML纯量"><a href="#YAML纯量" class="headerlink" title="YAML纯量"></a>YAML纯量</h3><p>纯量是最基本的，不可再分的值，包括：</p>
+<ul>
+<li>字符串</li>
+<li>布尔值</li>
+<li>整数</li>
+<li>浮点数</li>
+<li>Null</li>
+<li>时间</li>
+<li>日期</li>
+</ul>
+<p>使用一个例子来快速了解纯量的基本使用：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">boolean:</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="literal">TRUE</span>  <span class="comment">#true,True都可以</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="literal">FALSE</span>  <span class="comment">#false，False都可以</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="attr">float:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="number">3.14</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="number">6.8523015e+5</span>  <span class="comment">#可以使用科学计数法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="attr">int:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="number">123</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">0b1010_0111_0100_1010_1110</span>    <span class="comment">#二进制表示</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="attr">null:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">nodeName:</span> <span class="string">'node'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">parent:</span> <span class="string">~</span>  <span class="comment">#使用~表示null</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="attr">string:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">哈哈</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">'Hello world'</span>  <span class="comment">#可以使用双引号或者单引号包裹特殊字符</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">newline</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      <span class="string">newline2</span>    <span class="comment">#字符串可以拆成多行，每一行会被转化成一个空格</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="attr">date:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="number">2018</span><span class="number">-02</span><span class="number">-17</span>    <span class="comment">#日期必须使用ISO 8601格式，即yyyy-MM-dd</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="attr">datetime:</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span>  <span class="number">2018</span><span class="number">-02</span><span class="string">-17T15:02:31+08:00</span>    <span class="comment">#时间使用ISO 8601格式，时间和日期之间使用T连接，最后使用+代表时区</span></span></pre></td></tr></table></figure>
+
+<h3 id="YAML引用"><a href="#YAML引用" class="headerlink" title="YAML引用"></a>YAML引用</h3><p><strong>&amp;</strong> 锚点和 ***** 别名，可以用来引用:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">defaults:</span> <span class="meta">&amp;defaults</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">adapter:</span>  <span class="string">postgres</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">host:</span>     <span class="string">localhost</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">development:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">database:</span> <span class="string">myapp_development</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="string">&lt;&lt;:</span> <span class="meta">*defaults</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="attr">test:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">database:</span> <span class="string">myapp_test</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="string">&lt;&lt;:</span> <span class="meta">*defaults</span></span></pre></td></tr></table></figure>
+
+<p>相当于:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">defaults:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">adapter:</span>  <span class="string">postgres</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">host:</span>     <span class="string">localhost</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">development:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">database:</span> <span class="string">myapp_development</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">adapter:</span>  <span class="string">postgres</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">host:</span>     <span class="string">localhost</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="attr">test:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">database:</span> <span class="string">myapp_test</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">adapter:</span>  <span class="string">postgres</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">host:</span>     <span class="string">localhost</span></span></pre></td></tr></table></figure>
+
+<p><strong>&amp;</strong> 用来建立锚点（defaults），<strong>&lt;&lt;</strong> 表示合并到当前数据，***** 用来引用锚点。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2020/02/12/XML%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2020/02/12/XML%E8%AF%AD%E6%B3%95/" itemprop="url">XML语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-12T08:34:27+08:00">
+                2020-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/XML/" itemprop="url" rel="index">
+                    <span itemprop="name">XML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="XML语法"><a href="#XML语法" class="headerlink" title="XML语法"></a>XML语法</h1><h3 id="What-is-XML"><a href="#What-is-XML" class="headerlink" title="What is XML"></a>What is XML</h3><ul>
+<li>XML 指可扩展标记语言（<strong>EX</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage）</li>
+<li>XML 是一种<strong>标记语言</strong>，很类似 HTML</li>
+<li>XML 的设计宗旨是<strong>传输数据</strong>，而非显示数据</li>
+<li>XML 标签没有被预定义。您需要<strong>自行定义标签</strong>。</li>
+<li>XML 被设计为具有<strong>自我描述性</strong>。</li>
+<li>XML 是 <strong>W3C 的推荐标准</strong></li>
+</ul>
+<h3 id="XML-与-HTML-的主要差异"><a href="#XML-与-HTML-的主要差异" class="headerlink" title="XML 与 HTML 的主要差异"></a>XML 与 HTML 的主要差异</h3><p>XML 不是 HTML 的替代。</p>
+<p>XML 和 HTML 为不同的目的而设计：</p>
+<p>XML 被设计为传输和存储数据，其焦点是数据的内容。</p>
+<p>HTML 被设计用来显示数据，其焦点是数据的外观。</p>
+<p><strong>HTML 旨在显示信息，而 XML 旨在传输信息。</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2020/02/11/Git%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2111,628 +2458,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/12/03/1013%5BJSOI2008%5D%E7%90%83%E5%BD%A2%E7%A9%BA%E9%97%B4%E4%BA%A7%E7%94%9F%E5%99%A8sphere/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/12/03/1013%5BJSOI2008%5D%E7%90%83%E5%BD%A2%E7%A9%BA%E9%97%B4%E4%BA%A7%E7%94%9F%E5%99%A8sphere/" itemprop="url">1013: [JSOI2008]球形空间产生器sphere</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-03T14:36:35+08:00">
-                2019-12-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>　　有一个球形空间产生器能够在n维空间中产生一个坚硬的球体。现在，你被困在了这个n维球体中，你只知道球<br>面上n+1个点的坐标，你需要以最快的速度确定这个n维球体的球心坐标，以便于摧毁这个球形空间产生器。</p>
-<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>　　第一行是一个整数n(1&lt;=N=10)。接下来的n+1行，每行有n个实数，表示球面上一点的n维坐标。每一个实数精确到小数点<br>后6位，且其绝对值都不超过20000。</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>　　有且只有一行，依次给出球心的n维坐标（n个实数），两个实数之间用一个空格隔开。每个实数精确到小数点<br>后3位。数据保证有解。你的答案必须和标准输出一模一样才能够得分。</p>
-<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><p>2<br>0.0 0.0<br>-1.0 1.0<br>1.0 0.0</p>
-<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><p>0.500 1.500</p>
-<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>　　提示：给出两个定义：1、 球心：到球面上任意一点距离都相等的点。2、 距离：设两个n为空间上的点A, B  </p>
-<p>的坐标为(a1, a2, …, an), (b1, b2, …, bn)，则AB的距离定义为：dist = sqrt( (a1-b1)^2 + (a2-b2)^2 +   </p>
-<p>… + (an-bn)^2 )</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>高斯消元解浮点方程。</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
-Date              : 2019-12-01    14:10:08
-By                : Tpaaaaaa
-File_Name         ：1013JSOI2008球形空间产生器sphere.cpp
-Description       : 
-目前正在专项刷题，为了保证效果。
-必须做到：
-   1，先想出完整思路，并分析复杂度。
-   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
-   3. 编写代码的时候，规范风格（例如变量名）
-   4. 模块化答题
-
-//有n个方程
-(2x1 - 2x2)x  + (2y1 - 2y2)y + (2z1 - 2z2) = (x1^2 + y1^2 + z1^2) - (x2^2 + y2^2 + z2^2).
-
-
-所以得到
- (2x1 - 2x2)  (2y1 - 2y2)  (2z1 - 2z2) 
- (2x1 - 2x3)  (2y1 - 2y3)  (2z1 - 2z3)
- (2x1 - 2x4)  (2y1 - 2y4)  (2z1 - 2z4)
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-#define md(x, y)  (x + y) / 2
-#define ls(x)      x &lt;&lt; 1
-#define rs(x)      x &lt;&lt; 1 | 1
-#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
-#define fileclose fclose(stdin); fclose(stdout)
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 20;
-
-double a[MAXN][MAXN];
-double X[MAXN][MAXN];
-int equ,var;//equ个方程,var个变量
-double x[MAXN];//解集
-bool free_x[MAXN];
-int n;
-int sgn(double x)
-{
-    return (x&gt;eps)-(x&lt;-eps);
-}
-// 高斯消元法解方程组(Gauss-Jordan elimination).(0表示无解，1表示唯一解，大于1表示无穷解，并返回自由变元的个数)
-int gauss()
-{
-    equ=n,var=n;//多少个方程，多少个变量
-    int i,j,k;
-    int max_r; // 当前这列绝对值最大的行.
-    int col; // 当前处理的列.
-    double temp;
-    int free_x_num;
-    int free_index;
-    // 转换为阶梯阵.
-    col=0; // 当前处理的列.
-    memset(free_x,true,sizeof(free_x));
-    for(k=0;k&lt;equ&amp;&amp;col&lt;var;k++,col++)
-    {
-        max_r=k;
-        for(i=k+1;i&lt;equ;i++)
-        {
-            if(sgn(fabs(a[i][col])-fabs(a[max_r][col]))&gt;0)
-                max_r=i;
-        }
-        if(max_r!=k)
-        { // 与第k行交换.
-            for(j=k;j&lt;var+1;j++)
-                swap(a[k][j],a[max_r][j]);
-        }
-        if(sgn(a[k][col])==0)
-        { // 说明该col列第k行以下全是0了，则处理当前行的下一列.
-            k--; continue;
-        }
-        for(i=k+1;i&lt;equ;i++)
-        { // 枚举要删去的行.
-            if (sgn(a[i][col])!=0)
-            {
-                temp=a[i][col]/a[k][col];
-                for(j=col;j&lt;var+1;j++)
-                {
-                    a[i][j]=a[i][j]-a[k][j]*temp;
-                }
-            }
-        }
-    }
-
-    for(i=k;i&lt;equ;i++)
-    {
-        if (sgn(a[i][col])!=0)
-            return 0;
-    }
-    if(k&lt;var)
-    {
-        for(i=k-1;i&gt;=0;i--)
-        {
-            free_x_num=0;
-            for(j=0;j&lt;var;j++)
-            {
-                if (sgn(a[i][j])!=0&amp;&amp;free_x[j])
-                    free_x_num++,free_index=j;
-            }
-            if(free_x_num&gt;1) continue;
-            temp=a[i][var];
-            for(j=0;j&lt;var;j++)
-            {
-                if(sgn(a[i][j])!=0&amp;&amp;j!=free_index)
-                    temp-=a[i][j]*x[j];
-            }
-            x[free_index]=temp/a[i][free_index];
-            free_x[free_index]=0;
-        }
-        return var-k;
-    }
-
-    for (i=var-1;i&gt;=0;i--)
-    {
-        temp=a[i][var];
-        for(j=i+1;j&lt;var;j++)
-        {
-            if(sgn(a[i][j])!=0)
-                temp-=a[i][j]*x[j];
-        }
-        x[i]=temp/a[i][i];
-
-    }
-    return 1;
-}
-int main()
-{
-    while(scanf(&quot;%d&quot;, &amp;n) != EOF)
-    {
-        for(int i = 1; i &lt;= n + 1; i++)
-        {
-            for(int j = 1; j &lt;= n; j++)
-            {
-                scanf(&quot;%lf&quot;, &amp;X[i][j]);
-            }
-        }
-        for(int i = 2; i &lt;= n + 1; i++)
-        {
-            a[i - 2][n] = 0.0;
-            for(int j = 1; j &lt;= n; j++)
-            {
-                a[i - 2][j - 1] = 2*X[1][j] - 2*X[i][j];
-                a[i - 2][n] += X[1][j]*X[1][j] - X[i][j]*X[i][j];
-            }
-        }
-        gauss();
-        /*for(int i = 0; i &lt; n; i++)
-        {
-            for(int j = 0; j &lt;= n; j++)
-                printf(&quot;%.2lf &quot;, a[i][j]);
-            printf(&quot;\n&quot;);
-        }*/
-        for(int i = 0; i &lt; n; i++)
-            printf(&quot;%.3lf &quot;,x[i]);
-        printf(&quot;\n&quot;);
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/12/03/1003%5BZJOI2006%5D%E7%89%A9%E6%B5%81%E8%BF%90%E8%BE%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/12/03/1003%5BZJOI2006%5D%E7%89%A9%E6%B5%81%E8%BF%90%E8%BE%93/" itemprop="url">1003: [ZJOI2006]物流运输</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-03T14:34:34+08:00">
-                2019-12-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>　　物流公司要把一批货物从码头A运到码头B。由于货物量比较大，需要n天才能运完。货物运输过程中一般要转<br>停好几个码头。物流公司通常会设计一条固定的运输路线，以便对整个运输过程实施严格的管理和跟踪。由于各种<br>因素的存在，有的时候某个码头会无法装卸货物。这时候就必须修改运输路线，让货物能够按时到达目的地。但是<br>修改路线是一件十分麻烦的事情，会带来额外的成本。因此物流公司希望能够订一个n天的运输计划，使得总成本<br>尽可能地小。</p>
-<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>　　第一行是四个整数n（1&lt;=n&lt;=100）、m（1&lt;=m&lt;=20）、K和e。n表示货物运输所需天数，m表示码头总数，K表示<br>每次修改运输路线所需成本。接下来e行每行是一条航线描述，包括了三个整数，依次表示航线连接的两个码头编<br>号以及航线长度（&gt;0）。其中码头A编号为1，码头B编号为m。单位长度的运输费用为1。航线是双向的。再接下来<br>一行是一个整数d，后面的d行每行是三个整数P（ 1 &lt; P &lt; m）、a、b（1&lt; = a &lt; = b &lt; = n）。表示编号为P的码<br>头从第a天到第b天无法装卸货物（含头尾）。同一个码头有可能在多个时间段内不可用。但任何时间都存在至少一<br>条从码头A到码头B的运输路线。</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>　　包括了一个整数表示最小的总成本。总成本=n天运输路线长度之和+K*改变运输路线的次数。</p>
-<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><p>5 5 10 8<br>1 2 1<br>1 3 3<br>1 4 2<br>2 3 2<br>2 4 4<br>3 4 1<br>3 5 2<br>4 5 2<br>4<br>2 2 3<br>3 1 1<br>3 3 3<br>4 4 5  </p>
-<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><p>32<br>//前三天走1-4-5，后两天走1-3-5，这样总成本为(2+2)*3+(3+2)*2+10=32</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>先通过SPFA求出cost[i][j] 表示的是从第i天到第j天，用同一个路线的最小代价，也就是在第i天到第j天都开放的港口组成的最短路乘上天数(j - i + 1)。</p>
-<p>然后设dp[i]表示前i天的最小总代价.</p>
-<p>可知dp[i] = min{dp[k] + cost[k + 1][j] + K},其中 0 &lt; k &lt; i;</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
-Date              : 2019-12-01    11:05:35
-By                : Tpaaaaaa
-File_Name         ：1003ZJOI2006物流运输.cpp
-Description       : 
-目前正在专项刷题，为了保证效果。
-必须做到：
-   1，先想出完整思路，并分析复杂度。
-   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
-   3. 编写代码的时候，规范风格（例如变量名）
-   4. 模块化答题
-
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-#define md(x, y)  (x + y) / 2
-#define ls(x)      x &lt;&lt; 1
-#define rs(x)      x &lt;&lt; 1 | 1
-#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
-#define fileclose fclose(stdin); fclose(stdout)
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 25;
-const int MAXM = MAXN * MAXN * 2;
-int n, m, e, k, cnt;
-int head[MAXN];
-int dp[110];
-bool limit[MAXN][110];
-bool vis[MAXN];
-int mp[MAXN][MAXN];
-int cost[110][110], dis[MAXN];
-struct Edge
-{
-    int v, w, next;
-}edge[10000];
-void addEdge(int u, int v, int w)
-{
-    cnt++;
-    edge[cnt].v = v;
-    edge[cnt].w = w;
-    edge[cnt].next = head[u];
-    head[u] = cnt;
-}
-//u在这个期间[s, t]不能用.
-inline bool check(int u, int s, int t)
-{
-    for(int i = s; i &lt;= t; i++)
-        if(limit[u][i]) return false;
-    return true;
-}
-void bellman_ford(int s, int t)
-{
-    queue&lt; int &gt; q;
-    memset(vis,false,sizeof vis);
-    for(int i = 1; i &lt;= m; i++)
-        dis[i] = INF;
-    dis[1] = 0;
-    q.push(1);
-    vis[1] = true;
-    while(!q.empty())
-    {
-        int u = q.front();
-        q.pop();
-        vis[u] = false ;    //可以多次入队哦
-//  这是用vector邻接表存的图
-        for(int i = 1; i &lt;= m; i++)
-        {
-            if(i == u|| mp[u][i] &gt;= INF || check(i, s, t) == false) continue;
-//  需要更新的点 的前提是 其前继是之前已经更新过了的emmm有点废话
-            if(dis[i] &gt; dis[u] + mp[i][u])
-            {
-                dis[i]   = dis[u] + mp[i][u];
-                if(vis[i] == false)
-                {
-                    vis[i] = true;
-                    q.push(i);
-                }
-             } 
-         } 
-    }
-
-
-}
-int main()
-{
-    while(scanf(&quot;%d%d%d%d&quot;, &amp;n, &amp;m, &amp;k, &amp;e) != EOF)
-    {
-        //n为天数，m为点数，k为修改成本，e为边
-        memset(mp, INF, sizeof mp);
-        for(int i = 1; i &lt;= e; i++)
-        {
-            int u, v, w;
-            scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;w);
-            mp[v][u] = mp[u][v] = min(mp[u][v], w);
-        }
-        int d;
-        memset(limit, false, sizeof limit);
-        scanf(&quot;%d&quot;, &amp;d);
-        for(int i = 1; i &lt;= d; i++)
-        {
-            int p, a, b;
-            scanf(&quot;%d%d%d&quot;, &amp;p, &amp;a, &amp;b);    
-            for(int j = a; j &lt;= b; j++) limit[p][j] = true; //limit表示该天不能使用
-        }
-        //求出每一天的最短路的cost
-        //cost[i] 表示第i天的最短路的费用.
-        //先用spfa求出cost[i][j]
-        //表示的是从第i天到j天，用同一方法的最小花费.
-        //等于第i到j天，一直没有关门的港口组成的最短路代价乘上(j - i + 1)天数.
-        for(int i = 1; i &lt;= n; i++)
-            for(int j = i; j &lt;= n; j++)
-            {
-                bellman_ford(i, j);
-                if(dis[m] &lt; INF)
-                    cost[i][j] = dis[m] * (j - i + 1);
-                else 
-                    cost[i][j] = INF;
-            }
-        //dp[i]表示前i天的代价.
-        for(int i = 1; i &lt;= n; i++)
-        {
-            dp[i] = cost[1][i];
-            for(int j = 1; j &lt; i; j++)
-                dp[i] = min(dp[i], dp[j] + k + cost[j + 1][i]);
-        }
-        printf(&quot;%d\n&quot;, dp[n]);
-    }
-    //fileclose;
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2785,7 +2510,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2796,7 +2521,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2807,7 +2532,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

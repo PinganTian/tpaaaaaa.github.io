@@ -282,6 +282,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/31/POJ-2762Goingfromutovorfromvtou/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/08/31/POJ-2762Goingfromutovorfromvtou/" itemprop="url">POJ - 2762 Going from u to v or from v to u?</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-31T20:53:04+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h2><p>给你一个图，问你这个图中的任意两个点A , B，存不存在A到B <strong>或者</strong> B到A的路径。如果任意一对点都存在，则输出Yes，否则输出No</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>首先，我们用Tarjan将图进行缩点简化，得到一个DAG图。但对于DAG图，topo排序得到的序列不一定唯一。对于topo排序期间的入度为0的点的数目大于1，（假设数目为2，并将这两点设为A,B） 说明A,B在topo序列中的地位是一样的，然而点在topo排序中的关系是<strong>：在topo排序中排在后面点，无法到达排到前面的点，排在前面的点，能够到达后面的点</strong>。 因此A，B这两点 既从A不能到达B，也不能从B到A，因此不符合条件。</p>
+<p>所以整题的思路是，用Tarjan将图缩点，成DAG图，对DAG图进行topo排序， 如果排序期间入度为0的点的数目大于1，则return false， 否则到最后return true。</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><p>这是根据Tarjan建立新图的代码</p>
+<pre><code>for(int u = 1; u &lt;= n; u++)
+    for(int i = head[u]; i != -1; i = edge[i].next)
+    {
+        int v = edge[i].v;
+        int a = belong[u];
+        int b = belong[v];
+        if(a != b)
+        {
+            if(mp[a][b] == false)   // 在新图中这条边已经存在过了
+            {
+                mp[a][b] = true;
+                in[b] ++;
+            }
+        }
+    }</code></pre><p>对新DAG图进行topo排序</p>
+<pre><code>bool topo()
+{
+    queue &lt; int &gt; Q;
+    for(int i = 1; i &lt;= sum; i++)
+        if(in[i] == 0)
+            Q.push(i);
+    while(!Q.empty())
+    {
+        if(Q.size() &gt; 1)
+            return false;
+        int u = Q.front();
+        Q.pop();
+        for(int v = 1; v &lt;= sum; v ++)   //这是新的图，mp存的是新图
+        {
+            if(mp[u][v])
+            {
+                in[v] -- ;
+                if(in[v] == 0)
+                    Q.push(v);
+            }
+
+        }
+    }
+    return true;
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/31/%5B%E5%9B%BE%E8%AE%BA%5D%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%EF%BC%88DAG%E5%9B%BE%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2009,162 +2193,6 @@ int main() {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/29/HDU-3938Portal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/08/29/HDU-3938Portal/" itemprop="url">HDU - 3938 Portal</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T10:21:40+08:00">
-                2019-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h2><p>ZLGG found a magic theory that the bigger banana the bigger banana peel .This important theory can help him make a portal in our universal. Unfortunately, making a pair of portals will cost min{T} energies. T in a path between point V and point U is the length of the longest edge in the path. There may be lots of paths between two points. Now ZLGG owned L energies and he want to know how many kind of path he could make.</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>Kruskal算法改造一下。</p>
-<p>A到B有多条路径</p>
-<p>每个路径的最长边是T</p>
-<p>所以每次建一条A到B的路径，这个最小路径理解为min{T}.</p>
-<p><strong>对于这种将两点间的路径代价定义为路径上的最长边的题目，通常考虑kruskal</strong></p>
-<p>我们可以从代价最小的边 一条一条添加上去，在添加某条边时，如果使得两个点变成一个连通分量，说明这条边，就是这两个路径上的最大的边。</p>
-<p>ZLGG有 L ，能建立多少种path</p>
-<p>用num[w] 表示w能量下的点的对数,s[i] 表示i所在的连通分量里面的点数 我们首先将边从小到大排序</p>
-<p>取边 e， u, v, w</p>
-<p>如果边的两个端点不在同一个联通分量，则将这两个连通分量联系起来 //此时这两个点的路径就是w</p>
-<p>那么num[w] = s[v] * s[u]</p>
-<p>将询问从小到大排序</p>
-<p>对于 询问L，</p>
-<p>我们开始填边，如果此时边的长度已经大于L，则结束填边，考虑下一条询问</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2217,7 +2245,7 @@ int main() {
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2228,7 +2256,7 @@ int main() {
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2239,7 +2267,7 @@ int main() {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

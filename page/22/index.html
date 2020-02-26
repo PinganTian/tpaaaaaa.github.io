@@ -282,6 +282,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/29/HDU-3938Portal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/08/29/HDU-3938Portal/" itemprop="url">HDU - 3938 Portal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T10:21:40+08:00">
+                2019-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h2><p>ZLGG found a magic theory that the bigger banana the bigger banana peel .This important theory can help him make a portal in our universal. Unfortunately, making a pair of portals will cost min{T} energies. T in a path between point V and point U is the length of the longest edge in the path. There may be lots of paths between two points. Now ZLGG owned L energies and he want to know how many kind of path he could make.</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>Kruskal算法改造一下。</p>
+<p>A到B有多条路径</p>
+<p>每个路径的最长边是T</p>
+<p>所以每次建一条A到B的路径，这个最小路径理解为min{T}.</p>
+<p><strong>对于这种将两点间的路径代价定义为路径上的最长边的题目，通常考虑kruskal</strong></p>
+<p>我们可以从代价最小的边 一条一条添加上去，在添加某条边时，如果使得两个点变成一个连通分量，说明这条边，就是这两个路径上的最大的边。</p>
+<p>ZLGG有 L ，能建立多少种path</p>
+<p>用num[w] 表示w能量下的点的对数,s[i] 表示i所在的连通分量里面的点数 我们首先将边从小到大排序</p>
+<p>取边 e， u, v, w</p>
+<p>如果边的两个端点不在同一个联通分量，则将这两个连通分量联系起来 //此时这两个点的路径就是w</p>
+<p>那么num[w] = s[v] * s[u]</p>
+<p>将询问从小到大排序</p>
+<p>对于 询问L，</p>
+<p>我们开始填边，如果此时边的长度已经大于L，则结束填边，考虑下一条询问</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/29/HDU-1811RankofTetris/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2379,271 +2535,6 @@ void unionSet(int p, int q)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/26/HDU-1875%E7%95%85%E9%80%9A%E5%B7%A5%E7%A8%8B%E5%86%8D%E7%BB%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/08/26/HDU-1875%E7%95%85%E9%80%9A%E5%B7%A5%E7%A8%8B%E5%86%8D%E7%BB%AD/" itemprop="url">HDU - 1875 畅通工程再续</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-26T22:19:25+08:00">
-                2019-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h2><p>相信大家都听说一个“百岛湖”的地方吧，百岛湖的居民生活在不同的小岛中，当他们想去其他的小岛时都要通过划小船来实现。现在政府决定大力发展百岛湖，发展首先要解决的问题当然是交通问题，政府决定实现百岛湖的全畅通！经过考察小组RPRush对百岛湖的情况充分了解后，决定在符合条件的小岛间建上桥，所谓符合条件，就是2个小岛之间的距离不能小于10米，也不能大于1000米。当然，为了节省资金，只要求实现任意2个小岛之间有路通即可。其中桥的价格为 100元/米。</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>Kruskal模板题</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
- Date              : 2019-08-26-16.12.35
- Question_Number   ：hdu 1875
- Question_Name     ：最小生成树水题
- Description       :
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-using namespace std;
-typedef long long ll;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-
-const int MAXN = 100 + 10;
-const int MAXM = MAXN * MAXN ;
-int cnt, n;
-bool vis[MAXN];
-int head[MAXN], pre[MAXN];
-struct Node
-{
-    int x, y;
-    Node(int x = 0, int y = 0):x(x), y(y){};
-
-};
-struct Edge
-{
-    int from;
-    int to;
-    double cost;
-    Edge(int from = 0, int to = 0, double cost = 0):from(from), to(to), cost(cost){};
-    friend bool operator &lt; (Edge a, Edge b)
-    {
-        return a.cost &lt; b.cost;
-    }
-};
-Node node[MAXN];
-Edge edge[MAXM];
-double getDis(Node a, Node b)
-{
-    double temp = (a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y);
-    return sqrt(temp);
-}
-void addEdge(int x, int y, double cost)
-{
-    cnt ++;
-    edge[cnt].from = x;
-    edge[cnt].to = y;
-    edge[cnt].cost = cost;
-};
-int findRoot(int x) //普通并查集
-{
-    if(x == pre[x])
-        return x;
-    return  pre[x] = findRoot(pre[x]);
-}
-double  Kruskal()
-{
-    double mst = 0;
-    int sum = 0;
-    for(int i = 0; i &lt;= n; i++)
-        pre[i] = i;
-    for(int i = 1; i &lt;= cnt; i ++)
-    {
-        int u = edge[i].from;
-        int v = edge[i].to;
-        int f1 = findRoot(u);
-        int f2 = findRoot(v);
-        if(f1 != f2)
-        {
-            pre[f2] = f1;
-            sum++;
-            mst += edge[i].cost;
-        }
-    }
-    if(sum == n - 1)
-        return mst;
-    else
-        return 0;
-}
-int main()
-{
-    int t;
-    cin &gt;&gt; t;
-    while(t--)
-    {
-        scanf(&quot;%d&quot;,&amp;n);
-        memset(head, -1, sizeof head);
-        cnt = 0;
-        for(int i = 1; i &lt;= n; i++)
-            scanf(&quot;%d%d&quot;,&amp;node[i].x, &amp;node[i].y);
-
-        for(int i = 1; i &lt; n; i++)
-            for(int j = i + 1; j &lt;= n; j++)
-            {
-                double temp = getDis(node[i], node[j]);
-                if(temp &gt;= 10 &amp;&amp; temp &lt;= 1000 )
-                     addEdge(i, j, temp);       //我是猪吗，不用链式前向星
-            }
-        sort(edge + 1, edge + 1 + cnt);
-        double ans = Kruskal();
-        if(ans == 0)
-            printf(&quot;oh!\n&quot;);
-        else
-            printf(&quot;%.1f\n&quot;, ans * 100);
-
-    }
-    return 0;
-}</code></pre><h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2696,7 +2587,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2707,7 +2598,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2718,7 +2609,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

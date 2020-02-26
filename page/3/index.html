@@ -282,6 +282,305 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/11/26/Dilworth%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/11/26/Dilworth%E5%AE%9A%E7%90%86/" itemprop="url">Dilworth定理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-26T21:10:19+08:00">
+                2019-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>声明：此文转载，方便自己以后分类查看Dilworth定理优化“序列的不下降子序列最少划分数首先是定义。<br>偏序关系是满足自反性、反对称性、传递性的二元关系。可以用&lt;=表示。<br>自反性：x&lt;=x成立。<br>反对称性：a&lt;=b 且 b&lt;=a &lt;=&gt; a=b<br>传递性：a&lt;=b 且 b&lt;=c ==&gt; a&lt;=c<br>满足上述三条性质的二元关系是偏序关系，配备偏序关系的集合称为偏序集。<br>显然数集上的“小于或等于”是偏序关系，但是偏序关系不只可以在数集上。<br>可比：a与b可比，当且仅当a&lt;=b 或 b&lt;=a。</p>
+<p>设全集U是一个偏序集。<br>链：U的子集，<strong>满足其中任意两个元素（不相同）可比</strong>。<br>反链：U的子集，<strong>满足其中任意两个元素（不相同）不可比</strong>。<br>比如，有限数集S上的最长链的长度等于|S|，最长反链长度为1.<br>将U分拆成很多子集称作划分。姑且把子集全为链的划分叫做链划分，全为反链叫反链划分。<br>有两个互相对偶的定理：<br><strong>U的链划分使用的最少集合数，等于它的最大反链长度。（1）</strong><br><strong>U的反链划分使用的最少集合数，等于它的最大链长度。（2）</strong><br>其中某一个叫做Dilworth定理……我记不清了……<br>如果我说的不清楚，请参阅任意一本组合数学的入门书籍。<br>那么，罗嗦了半天，来到那个问题：给定一个全为实数的序列，每次在其中选出一个不下降子序列并将其删掉。求删完整个序列所需要的选择子序列的次数。<br>比如说，1 2 4 3 5这个序列，最少要两次，第一次1 2 3 5.<br>虽然序列与集合不同，但这很可能与最少划分有关。不管怎么说，打算用Dilworth定理相关内容解决本题。<br>首先要把序列转化成集合。不同点在于序列中元素有序。考虑使用有序数对（p，v）表示原序列中的一个数。p表示位置，v表示数值。<br>从集合中任意取出两个元素，如何能确定前者不比后者大呢？考虑关系&lt;=:p1&lt;=v1&amp;&amp;p2&lt;=v2。这相当于先把两个元素按照原序列中的位置排序，再比较数值大小。这个关系是偏序关系。如此一来，两个元素可比，等价于在原序列中，他们是不下降的。<br>根据（1），原题所求的次数，等于原序列的最长下降子序列的长度。<br>如果是求下降子序列的最小划分，相当于是求最小反链划分，等于最长不下降子序列的长度。</p>
+<p>//</p>
+<p>参考：<a href="http://blog.csdn.net/acdreamers/article/details/7626671" target="_blank" rel="noopener">http://blog.csdn.net/acdreamers/article/details/7626671</a></p>
+<p>Dilworth定理：对于一个偏序集，最少链划分等于最长反链长度。<br>Dilworth定理的对偶定理：对于一个偏序集，其最少反链划分数等于其最长链的长度。</p>
+<p>也就是说把一个数列划分成最少的最长不升子序列的数目就等于这个数列的最长上升子序列的长度。</p>
+<p>下面来说说这个定理是怎么来的：</p>
+<p>偏序集的定义：偏序是在集合X上的二元关系≤（这只是个抽象符号，不是“小于或等于”，它满足自反性、反对称性和传递<br>性）。即，对于X中的任意元素a,b和c，有:</p>
+<p>(1)自反性：a≤a;<br>(2)反对称性：如果a≤b且b≤a，则有a=b;<br>(3)传递性：如果a≤b且b≤c，则a≤c 。</p>
+<p>带有偏序关系的集合称为偏序集。<br>令(X,≤)是一个偏序集，对于集合中的两个元素a、b，如果有a≤b或者b≤a，则称a和b是可比的，否则a和b不可比。<br>在这个例子(反链)中元素Ri&lt;=Rj是指(i&lt;=j) and (ai&gt;=aj)</p>
+<p>一个反链A是X的一个子集，它的任意两个元素都不能进行比较。<br>一个链C是X的一个子集，它的任意两个元素都可比。</p>
+<p>【定理】<br>在X中，对于元素a，如果任意元素b，都有a≤b，则称a为极小元。<br>定理1：令（X,≤）是一个有限偏序集，并令r是其最大链的大小。则X可以被划分成r个但不能再少的反链。</p>
+<p>其对偶定理称为Dilworth定理：<br>令（X,≤）是一个有限偏序集，并令m是反链的最大的大小。则X可以被划分成m个但不能再少的链。<br>虽然这两个定理内容相似，但第一个定理证明要简单一些。此处就只证明定理1。</p>
+<p>证明：设p为最少反链个数<br>(1)先证明X不能划分成小于r个反链。由于r是最大链C的大小，C中任两个元素都可比，因此C中任两个元素都不能属于同一反<br>链。所以p&gt;=r。<br>(2)设X1＝X，A1是X1中的极小元的集合。从X1中删除A1得到X2。注意到对于X2中任意元素a2，必存在X1中的元素a1，使得<br>a1&lt;=a2。令A2是X2中极小元的集合，从X2中删除A2得到X3……，最终会有一个Xk非空而Xk+1为空。于是A1,A2,…,Ak就是X的 反链的划分，同时存在链a1&lt;=a2&lt;=…&lt;=ak，其中ai在Ai内。由于r是最长链大小，因此r&gt;=k。由于X被划分成了k个反链，因此<br>r&gt;=k&gt;=p。<br>(3)因此r=p，定理1得证。</p>
+<p>【解决】<br>要求最少的覆盖，按照Dilworth定理<br>最少链划分 = 最长反链长度</p>
+<p>题意：给定一系列方形，已知其中一个方形的长和宽都小于另一个方形的时候，这两个方形可以嵌套，若干个方形的嵌套成为一个嵌套组。问最少用多少个嵌套组可以将这些方形全部处理完毕。</p>
+<p>思路：就是Dilworth的应用。注意排序的时候第一维从小到大，如果相同，第二维从大到小。然后求第二维的最长不增子序列长度（注意二分查找时的区别）。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/11/24/CodeforcesRound#369(Div.2)(no)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/11/24/CodeforcesRound#369(Div.2)(no)/" itemprop="url">Codeforces Round #369(Div.2)(no)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-24T18:38:35+08:00">
+                2019-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="C-Coloring-Trees"><a href="#C-Coloring-Trees" class="headerlink" title="C - Coloring Trees"></a><a href="https://vjudge.net/problem/CodeForces-711C" target="_blank" rel="noopener">C - Coloring Trees</a></h2><h2 id="D-Directed-Roads"><a href="#D-Directed-Roads" class="headerlink" title="D - Directed Roads"></a><a href="https://vjudge.net/problem/CodeForces-711D" target="_blank" rel="noopener">D - Directed Roads</a></h2><h2 id="E-ZS-and-The-Birthday-Paradox"><a href="#E-ZS-and-The-Birthday-Paradox" class="headerlink" title="E - ZS and The Birthday Paradox"></a><a href="https://vjudge.net/problem/CodeForces-711E" target="_blank" rel="noopener">E - ZS and The Birthday Paradox</a></h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/11/24/CodeforcesRound#312(Div.2)%EF%BC%88done%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2299,7 +2598,119 @@ bitset&lt;13&gt; bitset4(s2);　　//长度为13，前面用０补充
 cout &lt;&lt; bitset1 &lt;&lt; endl;　　//0000
 cout &lt;&lt; bitset2 &lt;&lt; endl;　　//00001100
 cout &lt;&lt; bitset3 &lt;&lt; endl;　　//0000100101
-cout &lt;&lt; bitset4 &lt;&lt; endl;　　//0000000010101</code></pre>
+cout &lt;&lt; bitset4 &lt;&lt; endl;　　//0000000010101</code></pre><p>C++ STL中最基本以及最常用的类或容器无非就是以下几个：</p>
+<ul>
+<li>string</li>
+<li>vector</li>
+<li>set</li>
+<li>list</li>
+<li>map</li>
+</ul>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><p>首先看看我们C语言一般怎么使用字符串的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">char* s1 &#x3D; &quot;Hello SYSU!&quot;; &#x2F;&#x2F;创建指针指向字符串常量，这段字符串我们是不能修改的</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;想要创建 可以修改的字符串，我们可以使用数组分配空间</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">char s2[20] &#x3D; &quot;Hello SYSU!&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;或者这样</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">char s3[] &#x3D; &quot;Hello SYSU!&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;当然我们也可以动态分配内存</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">char* s4 &#x3D; (char*)malloc(20）;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">gets(s4);</span></pre></td></tr></table></figure>
+
+<p>C++ 标准库中的string表示可变长的字符串，它在头文件string里面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#include &lt;string&gt;</span></pre></td></tr></table></figure>
+
+<p>用string初始化字符串分两类：用“=”号就是拷贝初始化，否则就是直接初始化。</p>
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170725977-1802373773.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">string s1;&#x2F;&#x2F;初始化字符串，空字符串</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">string s2 &#x3D; s1; &#x2F;&#x2F;拷贝初始化，深拷贝字符串</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">string s3 &#x3D; &quot;I am Yasuo&quot;; &#x2F;&#x2F;直接初始化，s3存了字符串</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">string s4(10, &#39;a&#39;); &#x2F;&#x2F;s4存的字符串是aaaaaaaaaa</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">string s5(s4); &#x2F;&#x2F;拷贝初始化，深拷贝字符串</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">string s6(&quot;I am Ali&quot;); &#x2F;&#x2F;直接初始化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">string s7 &#x3D; string(6, &#39;c&#39;); &#x2F;&#x2F;拷贝初始化，cccccc</span></pre></td></tr></table></figure>
+
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170743602-467536077.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#include &lt;string&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">using namespace std;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">int main()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    string s1;&#x2F;&#x2F;初始化字符串，空字符串</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    string s2 &#x3D; s1; &#x2F;&#x2F;拷贝初始化，深拷贝字符串</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    string s3 &#x3D; &quot;I am Yasuo&quot;; &#x2F;&#x2F;直接初始化，s3存了字符串</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    string s4(10, &#39;a&#39;); &#x2F;&#x2F;s4存的字符串是aaaaaaaaaa</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    string s5(s4); &#x2F;&#x2F;拷贝初始化，深拷贝字符串</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    string s6(&quot;I am Ali&quot;); &#x2F;&#x2F;直接初始化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    string s7 &#x3D; string(6, &#39;c&#39;); &#x2F;&#x2F;拷贝初始化，cccccc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;string的各种操作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    string s8 &#x3D; s3 + s6;&#x2F;&#x2F;将两个字符串合并成一个</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    s3 &#x3D; s6;&#x2F;&#x2F;用一个字符串来替代另一个字符串的对用元素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    cin &gt;&gt; s1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s1 &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s2 &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s3 &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s4 &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s5 &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s6 &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s7 &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s8 &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; &quot;s7 size &#x3D; &quot; &lt;&lt; s7.size() &lt;&lt; endl; &#x2F;&#x2F;字符串长度，不包括结束符</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; (s2.empty() ? &quot;This string is empty&quot; : &quot;This string is not empty&quot;) &lt;&lt; endl;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    system(&quot;pause&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    return 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170758758-2074743989.png" alt="img"></p>
+<h3 id="string的IO操作"><a href="#string的IO操作" class="headerlink" title="string的IO操作"></a>string的IO操作</h3><p>使用cin读入字符串时，遇到空白就停止读取。比如程序输入的是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;     Hello   World&quot;</span></pre></td></tr></table></figure>
+
+<p>那么我们得到的字符串将是”Hello”，前面的空白没了，后面的world也读不出来。</p>
+<p>如果我们想把整个hello world读进来怎么办？那就这样做</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cin&gt;&gt;s1&gt;&gt;s2;</span></pre></td></tr></table></figure>
+
+<p>hello存在s1里，world存在s2里了。</p>
+<p>有时我们想把一个句子存下来，又不想像上面那样创建多个string来存储单词，怎么办？</p>
+<p>那就是用getline来获取一整行内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">string str;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">getline(cin, str);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; str &lt;&lt; endl;</span></pre></td></tr></table></figure>
+
+<p>当把string对象和字符面值及字符串面值混在一条语句中使用时，必须确保+的两侧的运算对象至少有一个是string</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">string s1 &#x3D; s2 + &quot;, &quot;; &#x2F;&#x2F;正确</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">string s3 &#x3D; &quot;s &quot; + &quot;, &quot;; &#x2F;&#x2F;错误</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">string s4 &#x3D; &quot;hello&quot; + &quot;, &quot; + s1; &#x2F;&#x2F;错误</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">string s5 &#x3D; s1 + &quot;hello &quot; + &quot;, &quot;; &#x2F;&#x2F;改一下顺序，s1放前头，正确了，注意理解&#x3D;号右边的运算顺序</span></pre></td></tr></table></figure>
+
+<h3 id="处理string中的字符"><a href="#处理string中的字符" class="headerlink" title="处理string中的字符"></a>处理string中的字符</h3><p>访问字符串的每个字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">for (int i &#x3D; 0; i &lt; s3.size(); i++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; s3[i] &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    s3[i] &#x3D; &#39;s&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>在C语言中我都是用下标或者指针来访问数组元素，而在C++里，有个新奇的东西叫做迭代器iterator，我们可以使用它来访问容器元素。</p>
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170813805-608759904.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">string str(&quot;hi sysu&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">for (string::iterator it &#x3D; str.begin(); it !&#x3D; str.end(); it++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; *it &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>我们也可以是使用const_iterator使得访问元素时是能读不能写，这跟常量指针意思差不多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">string str2(&quot;hi sysu&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">for (string::const_iterator it &#x3D; str2.begin(); it !&#x3D; str2.end(); it++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; *it &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    *it &#x3D; &#39;l&#39;; &#x2F;&#x2F;这是错误的，不能写</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170831649-461472172.png" alt="img"></p>
+<p>string还有一些很好用的函数，比如找子串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">string sq(&quot;heoolo sdaa ss&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; s.find(&quot;aa&quot;, 0) &lt;&lt; endl; &#x2F;&#x2F;返回的是子串位置。第二个参数是查找的起始位置，如果找不到，就返回string::npos</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">if (s.find(&quot;aa1&quot;, 0) &#x3D;&#x3D; string::npos)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; &quot;找不到该子串！&quot; &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h1 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h1><p>C++ STL中的verctor好比是C语言中的数组，但是vector又具有数组没有的一些高级功能。与数组相比，vector就是一个可以不用再初始化就必须制定大小的边长数组，当然了，它还有许多高级功能。</p>
+<p>要想用vector首先得包含头文件vector。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#include &lt;vector&gt;</span></pre></td></tr></table></figure>
+
+<p>怎么初始化？</p>
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170846961-452229016.png" alt="img"></p>
+<p>如果vector的元素类型是int，默认初始化为0；如果vector元素类型为string，则默认初始化为空字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; v1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">vector&lt;father&gt; v2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">vector&lt;string&gt; v3;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt; &gt;;  &#x2F;&#x2F;注意空格。这里相当于二维数组int a[n][n];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; v5 &#x3D; &#123; 1,2,3,4,5 &#125;; &#x2F;&#x2F;列表初始化,注意使用的是花括号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">vector&lt;string&gt; v6 &#x3D; &#123; &quot;hi&quot;,&quot;my&quot;,&quot;name&quot;,&quot;is&quot;,&quot;lee&quot; &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; v7(5, -1); &#x2F;&#x2F;初始化为-1,-1,-1,-1,-1。第一个参数是数目，第二个参数是要初始化的值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">vector&lt;string&gt; v8(3, &quot;hi&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; v9(10); &#x2F;&#x2F;默认初始化为0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; v10(4); &#x2F;&#x2F;默认初始化为空字符串</span></pre></td></tr></table></figure>
+
+<p>如何向vector添加元素？</p>
+<p>请使用push_back加入元素，并且这个元素是被加在数组尾部的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">for (int i &#x3D; 0; i &lt; 20; i++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    v1.push_back(i);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>vector其他的操作</p>
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170900399-1317226831.png" alt="img"></p>
+<p>访问和操作vector中的每个元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">for (int i &#x3D; 0; i &lt; v1.size(); i++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; v1[i] &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    v1[i] &#x3D; 100;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; v1[i] &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>注意：只能对已存在的元素进行赋值或者修改操作，如果是要加入新元素，务必使用push_back。push_back的作用有两个：告诉编译器为新元素开辟空间、将新元素存入新空间里。</p>
+<p>比如下面的代码是错误的，但是编译器不会报错，就像是数组越界。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; vec;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">vec[0] &#x3D; 1;  &#x2F;&#x2F;错误！</span></pre></td></tr></table></figure>
+
+<p>当然我们也可以选择使用迭代器来访问元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vector&lt;string&gt; v6 &#x3D; &#123; &quot;hi&quot;,&quot;my&quot;,&quot;name&quot;,&quot;is&quot;,&quot;lee&quot; &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">for (vector&lt;string&gt;::iterator iter &#x3D; v6.begin(); iter !&#x3D; v6.end(); iter++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; *iter &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;下面两种方法都行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; (*iter).empty() &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; iter-&gt;empty() &lt;&lt; endl; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>上面是正向迭代，如果我们想从后往前迭代该如何操作？<br>使用反向迭代器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">for (vector&lt;string&gt;::reverse_iterator iter &#x3D; v6.rbegin(); iter !&#x3D; v6.rend(); iter++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; *iter &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>vector最常用的增删操作</p>
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170914508-1325887310.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#include &lt;vector&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">#include &lt;string&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">using namespace std;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">template &lt;typename T&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">void showvector(vector&lt;T&gt; v)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    for (vector&lt;T&gt;::iterator it &#x3D; v.begin(); it !&#x3D; v.end(); it++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        cout &lt;&lt; *it;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">int main()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    vector&lt;string&gt; v6 &#x3D; &#123; &quot;hi&quot;,&quot;my&quot;,&quot;name&quot;,&quot;is&quot;,&quot;lee&quot; &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    v6.resize(3);  &#x2F;&#x2F;重新调整vector容量大小</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    showvector(v6);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    vector&lt;int&gt; v5 &#x3D; &#123; 1,2,3,4,5 &#125;; &#x2F;&#x2F;列表初始化,注意使用的是花括号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; v5.front() &lt;&lt; endl; &#x2F;&#x2F;访问第一个元素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; v5.back() &lt;&lt; endl; &#x2F;&#x2F;访问最后一个元素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    showvector(v5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    v5.pop_back(); &#x2F;&#x2F;删除最后一个元素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    showvector(v5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    v5.push_back(6); &#x2F;&#x2F;加入一个元素并把它放在最后</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    showvector(v5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    v5.insert(v5.begin()+1,9); &#x2F;&#x2F;在第二个位置插入新元素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    showvector(v5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    v5.erase(v5.begin() + 3);  &#x2F;&#x2F;删除第四个元素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    showvector(v5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    v5.insert(v5.begin() + 1, 7,8); &#x2F;&#x2F;连续插入7个8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    showvector(v5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    v5.clear(); &#x2F;&#x2F;清除所有内容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">    showvector(v5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    system(&quot;pause&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">    return 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170927321-678572314.png" alt="img"></p>
+<p>注意：虽然vertor对象可以动态增长，但是也或有一点副作用：已知的一个限制就是不能再范围for循环中向vector对象添加元素。另外一个限制就是任何一种可能改变vector对象容量的操作，不如push_back，都会使该迭代器失效。</p>
+<p>总而言之就是：但凡使用了迭代器的循环体，都不要向迭代器所属的容器添加元素！</p>
+<p>C++中push_back和insert两个有什么区别?</p>
+<p>顾名思义push_back把元素插入容器末尾，insert把元素插入任何你指定的位置。<br>不过push_back速度一般比insert快。如果能用push_back尽量先用push_back。</p>
+<h1 id="set"><a href="#set" class="headerlink" title="set"></a>set</h1><p>set跟vector差不多，它跟vector的唯一区别就是，set里面的元素是有序的且唯一的，只要你往set里添加元素，它就会自动排序，而且，如果你添加的元素set里面本来就存在，那么这次添加操作就不执行。要想用set先加个头文件set。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#include &lt;set&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">#include &lt;set&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">#include &lt;string&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">using namespace std;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">template &lt;typename T&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">void showset(set&lt;T&gt; v)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    for (set&lt;T&gt;::iterator it &#x3D; v.begin(); it !&#x3D; v.end(); it++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        cout &lt;&lt; *it;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">int main()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    set&lt;int&gt; s1&#123;9,8,1,2,3,4,5,5,5,6,7,7 &#125;; &#x2F;&#x2F;自动排序，从小到大,剔除相同项</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    showset(s1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    set&lt;string&gt; s2&#123; &quot;hello&quot;,&quot;sysy&quot;,&quot;school&quot;,&quot;hello&quot; &#125;; &#x2F;&#x2F;字典序排序</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    showset(s2);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    s1.insert(9); &#x2F;&#x2F;有这个值了，do nothing</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    showset(s1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    s2.insert(&quot;aaa&quot;); &#x2F;&#x2F;没有这个字符串，添加并且排序</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    showset(s2);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    system(&quot;pause&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    return 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170939664-2054900441.png" alt="img"></p>
+<h1 id="list"><a href="#list" class="headerlink" title="list"></a>list</h1><p>list就是链表，在C语言中我们想使用链表都是自己去实现的，实现起来倒不难，但是如果有现成的高效的链表可以使用的话，我们就不需要重复造轮子了。STL就提供了list容器给我们。</p>
+<p>list是一个双向链表，而单链表对应的容器则是foward_list。</p>
+<p>list即双向链表的优点是插入和删除元素都比较快捷，缺点是不能随机访问元素。</p>
+<p>初始化方式就大同小异了，跟vector基本一样。要想用list先加个头文件list。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#include &lt;list&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">#include &lt;list&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">#include &lt;string&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">using namespace std;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">template &lt;typename T&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">void showlist(list&lt;T&gt; v)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    for (list&lt;T&gt;::iterator it &#x3D; v.begin(); it !&#x3D; v.end(); it++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        cout &lt;&lt; *it;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">int main()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    list&lt;int&gt; l1&#123; 1,2,3,4,5,5,6,7,7 &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    showlist(l1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    list&lt;double&gt; l2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    list&lt;char&gt; l3(10);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    list&lt;int&gt; l4(5, 10); &#x2F;&#x2F;将元素都初始化为10</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    showlist(l4);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    system(&quot;pause&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    return 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602170954446-909787830.png" alt="img"></p>
+<p>值得注意的是，list容器不能调用algorithm下的sort函数进行排序，因为sort函数要求容器必须可以随机存储，而list做不到。所以，list自己做了一个自己用的排序函数，用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">list&lt;int&gt; l1&#123; 8,5,7,6,1,2,3,4,5,5,6,7,7 &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">l1.sort();</span></pre></td></tr></table></figure>
+
+<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>map运用了哈希表地址映射的思想，也就是key-value的思想，来实现的。</p>
+<p>首先给出map最好用也最最常用的用法例子，就是用字符串作为key去查询操作对应的value。</p>
+<p>要使用map得先加个头文件map。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#include &lt;map&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">#include &lt;map&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">#include &lt;string&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">using namespace std;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">void showmap(map&lt;string, int&gt; v)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    for (map&lt;string, int&gt;::iterator it &#x3D; v.begin(); it !&#x3D; v.end(); it++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        cout &lt;&lt; it-&gt;first &lt;&lt; &quot;  &quot; &lt;&lt; it-&gt;second &lt;&lt; endl;  &#x2F;&#x2F;注意用法，不是用*it来访问了。first表示的是key，second存的是value</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">int main()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    map&lt;string, int&gt; m1; &#x2F;&#x2F;&lt;&gt;里的第一个参数表示key的类型,第二个参数表示value的类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    m1[&quot;Kobe&quot;] &#x3D; 100;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    m1[&quot;James&quot;] &#x3D; 99;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    m1[&quot;Curry&quot;] &#x3D; 98;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    string s(&quot;Jordan&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    m1[s] &#x3D; 90;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; m1[&quot;Kobe&quot;] &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; m1[&quot;Jordan&quot;] &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; m1[&quot;Durant&quot;] &lt;&lt; endl; &#x2F;&#x2F;不存在这个key，就显示0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    m1.erase(&quot;Curry&quot;);&#x2F;&#x2F;通过关键字来删除</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    showmap(m1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    m1.insert(pair&lt;string, int&gt;(&quot;Harris&quot;, 89)); &#x2F;&#x2F;也可以通过insert函数来实现增加元素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    showmap(m1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    m1.clear(); &#x2F;&#x2F;清空全部</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    system(&quot;pause&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">    return 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201706/1093303-20170602171006649-580201339.png" alt="img"></p>
+<p>如果想看看某个存不存在某个key，可以用count来判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">if (m1.count(&quot;Lee&quot;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; &quot;Lee is in m1!&quot; &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">else</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; &quot;Lee do not exist!&quot; &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>用迭代器来访问元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">for (map&lt;string, int&gt;::iterator it &#x3D; m1.begin(); it !&#x3D; m1.end(); it++)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; it-&gt;first&lt;&lt;&quot;  &quot;&lt;&lt;it-&gt;second &lt;&lt; endl;  &#x2F;&#x2F;注意用法，不是用*it来访问了。first表示的是key，second存的是value</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
           
         
       
@@ -3392,302 +3803,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/11/14/%E5%8F%8D%E6%80%9D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/11/14/%E5%8F%8D%E6%80%9D/" itemprop="url">反思</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-14T18:25:20+08:00">
-                2019-11-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这一个月状态特别差，大部分时间都在混。明明有大把的时间，只草草的看完了组合数学和图论（只是看完而已，并没有消化，更没有练习，掌握特别差），题目也不想写，完全就是看看网课骗骗自己.</p>
-<p>接下来一个月，一定要避免这种漫天听网课的行为，这就是自己的舒适区，在这个舒适区里面呆着，是无法提高的。知识储备已经够了，你要的是大量的训练，而不是舒舒服服的看着视频。</p>
-<p>下个月的主要事务：</p>
-<p>1，大学英语六级。</p>
-<p>2，提高上课中的效率，不要发呆。</p>
-<p>3，开始专题刷题，先别刷套题，比赛前刷再刷套题找感觉，平时训练应该是分模块的。总结自己的经验。</p>
-<p>4，概率论，电路原理，数字逻辑这些课该找时间跟上来了，不然期末特别累。</p>
-<p>5，继续归纳总结自己的模板和思路</p>
-<p>6，一定的刷题量：每周20题。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/11/01/%5BDP%5D%E6%80%9D%E8%B7%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/11/01/%5BDP%5D%E6%80%9D%E8%B7%AF/" itemprop="url">[DP]思路</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-01T13:07:36+08:00">
-                2019-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、数列上的一些问题，可以考虑DP，因为线性数列很容易具有无后效性.</p>
-<p>2、棋盘上的DP，一般以点为阶段，如果发现无法完全表示状态，去试着加维度。</p>
-<p>2_1 在棋盘上面，所以根据经验应该是从上往下递推的</p>
-<p>3、线性序列分组数的DP，可以定义dp[i]表示前i个数的分组数，所以有转移方程</p>
-<p>dp[i] = dp[0] + dp[1] + dp[2] + dp[3] …. dp[i - 1]</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3740,7 +3855,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -3751,7 +3866,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -3762,7 +3877,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

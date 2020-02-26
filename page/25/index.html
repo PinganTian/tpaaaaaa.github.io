@@ -282,6 +282,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/23/%5B%E7%AE%97%E6%B3%95%5D%E6%9C%80%E5%B0%8F%E7%8E%AF%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/08/23/%5B%E7%AE%97%E6%B3%95%5D%E6%9C%80%E5%B0%8F%E7%8E%AF%E9%97%AE%E9%A2%98/" itemprop="url">[算法]最小环问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-23T16:21:42+08:00">
+                2019-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%9B%BE%E8%AE%BA/%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><em>解法：floyd实际上也是一种DP。改一改dp方程就ok了<em>；</em>Dijkstral也可以解</em></p>
+<h3 id="最小环："><a href="#最小环：" class="headerlink" title="最小环："></a>最小环：</h3><p><strong>最小环</strong>：从一个点出发,经过一条简单路径回到起点成为环.图的最小环就是所有环 中长度最小的. 例题见HDU - 1599 find the mincost route</p>
+<h3 id="如何求最小环"><a href="#如何求最小环" class="headerlink" title="如何求最小环"></a>如何求最小环</h3><h4 id="解法一：用Dijkstral算法"><a href="#解法一：用Dijkstral算法" class="headerlink" title="解法一：用Dijkstral算法"></a>解法一：用Dijkstral算法</h4><pre><code>任意一个最小环环的权值，我们都可以看成**两个有边相连的结点i、j的直接距离（边长）加上i、j间不包含边(边i-&gt;j)的最短路径（用Dij求出）**。求最短路径我们第一个想到的就**Dijkstra算法**。</code></pre><p>解法就是：枚举所有边，<strong>每次删去一条边(u, v)</strong>，然后从u开始跑Dijkstra（用堆或者c++中优先队列优化的）<strong>求u到v的距离再加上(u, v)的权值</strong>，枚举完所有边就得出答案了，复杂度为O(m * n * logn)。。</p>
+<h4 id="解法二：Floyd算法"><a href="#解法二：Floyd算法" class="headerlink" title="解法二：Floyd算法"></a>解法二：Floyd算法</h4><pre><code>for(int i = 1; i &lt;= n; i++)
+    for(int j = 1; j &lt;= n; j++)
+        dp[i][j] = mp[i][j];    // 已知dp[0][i][j] 实际上为原图的邻接矩阵，并且注意dp[i][i] = INF 不是0哦
+int ans = INF;
+for(int k = 1; k &lt;= n; k++)
+{
+    for(int i = 1; i &lt; k; i++)
+        for(int j = 1; j &lt; i; j++)                              // i &lt; k   j &lt; i 这情况下的dp[i][j] 才纯正
+            ans = min(ans,dp[i][j] + mp[i][k] + mp[k][j]);    //这时候的dp[i][j] 实际上是 dp[k-1][i][j]，上一个状态的
+    for(int i = 1; i &lt;= n; i++)
+        for(int j = 1; j &lt;= n; j++)
+            dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][i]);
+}</code></pre><h4 id="解法三：最小生成树（留坑）"><a href="#解法三：最小生成树（留坑）" class="headerlink" title="解法三：最小生成树（留坑）"></a>解法三：最小生成树（留坑）</h4><p>我们先求所给图的最小生成树，可以保证<strong>最小环就是由最小生成树上的边再加上一条非生成树上的边构成的</strong>，依次枚举所有边，每次加上一条边后，求出由其构成的环的权值，最后求最小值就解决了图的最小环问题。</p>
+<p>再说说具体怎么求每次的环的权值，我们把图变成了一颗树，假设我们枚举了一条边(u, v)， 我们只需要<strong>在生成树上求出u到v的距离再加上(u, v)这一条边的权值就算是求出环的权值了</strong>，至于求u到v的距离，用最近公共祖先(LCA)可以解决，求出u和v到其公共祖先的距离之和就是u到v的距离了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/08/23/%5B%E7%AE%97%E6%B3%95%5D%E5%8F%8C%E8%B0%83%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1285,7 +1454,7 @@ priority_queue&lt;node&gt;q;   //定义方法
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1296,7 +1465,7 @@ priority_queue&lt;node&gt;q;   //定义方法
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1307,7 +1476,7 @@ priority_queue&lt;node&gt;q;   //定义方法
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

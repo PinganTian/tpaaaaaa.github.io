@@ -282,6 +282,322 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/10/HDU5091%E5%85%89%E6%9D%9F%E5%8A%A0%E5%86%9C%E7%82%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/09/10/HDU5091%E5%85%89%E6%9D%9F%E5%8A%A0%E5%86%9C%E7%82%AE/" itemprop="url">HDU 5091 光束加农炮</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-10T22:15:03+08:00">
+                2019-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Beam-Cannon"><a href="#Beam-Cannon" class="headerlink" title="Beam Cannon"></a>Beam Cannon</h1><p>*<em>Time Limit: 3000/1500 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others)<br>Total Submission(s): 1614    Accepted Submission(s): 601<br>*</em></p>
+<p>Problem DescriptionRecently, the γ galaxies broke out Star Wars. Each planet is warring for resources. In the Star Wars, Planet X is under attack by other planets. Now, a large wave of enemy spaceships is approaching. There is a very large Beam Cannon on the Planet X, and it is very powerful, which can destroy all the spaceships in its attack range in a second. However, it takes a long time to fill the energy of the Beam Cannon after each shot. So, you should make sure each shot can destroy the enemy spaceships as many as possible.</p>
+<p>To simplify the problem, the Beam Cannon can shot at any area in the space, and the attack area is rectangular. The rectangle parallels to the coordinate axes and cannot rotate. It can only move horizontally or vertically. The enemy spaceship in the space can be considered as a point projected to the attack plane. If the point is in the rectangular attack area of the Beam Cannon(including border), the spaceship will be destroyed.<br>InputInput contains multiple test cases. Each test case contains three integers N(1&lt;=N&lt;=10000, the number of enemy spaceships), W(1&lt;=W&lt;=40000, the width of the Beam Cannon’s attack area), H(1&lt;=H&lt;=40000, the height of the Beam Cannon’s attack area) in the first line, and then N lines follow. Each line contains two integers x,y (-20000&lt;=x,y&lt;=20000, the coordinates of an enemy spaceship). </p>
+<p>A test case starting with a negative integer terminates the input and this test case should not to be processed.<br>OutputOutput the maximum number of enemy spaceships the Beam Cannon can destroy in a single shot for each case.<br>Sample Input</p>
+<p>2 3 4<br>0 1<br>1 0<br>3 1 1<br>-1 0<br>0 1<br>1 0<br>-1</p>
+<p>Sample Output</p>
+<p>2<br>2</p>
+<p>Source<a href="http://acm.hdu.edu.cn/search.php?field=problem&key=2014%C9%CF%BA%A3%C8%AB%B9%FA%D1%FB%C7%EB%C8%FC%A1%AA%A1%AA%CC%E2%C4%BF%D6%D8%CF%D6%A3%A8%B8%D0%D0%BB%C9%CF%BA%A3%B4%F3%D1%A7%CC%E1%B9%A9%CC%E2%C4%BF%A3%A9&source=1&searchmode=source" target="_blank" rel="noopener">2014上海全国邀请赛——题目重现（感谢上海大学提供题目）</a><br>Recommendhujie   |   We have carefully selected several similar problems for you:  <a href="http://acm.hdu.edu.cn/showproblem.php?pid=6730" target="_blank" rel="noopener">6730</a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6729" target="_blank" rel="noopener">6729</a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6728" target="_blank" rel="noopener">6728</a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6727" target="_blank" rel="noopener">6727</a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6726" target="_blank" rel="noopener">6726</a></p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>线段树的扫描线法。将点扩展为边</p>
+<p>从左往右进行扫描<br>对于每个点，我们添加两个边<br>对于点(x, y)并赋flag值为1 我们得到另一个点(x + w, y) 并赋值为-1;<br>将所有的点按照x的顺序从小到大排列<br>然后从左开始往右扫描<br>扫描到一个点(x, y) 后用它来更新（y，y+h）这个线段flag<br>最后我们要找的答案就是整个区间里面<br>cover最多的值<br>cover维护的值不是这个区域整个被cover的次数，而是，最多被覆盖的次数，不单单是整个区间完全被覆盖</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)   x &lt;&lt; 1
+#define rs(x)   x &lt;&lt; 1 | 1
+using namespace std;
+typedef long long ll;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e4 + 10;
+int cnt, w, h;
+int lisan[4 * MAXN];
+struct Poi
+{
+    int x, y;
+    int flag;
+    friend bool operator &lt; (Poi a, Poi b)
+    {
+        if(a.x &lt; b.x)
+            return true;
+        else if(a.x == b.x &amp;&amp; a.y &lt; b.y)
+            return true;
+        return false;
+    }
+};
+Poi poi[4 * MAXN];
+struct Node
+{
+    int L, R;
+    int lazy;
+    int cover;                  //指的是这个区间里面最多cover了多少次
+};
+Node node[16 * MAXN];
+void addPoint(int x, int y)
+{
+    cnt ++;
+    poi[cnt].x = x;
+    poi[cnt].y = y;
+    poi[cnt].flag = 1;
+    lisan[cnt] = y;
+
+    cnt ++;
+    poi[cnt].x = x + w;
+    poi[cnt].y = y;
+    poi[cnt].flag = -1;
+    lisan[cnt] = y + h;
+}
+void pushUp(int root)
+{
+    node[root].cover = max(node[ls(root)].cover, node[rs(root)].cover);
+}   //？？？
+void built(int root, int L, int R)
+{
+    node[root].L = L;
+    node[root].R = R;
+    node[root].lazy = node[root].cover = 0;
+    if(L != R)
+    {
+        int mid = md(L, R);
+        built(ls(root), L, mid);
+        built(rs(root), mid + 1, R);
+        pushUp(root); // ??????????????????????
+    }
+
+}
+
+void pushDown(int root)
+{
+    if(node[root].lazy)
+    {
+        node[ls(root)].lazy += node[root].lazy;
+        node[rs(root)].lazy += node[root].lazy;
+        node[ls(root)].cover += node[root].lazy;
+        node[rs(root)].cover += node[root].lazy;
+        node[root].lazy = 0;
+    }
+}
+void update(int root, int L, int R, int flag)       //作用是将这个区间的里面的值都+flag
+{
+    if(node[root].L == L &amp;&amp; node[root].R == R)
+    {
+        node[root].lazy += flag;
+        node[root].cover += flag;  //记录的是这个线段cover的次数,此时这个区间是要被改变的，所以不是由底层决定的。
+        return;
+    }
+    pushDown(root);
+    int mid = md(node[root].L, node[root].R);
+    if(R &lt;= mid)
+        update(ls(root), L, R, flag);
+    else if(L &gt; mid)
+        update(rs(root), L, R, flag);
+    else
+    {
+        update(ls(root), L, mid, flag);
+        update(rs(root), mid + 1, R, flag);
+    }
+    /*if(L &lt;= mid)
+        update(ls(root), L, mid, flag);
+    if(R &gt; mid)
+        update(rs(root), mid + 1, R, flag);*/
+
+    pushUp(root);               //此时的cover的次数不是由函数改变的，而是有底层向上决定的
+}
+int binSearch(int k, int n)
+{
+    int L = 1;
+    int R = n;
+    while(L &lt;= R)
+    {
+        int mid = md(L, R);
+        if(lisan[mid] == k)
+            return mid;
+        if(lisan[mid] &gt; k)
+            R = mid - 1;
+        else
+            L = mid + 1;
+    }
+}
+int main()
+{
+    int n;
+    while(scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n &gt;= 0)
+    {
+        scanf(&quot;%d%d&quot;, &amp;w, &amp;h);
+        cnt = 0;
+        for(int i = 1; i &lt;= n; i++)
+        {
+            int x, y;
+            scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+            x += 20001;
+            y += 20001;
+            addPoint(x, y);
+        }
+        //这是将y坐标离散化的结果，m为离散化后的数目
+        sort(lisan + 1, lisan + 1 + cnt);
+        int m = unique(lisan + 1, lisan + 1 + cnt) - (lisan + 1);
+        sort(poi + 1, poi + 1 + cnt);
+        built(1, 1, m); //这棵树的最小单位不是线段，而是单个的点！！！
+        //枚举每一个点
+        int ans = 0;
+        for(int i = 1; i &lt;= cnt; i ++)
+        {
+            int L = binSearch(poi[i].y, m);
+            int R = binSearch(poi[i].y + h, m);
+            update(1, L, R, poi[i].flag);
+            ans = max(ans, node[1].cover);
+        }
+        printf(&quot;%d\n&quot;, ans);
+    }
+    return 0;
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/10/POJ2299Ultra-QuickSort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2560,156 +2876,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/07/%5B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%5D%E5%8D%95%E8%B0%83%E6%A0%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/09/07/%5B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%5D%E5%8D%95%E8%B0%83%E6%A0%88/" itemprop="url">[数据结构]单调栈</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-07T15:37:03+08:00">
-                2019-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="什么是单调栈？"><a href="#什么是单调栈？" class="headerlink" title="什么是单调栈？"></a><strong>什么是单调栈？</strong></h2><p>单调栈分为单调递增栈和单调递减栈，单调递增栈即栈内元素保持单调递增的栈，同理单调递减栈即栈内元素保持单调递减的栈，跟单调队列差不多，但是只用到它的一端，利用它可以用来解决一些ACM/ICPC和OI的题目，如RQNOJ 的诺诺的队列等。</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><p>单调递增栈</p>
-<pre><code>for(int i = 0; i &lt; T.size(); i++){
-  while(! stk.empty() &amp;&amp; stk.top() &gt; T[i]){
-    ​stk.pop();
-  }
-  stk.push(A[i]);
-}</code></pre><h2 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h2><p>可以以 O(1) 的时间复杂度得知某个位置左右两侧比他大（或小）的数的位置，当你需要高效率获取某个位置左右两侧比他大（<strong>或小</strong>）的数的位置的的时候就可以用到单调栈。</p>
-<p>求解数组中元素右边第一个比它小的元素的下标，从前往后，构造单调递增栈；<br>求解数组中元素右边第一个比它大的元素的下标，从前往后，构造单调递减栈；<br>求解数组中元素左边第一个比它小的元素的下标，从后往前，构造单调递减栈；<br>求解数组中元素左边第一个比它小的元素的下标，从后往前，构造单调递增栈。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2762,7 +2928,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2773,7 +2939,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2784,7 +2950,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

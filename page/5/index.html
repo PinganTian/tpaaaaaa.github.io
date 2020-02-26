@@ -282,6 +282,523 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/19/POJ2184CowExhibition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/19/POJ2184CowExhibition/" itemprop="url">POJ 2184 Cow Exhibition</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T22:54:51+08:00">
+                2019-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index">
+                    <span itemprop="name">动态规划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>Time Limit:</strong> 1000MS</p>
+<p><strong>Memory Limit:</strong> 65536K</p>
+<p><strong>Total Submissions:</strong> 17501</p>
+<p><strong>Accepted:</strong> 7131</p>
+<p>Description”Fat and docile, big and dumb, they look so stupid, they aren’t much<br>fun…”<br>- Cows with Guns by Dana Lyons </p>
+<p>The cows want to prove to the public that they are both smart and fun. In order to do this, Bessie has organized an exhibition that will be put on by the cows. She has given each of the N (1 &lt;= N &lt;= 100) cows a thorough interview and determined two values for each cow: the smartness Si (-1000 &lt;= Si &lt;= 1000) of the cow and the funness Fi (-1000 &lt;= Fi &lt;= 1000) of the cow. </p>
+<p>Bessie must choose which cows she wants to bring to her exhibition. She believes that the total smartness TS of the group is the sum of the Si’s and, likewise, the total funness TF of the group is the sum of the Fi’s. Bessie wants to maximize the sum of TS and TF, but she also wants both of these values to be non-negative (since she must also show that the cows are well-rounded; a negative TS or TF would ruin this). Help Bessie maximize the sum of TS and TF without letting either of these values become negative.   </p>
+<p>Input* Line 1: A single integer N, the number of cows </p>
+<p>* Lines 2..N+1: Two space-separated integers Si and Fi, respectively the smartness and funness for each cow.   </p>
+<p>Output* Line 1: One integer: the optimal sum of TS and TF such that both TS and TF are non-negative. If no subset of the cows has non-negative TS and non- negative TF, print 0. </p>
+<p>Sample Input</p>
+<p>5<br>-5 7<br>8 -6<br>6 -3<br>2 1<br>-8 -5</p>
+<p>Sample Output</p>
+<p>8</p>
+<p>HintOUTPUT DETAILS: </p>
+<p>Bessie chooses cows 1, 3, and 4, giving values of TS = -5+6+2 = 3 and TF<br>= 7-3+1 = 5, so 3+5 = 8. Note that adding cow 2 would improve the value<br>of TS+TF to 10, but the new value of TF would be negative, so it is not<br>allowed. </p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>下标有负数，可以通过加一个偏移量，变成正的即可.</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
+Date              : 2019-10-18    22:22:18
+By                : Tpaaaaaa
+File_Name         ：HDU2184CowExhibition.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+
+dp[i][j] 表示考虑前i个牛，TS为j的情况下，最高的TF值
+妙呀小田
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e2 + 10;
+const int ZERO = 2e5;
+const int MAXM = 4e5 + 100;
+int n, s[MAXN], f[MAXN], dp[MAXM];
+int main()
+{
+    while(scanf(&quot;%d&quot;, &amp;n) != EOF)
+    {
+        for(int i = 1; i &lt;= n; i++) scanf(&quot;%d%d&quot;, &amp;s[i], &amp;f[i]);
+        memset(dp, -INF, sizeof dp);
+        dp[ZERO] = 0;
+        for(int i = 1; i &lt;= n; i++)
+            if(s[i] &gt; 0)
+                for(int j = MAXM - 1; j &gt;= s[i]; j--)
+                    dp[j] = max(dp[j], dp[j - s[i]] + f[i]);
+            else
+                for(int j = 0; j - s[i] &lt; MAXM;j++)
+                    dp[j] = max(dp[j], dp[j - s[i]] + f[i]);
+        bool flag = false;
+        int ans = 0;
+        for(int i = MAXM - 1; i &gt;= ZERO; i--)
+            if(dp[i] &gt;= 0)
+                ans = max(ans, i + dp[i] - ZERO);
+
+        printf(&quot;%d\n&quot;, ans);
+
+    }
+    return 0;
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/19/HDU2639BoneCollectorII/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/19/HDU2639BoneCollectorII/" itemprop="url">HDU 2639 Bone Collector II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T22:51:53+08:00">
+                2019-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index">
+                    <span itemprop="name">动态规划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>*<em>Time Limit: 5000/2000 MS (Java/Others)    Memory Limit: 32768/32768 K (Java/Others)<br>Total Submission(s): 7174    Accepted Submission(s): 3808<br>*</em></p>
+<p>Problem DescriptionThe title of this problem is familiar,isn’t it?yeah,if you had took part in the “Rookie Cup” competition,you must have seem this title.If you haven’t seen it before,it doesn’t matter,I will give you a link:</p>
+<p>Here is the link:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2602" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=2602</a></p>
+<p>Today we are not desiring the maximum value of bones,but the K-th maximum value of the bones.NOTICE that,we considerate two ways that get the same value of bones are the same.That means,it will be a strictly decreasing sequence from the 1st maximum , 2nd maximum .. to the K-th maximum.</p>
+<p>If the total number of different values is less than K,just ouput 0.<br>InputThe first line contain a integer T , the number of cases.<br>Followed by T cases , each case three lines , the first line contain two integer N , V, K(N &lt;= 100 , V &lt;= 1000 , K &lt;= 30)representing the number of bones and the volume of his bag and the K we need. And the second line contain N integers representing the value of each bone. The third line contain N integers representing the volume of each bone.  </p>
+<p>OutputOne integer per line representing the K-th maximum of the total value (this number will be less than 231).  </p>
+<p>Sample Input</p>
+<p>3<br>5 10 2<br>1 2 3 4 5<br>5 4 3 2 1<br>5 10 12<br>1 2 3 4 5<br>5 4 3 2 1<br>5 10 16<br>1 2 3 4 5<br>5 4 3 2 1</p>
+<p>Sample Output</p>
+<p>12<br>2<br>0</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>背包问题的第k优解的求法.</p>
+<p>多开一维.见代码，可做模板</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
+Date              : 2019-10-18    22:54:18
+By                : Tpaaaaaa
+File_Name         ：HDU2639BoneCollectorII.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+
+dp[i][j][k] 表示考虑前i个变量，使得和为j的第k优解
+得到状态转移
+dp[i][j] = merge(dp[i - 1][j], dp[i - 1][j - v[i]] + w[i]);
+merge归并排序
+妙呀,前i个变量的前k优解，就是由转移向他的两个状态的各自的前k优解再比试一下
+得到的前k优解
+
+要用到的函数
+merge(int *, const int *,const int *, extra);
+int l = 1, r = 1;
+int s = 1;
+while(s &lt;= k)
+{
+    if([l] &lt; [r])
+    {
+        nas[s] = [r];
+        r++;
+    }
+    else
+    {
+        nas[s] = [l];
+        l++;
+    }
+    s++;
+}
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e2 + 10;
+const int MAXM = 1e3 + 10;
+const int MAXK = 30 + 10;
+int n, v, k;
+int w[MAXN], c[MAXN];
+int dp[MAXN][MAXM][MAXK];
+int A[MAXK], B[MAXK];
+int main()
+{
+    int t;
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        scanf(&quot;%d%d%d&quot;, &amp;n, &amp;v, &amp;k);    //第k优解，v是背包容量，n是物件种类
+        for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;w[i]); //物品价值
+        for(int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;c[i]); //物品体积
+        memset(dp, 0, sizeof dp);/*
+        for(int i = 1; i &lt;= n; i++)
+            for(int j = 0; j &lt;= v; j++)
+                if(j &gt;= c[i])           //两种转移方法
+                {
+                    int l = 1, r = 1, s = 1;
+                    while(s &lt;= k)
+                    {
+                        if(dp[i - 1][j - c[i]][r] + w[i] &gt; dp[i - 1][j][l])
+                        {
+                            dp[i][j][s] = dp[i - 1][j - c[i]][r] + w[i];
+                            r++;
+                        }
+                        else if(dp[i - 1][j - c[i]][r] + w[i] &lt; dp[i - 1][j][l])
+                        {
+                            dp[i][j][s] = dp[i - 1][j][l];
+                            l++;
+                        }
+                        else
+                        {
+                            dp[i][j][s] = dp[i - 1][j][l];
+                            r++, l++;
+                        }
+                        s++;
+                    }
+                }
+                else                    //只有一种转移方法
+                    memcpy(dp[i][j], dp[i - 1][j], sizeof dp[i - 1][j]); */     
+        for(int i = 1; i &lt;= n; i++)
+            for(int j = 0; j &lt;= v; j++)
+                if(j &gt;= c[i])           //两种转移方法
+                {
+                    for(int o = 1; o &lt;= k; o++)
+                    {
+                        A[o] = dp[i - 1][j][o];
+                        B[o] = dp[i - 1][j - c[i]][o] + w[i];
+                    }
+                    int x = 1, y = 1, z = 1;
+                    A[k + 1] = B[k + 1] = -1;//??
+                    while(z &lt;= k &amp;&amp; (x &lt;= k || y &lt;= k))
+                    {
+                        if(A[x] &gt; B[y])
+                            dp[i][j][z] = A[x++];
+                        else
+                            dp[i][j][z] = B[y++];
+                        if(dp[i][j][z] != dp[i][j][z - 1])
+                            z++;
+                    }
+                }
+                else memcpy(dp[i][j], dp[i - 1][j], sizeof dp[i - 1][j]);
+
+
+        printf(&quot;%d\n&quot;, dp[n][v][k]);
+    }
+    return 0;
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/19/HDU3466ProudMerchants/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2044,486 +2561,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/19/%E6%82%BC%E5%BF%B5512%E6%B1%B6%E5%B7%9D%E5%A4%A7%E5%9C%B0%E9%9C%87%E9%81%87%E9%9A%BE%E5%90%8C%E8%83%9E%E2%80%94%E2%80%94%E7%8F%8D%E6%83%9C%E7%8E%B0%E5%9C%A8%EF%BC%8C%E6%84%9F%E6%81%A9%E7%94%9F%E6%B4%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/19/%E6%82%BC%E5%BF%B5512%E6%B1%B6%E5%B7%9D%E5%A4%A7%E5%9C%B0%E9%9C%87%E9%81%87%E9%9A%BE%E5%90%8C%E8%83%9E%E2%80%94%E2%80%94%E7%8F%8D%E6%83%9C%E7%8E%B0%E5%9C%A8%EF%BC%8C%E6%84%9F%E6%81%A9%E7%94%9F%E6%B4%BB/" itemprop="url">悼念512汶川大地震遇难同胞——珍惜现在，感恩生活</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T22:33:25+08:00">
-                2019-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index">
-                    <span itemprop="name">动态规划</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>急！灾区的食物依然短缺！<br>为了挽救灾区同胞的生命，心系灾区同胞的你准备自己采购一些粮食支援灾区，现在假设你一共有资金n元，而市场有m种大米，每种大米都是袋装产品，其价格不等，并且只能整袋购买。<br>请问：你用有限的资金最多能采购多少公斤粮食呢？</p>
-<p>后记：<br>人生是一个充满了变数的生命过程，天灾、人祸、病痛是我们生命历程中不可预知的威胁。<br>月有阴晴圆缺，人有旦夕祸福，未来对于我们而言是一个未知数。那么，我们要做的就应该是珍惜现在，感恩生活——<br>感谢父母，他们给予我们生命，抚养我们成人；<br>感谢老师，他们授给我们知识，教我们做人<br>感谢朋友，他们让我们感受到世界的温暖；<br>感谢对手，他们令我们不断进取、努力。<br>同样，我们也要感谢痛苦与艰辛带给我们的财富～</p>
-<p><img src="http://acm.hdu.edu.cn/data/images/C132-1006-2.JPG" alt=""></p>
-<p>Input输入数据首先包含一个正整数C，表示有C组测试用例，每组测试用例的第一行是两个整数n和m(1&lt;=n&lt;=100, 1&lt;=m&lt;=100),分别表示经费的金额和大米的种类，然后是m行数据，每行包含3个数p，h和c(1&lt;=p&lt;=20,1&lt;=h&lt;=200,1&lt;=c&lt;=20)，分别表示每袋的价格、每袋的重量以及对应种类大米的袋数。<br>Output对于每组测试数据，请输出能够购买大米的最多重量，你可以假设经费买不光所有的大米，并且经费你可以不用完。每个实例的输出占一行。<br>Sample Input</p>
-<p>1<br>8 2<br>2 100 4<br>4 100 2</p>
-<p>Sample Output</p>
-<p>400</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>好长的标题呀.</p>
-<p>这是多重背包的二进制优化版本. 可做模板</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
-Date              : 2019-10-19    18:20:23
-By                : Tpaaaaaa
-File_Name         ：HDU2191.cpp
-Description       : 
-目前正在专项刷题，为了保证效果。
-必须做到：
-   1，先想出完整思路，并分析复杂度。
-   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
-   3. 编写代码的时候，规范风格（例如变量名）
-   4. 模块化答题
-
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-#define md(x, y)  (x + y) / 2
-#define ls(x)      x &lt;&lt; 1
-#define rs(x)      x &lt;&lt; 1 | 1
-#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
-#define fileclose fclose(stdin); fclose(stdout)
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 110;
-int v[MAXN * 20], w[MAXN * 20];
-int dp[MAXN * 20];
-int main()
-{
-    int t, n, m;
-    cin &gt;&gt; t;
-    while(t--)
-    {
-        int cnt = 0;
-        scanf(&quot;%d%d&quot;, &amp;m, &amp;n);
-        for(int i = 1; i &lt;= n; i++)
-        {
-            int p, h, c;
-            scanf(&quot;%d%d%d&quot;, &amp;p, &amp;h, &amp;c);
-            for(int j = 1; j &lt;= c; j++)
-            {
-                w[++cnt] = j * h;
-                v[cnt] = j * p;
-                c -= j;
-            }
-            if(c &gt; 0)
-            {
-                w[++cnt] = c * h;
-                v[cnt] = c * p;
-            }
-        }
-        /*只是在输入输出的时候额外处理一下*/
-        memset(dp, 0, sizeof dp);
-        for(int i = 1; i &lt;= cnt; i++)
-            for(int j = m; j &gt;= v[i]; j--)
-                dp[j] = max(dp[j], dp[j - v[i]] + w[i]);
-        printf(&quot;%d\n&quot;, dp[m]);
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/19/HDU3033Ilovesneakers!/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/19/HDU3033Ilovesneakers!/" itemprop="url">HDU 3033 I love sneakers!</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T22:31:42+08:00">
-                2019-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index">
-                    <span itemprop="name">动态规划</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>*<em>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 32768/32768 K (Java/Others)<br>Total Submission(s): 8235    Accepted Submission(s): 3272<br>*</em></p>
-<p>Problem DescriptionAfter months of hard working, Iserlohn finally wins awesome amount of scholarship. As a great zealot of sneakers, he decides to spend all his money on them in a sneaker store.  </p>
-<p><img src="http://acm.hdu.edu.cn/data/images/exe3033-1.JPG" alt=""></p>
-<p>There are several brands of sneakers that Iserlohn wants to collect, such as Air Jordan and Nike Pro. And each brand has released various products. For the reason that Iserlohn is definitely a sneaker-mania, he desires to buy at least one product for each brand.<br>Although the fixed price of each product has been labeled, Iserlohn sets values for each of them based on his own tendency. With handsome but limited money, he wants to maximize the total value of the shoes he is going to buy. Obviously, as a collector, he won’t buy the same product twice.<br>Now, Iserlohn needs you to help him find the best solution of his problem, which means to maximize the total value of the products he can buy.<br>InputInput contains multiple test cases. Each test case begins with three integers 1&lt;=N&lt;=100 representing the total number of products, 1 &lt;= M&lt;= 10000 the money Iserlohn gets, and 1&lt;=K&lt;=10 representing the sneaker brands. The following N lines each represents a product with three positive integers 1&lt;=a&lt;=k, b and c, 0&lt;=b,c&lt;100000, meaning the brand’s number it belongs, the labeled price, and the value of this product. Process to End Of File.<br>OutputFor each test case, print an integer which is the maximum total value of the sneakers that Iserlohn purchases. Print “Impossible” if Iserlohn’s demands can’t be satisfied.<br>Sample Input</p>
-<p>5 10000 3<br>1 4 6<br>2 5 7<br>3 4 99<br>1 55 77<br>2 44 66</p>
-<p>Sample Output</p>
-<p>255</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这是分组背包的一种常见题型。常规的分组背包是每一组最多选一个，而此题是每一组最少选一个。所以转移的时候，即会在本组里面发生转移（选多个），也会在前一组之间发生转移（第一个）。</p>
-<p>在本组里面，用01背包.</p>
-<pre><code>for(int i = 1; i &lt;= bsum[k]; i++)
-    for(int j = m; j &gt;= v[k][i]; j--)
-    {        
-        if(dp[k][j - v[k][i]] != -1)
-                dp[k][j] = max(dp[k][j], dp[k][j - v[k][i]] + w[k][i]);
-     .....................</code></pre><p>与前一组里面</p>
-<pre><code>  ...................................                  
-if(dp[k - 1][j - v[k][i]] != -1)
-                            dp[k][j] = max(dp[k][j], dp[k - 1][j - v[k][i]] + w[k][i]);</code></pre><p>这是常见的代码</p>
-<pre><code>memset(dp, -1, sizeof dp);
-memset(dp[0], 0, sizeof dp[0]);
-//dp[i][j] 表示的是考虑前k组，背包容量为j的最大价值
-
-for(int k = 1; k &lt;= kk; k++)
-{
-    for(int i = 1; i &lt;= bsum[k]; i++)
-        for(int j = m; j &gt;= v[k][i]; j--)
-        {        
-            if(dp[k][j - v[k][i]] != -1)
-                    dp[k][j] = max(dp[k][j], dp[k][j - v[k][i]] + w[k][i]);
-            if(dp[k - 1][j - v[k][i]] != -1)
-                    dp[k][j] = max(dp[k][j], dp[k - 1][j - v[k][i]] + w[k][i]);
-        }
-}</code></pre><h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
-Date              : 2019-10-19    18:32:21
-By                : Tpaaaaaa
-File_Name         ：IlovesneakersHDU3033.cpp
-Description       : 
-目前正在专项刷题，为了保证效果。
-必须做到：
-   1，先想出完整思路，并分析复杂度。
-   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
-   3. 编写代码的时候，规范风格（例如变量名）
-   4. 模块化答题
-
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-#define md(x, y)  (x + y) / 2
-#define ls(x)      x &lt;&lt; 1
-#define rs(x)      x &lt;&lt; 1 | 1
-#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
-#define fileclose fclose(stdin); fclose(stdout)
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 110;
-const int MAXK = 15;
-const int MAXM = 1e4 + 10;
-int bsum[MAXK];
-int dp[MAXK][MAXM], v[MAXK][MAXN], w[MAXK][MAXN];
-int main()
-{
-    int n, m, kk;
-    while(scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;kk) != EOF)
-    {
-        memset(bsum, 0, sizeof bsum);   //bsum[i] 第i个牌子有多少个鞋
-        for(int i = 1; i &lt;= n; i++)
-        {
-            int a, b, c;
-            scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;c);
-            bsum[a]++;
-            int cnt = bsum[a];
-            v[a][cnt] = b;              //体积
-            w[a][cnt] = c;              //价值
-        }
-        memset(dp, -1, sizeof dp);
-        memset(dp[0], 0, sizeof dp[0]);
-        //dp[i][j] 表示的是考虑前k组，背包容量为j的最大价值
-
-        for(int k = 1; k &lt;= kk; k++)
-        {
-            for(int i = 1; i &lt;= bsum[k]; i++)
-                for(int j = m; j &gt;= v[k][i]; j--)
-                {        
-                    if(dp[k][j - v[k][i]] != -1)
-                            dp[k][j] = max(dp[k][j], dp[k][j - v[k][i]] + w[k][i]);
-                    if(dp[k - 1][j - v[k][i]] != -1)
-                            dp[k][j] = max(dp[k][j], dp[k - 1][j - v[k][i]] + w[k][i]);
-                }
-        }
-        if(dp[kk][m] == -1)
-            printf(&quot;Impossible\n&quot;);
-        else
-            printf(&quot;%d\n&quot;, dp[kk][m]);
-
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2576,7 +2613,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2587,7 +2624,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2598,7 +2635,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

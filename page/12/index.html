@@ -282,6 +282,476 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/02/LightOJ-1234HarmonicNumber/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/02/LightOJ-1234HarmonicNumber/" itemprop="url">LightOJ - 1234 Harmonic Number</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-02T22:19:01+08:00">
+                2019-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">数论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数学中，第n个调和数是前n个自然数的倒数之和:</p>
+<p>在这个问题中，给你一个数n，你应该求出 <strong>Hn</strong>.注意：这个OJ数组开太大会报Runtime Error.Input</p>
+<p>开始输入一个整数 <strong>T (**</strong>≤ 10000)**, 代表样例个数.</p>
+<p>每一个样例输入一行，包含一个整数 <strong>n (1 ≤ n ≤ 108)</strong>.Output</p>
+<p>对于每个样例输出一行，代表答案<strong>Hn</strong> 。输出的结果与标准答案的相对误差小于 <strong>10-8</strong> ，格式如下.Sample Input</p>
+<p>12</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>90000000</p>
+<p>99999999</p>
+<p>100000000</p>
+<p>Sample Output</p>
+<p>Case 1: 1.0000000000</p>
+<p>Case 2: 1.5000000000</p>
+<p>Case 3: 1.8333333333</p>
+<p>Case 4: 2.0833333333</p>
+<p>Case 5: 2.2833333333</p>
+<p>Case 6: 2.4500000000</p>
+<p>Case 7: 2.5928571429</p>
+<p>Case 8: 2.7178571429</p>
+<p>Case 9: 2.8289682540</p>
+<p>Case 10: 18.8925358988</p>
+<p>Case 11: 18.9978964039</p>
+<p>Case 12: 18.9978964139</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>减少数组空间的方法。 我们首先观察到式子不难，but预处理的时候，如果直接用前缀和，显然1e8的数组会爆。那么我们怎么样才能他降下来呢，如果我们每隔100个去求一下和，这样就只要存1e6的数组了，不会爆了。所以可以用这种方法减少空间复杂度。</p>
+<p>总结：如果求前缀和开的数组会爆的话，可以考虑分段求和(每100个求和一次…..)。</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
+ Date              : 2019-10-02-15.17.08
+ By                : Tpaaaaaa
+ Question_Number   ：Harmonic Number LightOJ - 1234
+ Question_Name     ：321
+ Description       :
+ 目前正在专项刷题，为了保证效果。
+必须做到：
+    1，先想出完整思路，并分析复杂度。
+    2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+    3. 编写代码的时候，规范风格（例如变量名）
+    4. 模块化答题
+
+    因为开1e8的数组会爆
+    所以我们可以每隔100个存一下，就只要开1e6的数组了
+    小机灵鬼
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+using namespace std;
+typedef long long ll;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 1e8 + 5;
+double a[1000005];
+void init()
+{
+    double ans = 0;
+    a[0] = 0;
+    for(int i = 1; i &lt; MAXN; i++)
+    {
+        ans += 1.0/i;
+        if(i % 100 == 0)
+            a[i/100] = ans; //a[1] 存的是前100
+    }
+}
+int main()
+{
+    int t, n, kase = 0;
+    init();
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        scanf(&quot;%d&quot;, &amp;n);
+        int temp = n / 100;
+        double ans = a[temp];
+        for(int i = temp * 100 + 1; i &lt;= n;i++)
+            ans += 1.0 / i;
+        printf(&quot;Case %d: %.10f\n&quot;,++kase, ans);
+    }
+    return 0;
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/02/LightOJ-1214LargeDivision/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/02/LightOJ-1214LargeDivision/" itemprop="url">LightOJ - 1214 Large Division</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-02T22:14:02+08:00">
+                2019-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">数论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>给定两个整数a和b，你应该检查a是否可以被b整除。我们知道，当且仅当存在整数c使得a = b * c时，整数a才能被整数b整除。Input</p>
+<p>开始会输入一个数字 <strong>T (**</strong>≤ 525)**, 代表了样例数.</p>
+<p>每个样例会给两个整数<strong>a (-10200 ≤ a ≤ 10200)</strong> and <strong>b (|b| &gt; 0, b fits into a 32 bit signed integer)</strong>. 数字不会包含前导零.Output</p>
+<p>For each case, print the case number first. Then print <strong>‘divisible’</strong> if <strong>a</strong> is divisible by <strong>b</strong>. Otherwise print <strong>‘not divisible’</strong>.Sample Input</p>
+<p>6</p>
+<p>101 101</p>
+<p>0 67</p>
+<p>-101 101</p>
+<p>7678123668327637674887634 101</p>
+<p>11010000000000000000 256</p>
+<p>-202202202202000202202202 -101Sample Output</p>
+<p>Case 1: divisible</p>
+<p>Case 2: divisible</p>
+<p>Case 3: divisible</p>
+<p>Case 4: not divisible</p>
+<p>Case 5: divisible</p>
+<p>Case 6: divisible</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>大数取模：模运算 + 秦九韶算法的思想。常见的套路</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
+ Date              : 2019-10-02-15.33.29
+ By                : Tpaaaaaa
+ Question_Number   ：Large Division LightOJ - 1214
+ Question_Name     ：大数取模
+ Description       :
+ 目前正在专项刷题，为了保证效果。
+必须做到：
+    1，先想出完整思路，并分析复杂度。
+    2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+    3. 编写代码的时候，规范风格（例如变量名）
+    4. 模块化答题
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+using namespace std;
+typedef long long ll;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 300;
+char s[MAXN];
+bool lpow(char s[], ll mod)
+{
+    ll res = 0;
+    for(int i = 0; i &lt; strlen(s); i++)
+    {
+        if(s[i] == &apos;-&apos;) continue;
+        int now = s[i] - &apos;0&apos;;
+        res = (res * 10 + now) % mod;
+    }
+    if(res == 0)
+        return false;
+    return true;
+}
+int main()
+{
+    int t, kase = 0;
+    ll b;
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        scanf(&quot;%s %lld&quot;, s, &amp;b);
+        if(b &lt; 0) b = -b;
+        printf(&quot;Case %d: &quot;, ++kase);
+        if(lpow(s,b))
+            printf(&quot;not divisible\n&quot;);
+        else
+            printf(&quot;divisible\n&quot;);
+    }
+    return 0;
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/02/LightOJ-1078IntegerDivisibility/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -4222,333 +4692,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/21/%5B%E9%9A%8F%E7%AC%94%5D%E4%BB%8A%E6%97%A5%E4%BB%BD%E8%8E%AB%E5%90%8D%E9%AB%98%E4%BA%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/09/21/%5B%E9%9A%8F%E7%AC%94%5D%E4%BB%8A%E6%97%A5%E4%BB%BD%E8%8E%AB%E5%90%8D%E9%AB%98%E4%BA%A7/" itemprop="url">[随笔]今日份莫名高产</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-21T23:20:52+08:00">
-                2019-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>可能是晚上睡得太好了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/09/21/POJ2752SeektheName,SeektheFame/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/09/21/POJ2752SeektheName,SeektheFame/" itemprop="url">POJ 2752Seek the Name, Seek the Fame</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-21T23:19:30+08:00">
-                2019-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Seek the Name, Seek the Fame</p>
-<p><strong>Time Limit:</strong> 2000MS</p>
-<p><strong>Memory Limit:</strong> 65536K</p>
-<p><strong>Total Submissions:</strong> 28356</p>
-<p><strong>Accepted:</strong> 14718</p>
-<p>DescriptionThe little cat is so famous, that many couples tramp over hill and dale to Byteland, and asked the little cat to give names to their newly-born babies. They seek the name, and at the same time seek the fame. In order to escape from such boring job, the innovative little cat works out an easy but fantastic algorithm: </p>
-<p>Step1. Connect the father’s name and the mother’s name, to a new string S.<br>Step2. Find a proper prefix-suffix string of S (which is not only the prefix, but also the suffix of S). </p>
-<p>Example: Father=’ala’, Mother=’la’, we have S = ‘ala’+’la’ = ‘alala’. Potential prefix-suffix strings of S are {‘a’, ‘ala’, ‘alala’}. Given the string S, could you help the little cat to write a program to calculate the length of possible prefix-suffix strings of S? (He might thank you by giving your baby a name:)   </p>
-<p>InputThe input contains a number of test cases. Each test case occupies a single line that contains the string S described above. </p>
-<p>Restrictions: Only lowercase letters may appear in the input. 1 &lt;= Length of S &lt;= 400000.   </p>
-<p>OutputFor each test case, output a single line with integer numbers in increasing order, denoting the possible length of the new baby’s name.</p>
-<p>Sample Input</p>
-<p>ababcababababcabab<br>aaaaa</p>
-<p>Sample Output</p>
-<p>2 4 9 18<br>1 2 3 4 5</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>假设串s的长度为n<br>我们可以求出next数组，那么next[n] = len存的就是这个数组的最长公共前后缀的长度<br>那么我们可以得到最长公共前后缀就是s[0] … s[len - 1]<br>我们令这个最长公共前后缀为s2<br>s2的长度为len，那么next[len] = len 存的就是这个串的最长公共前后缀的长度<br>依次递归下去。知道next[len] = 0, 也就是不存在最长公共前后的情况，递归结束</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>void getNext()
-{
-    int m = strlen(a);
-    nxt[0] = -1;
-    int i = 0, j = -1;
-    while(i &lt; m)
-        if(j == -1 || a[i] == a[j])
-            nxt[++i] = ++j;
-        else
-            j = nxt[j];
-}
-//输出
-void dfs(int m)
-{
-    if(nxt[m] == 0||nxt[m] == -1) return;
-    dfs(nxt[m]);
-    printf(&quot;%d &quot;, nxt[m]);
-}
-int main()
-{
-    while(scanf(&quot;%s&quot;, a) != EOF)
-    {
-        getNext();
-        int m = strlen(a);
-        dfs(m);
-        printf(&quot;%d\n&quot;, m);
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4601,7 +4744,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -4612,7 +4755,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -4623,7 +4766,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

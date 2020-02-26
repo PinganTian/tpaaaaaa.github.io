@@ -282,6 +282,447 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/12/LightOJ-1284Lightsinside3DGrid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/12/LightOJ-1284Lightsinside3DGrid/" itemprop="url">LightOJ - 1284 Lights inside 3D Grid</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-12T22:10:53+08:00">
+                2019-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index">
+                    <span itemprop="name">动态规划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>You are given a 3D grid, which has dimensions <strong>X</strong>, <strong>Y</strong> and <strong>Z</strong>. Each of the <strong>X x Y x Z</strong> cells contains a light. Initially all lights are off. You will have <strong>K</strong> turns. In each of the <strong>K</strong> turns,</p>
+<ol>
+<li><p>You select a cell <strong>A</strong> randomly from the grid,</p>
+</li>
+<li><p>You select a cell <strong>B</strong> randomly from the grid and</p>
+</li>
+<li><p>Toggle the states of all the bulbs bounded by cell <strong>A</strong> and cell <strong>B</strong>, i.e. make all the ON lights OFF and make all the OFF lights ON which are bounded by <strong>A</strong> and <strong>B</strong>. To be clear, consider cell <strong>A</strong> is <strong>(x1, y1, z1)</strong> and cell <strong>B</strong> is <strong>(x2, y2, z2)</strong>. Then you have to toggle all the bulbs in grid cell<strong>(x, y, z)</strong> where <strong>min(x1, x2) ≤ x ≤ max(x1, x2)</strong>, <strong>min(y1, y2) ≤ y ≤ max(y1, y2)</strong> and <strong>min(z1, z2) ≤ z ≤ max(z1, z2)</strong>.</p>
+</li>
+</ol>
+<p>Your task is to find the expected number of lights to be ON after <strong>K</strong> turns.Input</p>
+<p>Input starts with an integer <strong>T (**</strong>≤ 50)**, denoting the number of test cases.</p>
+<p>Each case starts with a line containing four integers <strong>X, Y, Z (1 ≤ X, Y, Z ≤ 100)</strong> and <strong>K (0 ≤ K ≤ 10000)</strong>.Output</p>
+<p>For each case, print the case number and the expected number of lights that are ON after <strong>K</strong> turns. Errors less than <strong>10-6</strong> will be ignored.Sample Input</p>
+<p>5</p>
+<p>1 2 3 5</p>
+<p>1 1 1 1</p>
+<p>1 2 3 0</p>
+<p>2 3 4 1</p>
+<p>2 3 4 2Sample Output</p>
+<p>Case 1: 2.9998713992</p>
+<p>Case 2: 1</p>
+<p>Case 3: 0</p>
+<p>Case 4: 6.375</p>
+<p>Case 5: 9.09765625</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>其实概率DP，DP才是主要的，概率只是个类型罢了。所以我们要用常规的DP思路的思考题目。</p>
+<p><strong>还有就是</strong></p>
+<p><strong>如果每个点只有两个状态（0 或 1， 选中 或 不选中， 开 或 关），那么这个点给全局的期望贡献等于他是1的概率。</strong></p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
+Date              : 2019-10-12    16:59:25
+By                : Tpaaaaaa
+File_Name         ：Lightsinside3DGridLightOJ1284.cpp
+Description       : 
+目前正在专项刷题，为了保证效果。
+必须做到：
+   1，先想出完整思路，并分析复杂度。
+   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
+   3. 编写代码的时候，规范风格（例如变量名）
+   4. 模块化答题
+
+这题目实际上是两个概率
+第一个概率问的是，每个点被选中的概率
+这个容易计算, 我们将每个的坐标分为三部分来考虑
+如果x坐标满足的概率为Px，y坐标满足选中的概率是Py，z坐标满足选中的概率是Pz
+所以整个点被选中的概率是Px*Py*Pz;
+那么对于某个一维坐标，他被选中的概率是
+1 - 他没被选中的概率
+他没被选中的情况就是A，B两点的坐标在他的同一侧，同左侧or同右侧
+假如一维坐标有X个点，目前的位置为第i个点
+那么它左边有i - 1个点，他右边有X - i个点
+所以不被选中的概率是((i - 1)*(i - 1) + (X - i)*(X - i))/X*X 
+1 减去他就得到选中的概率
+Px*Py*Pz就是空间里面某个点被选中的概率
+
+对于每个点，在k次翻转的操作下，从 OFF 变成 ON 需要被选中奇数次
+这就是一个概率DP了
+dp[x][y][z][i] 表示翻转了i次下，(x, y, z)被选中为奇数次的概率
+则得到递推式
+dp[x][y][z][i] = P[x][y][z]*(1 - dp[x][y][z][i - 1]) + (1 - p[x][y][z])*(dp[x][y][z][i - 1]);
+他这选中奇数次的概率乘上状态1就是期望了
+那么整个的期望就是所有的点的期望之和
+
+*/
+#include&lt;functional&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;bitset&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;list&gt;
+#include&lt;deque&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#define md(x, y)  (x + y) / 2
+#define ls(x)      x &lt;&lt; 1
+#define rs(x)      x &lt;&lt; 1 | 1
+#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
+#define fileclose fclose(stdin); fclose(stdout)
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = acos(-1.0);
+const double eps = 1e-6;
+const int INF = 0x3f3f3f3f;
+const int MAXN = 233;
+int X, Y, Z, K;
+//(i - 1)*(i - 1) + (X - i)*(X - i))/X*X 
+//返回的是被选中的概率
+double getP(int x, int y, int z)
+{
+    double px = 1 - ((x - 1) * (x - 1) + (X - x) * (X - x)) * 1.0/(X * X);
+    double py = 1 - ((y - 1) * (y - 1) + (Y - y) * (Y - y)) * 1.0/(Y * Y);
+    double pz = 1 - ((z - 1) * (z - 1) + (Z - z) * (Z - z)) * 1.0/(Z * Z);
+    return px * py * pz;
+}
+int main()
+{
+    int t;
+    cin &gt;&gt; t;
+    for(int kase = 1; kase &lt;= t; kase++)
+    {
+        double ans = 0;
+        double dp;
+        scanf(&quot;%d%d%d%d&quot;, &amp;X, &amp;Y, &amp;Z, &amp;K);
+        for(int x = 1; x &lt;= X; x++)
+            for(int y = 1; y &lt;= Y; y++)
+                for(int z = 1; z &lt;= Z; z++)
+                {
+                    dp = 0;
+                    double p = getP(x, y, z);
+                    dp = (1 - pow(1 - 2 * p, K)) * 1.0 / (2 * 1);
+                    ans += dp;
+                }
+
+        printf(&quot;Case %d: %.7f\n&quot;, kase, ans);
+    }
+    return 0;
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/11/SGU495KidsandPrizes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我玩维恩不学q">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/11/SGU495KidsandPrizes/" itemprop="url">SGU 495 Kids and Prizes</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-11T22:33:13+08:00">
+                2019-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tpaaaaaa.github.io/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index">
+                    <span itemprop="name">动态规划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="495-Kids-and-Prizes"><a href="#495-Kids-and-Prizes" class="headerlink" title="495. Kids and Prizes"></a>495. Kids and Prizes</h4><p>Time limit per test: 0.5 second(s)<br>Memory limit: 262144 kilobytesinput: standard<br>output: standard</p>
+<p>ICPC (International Cardboard Producing Company) is in the business of producing cardboard boxes. Recently the company organized a contest for kids for the best design of a cardboard box and selected <em>M</em> winners. There are <em>N</em>prizes for the winners, each one carefully packed in a cardboard box (made by the ICPC, of course). The awarding process will be as follows:</p>
+<ul>
+<li>All the boxes with prizes will be stored in a separate room.</li>
+<li>The winners will enter the room, one at a time.</li>
+<li>Each winner selects one of the boxes.</li>
+<li>The selected box is opened by a representative of the organizing committee.</li>
+<li>If the box contains a prize, the winner takes it.</li>
+<li>If the box is empty (because the same box has already been selected by one or more previous winners), the winner will instead get a certificate printed on a sheet of excellent cardboard (made by ICPC, of course).</li>
+<li>Whether there is a prize or not, the box is re-sealed and returned to the room.</li>
+</ul>
+<p>The management of the company would like to know how many prizes will be given by the above process. It is assumed that each winner picks a box at random and that all boxes are equally likely to be picked. Compute the mathematical expectation of the number of prizes given (the certificates are not counted as prizes, of course).  </p>
+<p><strong>Input</strong></p>
+<p><img src="http://acm.sgu.ru/temp/cache/e80fa1c6a70d6d03c3786e561ddbbeb6.png" alt=""></p>
+<p>The first and only line of the input file contains the values of <em>N</em> and <em>M</em> ().  </p>
+<p><strong>Output</strong></p>
+<p>The first and only line of the output file should contain a single real number: the expected number of prizes given out. The answer is accepted as correct if either the absolute or the relative error is less than or equal to 10-9.  </p>
+<p><strong>Example(s)</strong></p>
+<p>sample input</p>
+<p>sample output</p>
+<p>5 7</p>
+<p>3.951424</p>
+<p>sample input</p>
+<p>sample output</p>
+<p>4 3</p>
+<p>2.3125</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>概率DP。两种思路</p>
+<p><strong>第一种思路</strong>：</p>
+<p>我们对礼物进行分析, 每个礼物被选中的概率是1 / n</p>
+<p>所以不被选中的概率是 （n - 1) / n</p>
+<p>所以m个礼物都没有被选中的概率是 [(n - 1) / n] ^ m;</p>
+<p>即没有被选中的礼物的期望数是 n * [ (n - 1)/n] ^ m;</p>
+<p>则期望选中的数目就是 n - 上面的式子</p>
+<p><strong>第二个思路：</strong></p>
+<p>dp[i]为第i个人得到礼物的<strong>概率，也就是得到礼物的期望</strong>嘛，所以m个人得到礼物的期望数就是m个人期望的总和，所以我们首先求出所有的人各自的期望（概率）</p>
+<p>得到递推式：</p>
+<p>dp[i] = (1 - dp[i - 1])*dp[i - 1] + dp[i - 1] * (dp[i - 1] - 1.0/n);</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/11/POJ3744ScoutYYFI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3066,544 +3507,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/06/POJ1830%E5%BC%80%E5%85%B3%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/06/POJ1830%E5%BC%80%E5%85%B3%E9%97%AE%E9%A2%98/" itemprop="url">POJ 1830 开关问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-06T22:47:00+08:00">
-                2019-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E8%AE%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">数论</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开关问题</p>
-<p><strong>Time Limit:</strong> 1000MS</p>
-<p><strong>Memory Limit:</strong> 30000K</p>
-<p><strong>Total Submissions:</strong> 12262</p>
-<p><strong>Accepted:</strong> 4939</p>
-<p>Description有N个相同的开关，每个开关都与某些开关有着联系，每当你打开或者关闭某个开关的时候，其他的与此开关相关联的开关也会相应地发生变化，即这些相联系的开关的状态如果原来为开就变为关，如果为关就变为开。你的目标是经过若干次开关操作后使得最后N个开关达到一个特定的状态。对于任意一个开关，最多只能进行一次开关操作。你的任务是，计算有多少种可以达到指定状态的方法。（不计开关操作的顺序）</p>
-<p>Input输入第一行有一个数K，表示以下有K组测试数据。<br>每组测试数据的格式如下：<br>第一行 一个数N（0 &lt; N &lt; 29）<br>第二行 N个0或者1的数，表示开始时N个开关状态。<br>第三行 N个0或者1的数，表示操作结束后N个开关的状态。<br>接下来 每行两个数I J，表示如果操作第 I 个开关，第J个开关的状态也会变化。每组数据以 0 0 结束。   </p>
-<p>Output如果有可行方法，输出总数，否则输出“Oh,it’s impossible~!!” 不包括引号</p>
-<p>Sample Input</p>
-<p>2<br>3<br>0 0 0<br>1 1 1<br>1 2<br>1 3<br>2 1<br>2 3<br>3 1<br>3 2<br>0 0<br>3<br>0 0 0<br>1 0 1<br>1 2<br>2 1<br>0 0</p>
-<p>Sample Output</p>
-<p>4<br>Oh,it’s impossible~!!</p>
-<p>Hint第一组数据的说明：<br>一共以下四种方法：<br>操作开关1<br>操作开关2<br>操作开关3<br>操作开关1、2、3 （不记顺序） </p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>同样也是开关问题。注意自己按了之后，自己的状态也会变哟 QAQ！！！</p>
-<p>还有就是，有k个自由变量，每个自由变量可以取的值为0,1，则一共有1 &lt;&lt; k 种解组合</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
-Date              : 2019-10-06    19:19:58
-By                : Tpaaaaaa
-File_Name         ：开关问题 poj1830.cpp
-Description       : 
-目前正在专项刷题，为了保证效果。
-必须做到：
-   1，先想出完整思路，并分析复杂度。
-   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
-   3. 编写代码的时候，规范风格（例如变量名）
-   4. 模块化答题
-
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-#define md(x, y)  (x + y) / 2
-#define ls(x)      x &lt;&lt; 1
-#define rs(x)      x &lt;&lt; 1 | 1
-#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
-#define fileclose fclose(stdin); fclose(stdout)
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 50;
-int a[MAXN][MAXN], free_x[MAXN], x[MAXN];
-//n * n的矩阵
-int Gauss(int n)
-{
-    memset(x, 0, sizeof x);
-    memset(free_x, 0, sizeof free_x);
-    int max_r, col = 0, row = 0, num = 0;
-    for(; col &lt; n &amp;&amp; row &lt; n; col++, row++)
-    {
-        max_r = row;
-        for(int i = row + 1; i &lt; n; i++)
-            if(a[max_r][col] &lt; a[i][col])   max_r = i;
-        if(max_r != row)
-            for(int i = col; i &lt;= n; i++)
-                swap(a[row][i], a[max_r][i]);
-        if(a[row][col] == 0)
-        {
-            row--;
-            free_x[++num] = col;
-            continue;
-        }
-        for(int i = row + 1; i &lt; n; i++)
-            if(a[i][col])
-                for(int j = col; j &lt;= n; j++)
-                    a[i][j] ^= a[row][j];
-    }
-    for(int i = row; i &lt; n; i++)
-        if(a[i][col])   return 0;
-
-    return 1 &lt;&lt; (n - row);
-}
-int main()
-{
-    int t, n;
-    cin &gt;&gt; t;
-    while(t--)
-    {
-        scanf(&quot;%d&quot;, &amp;n);
-        memset(a, 0, sizeof a);
-        for(int i = 0; i &lt; n; i++)
-            scanf(&quot;%d&quot;, &amp;a[i][n]);
-        for(int i = 0; i &lt; n; i++)
-        {
-            a[i][i] = 1;
-            int temp;
-            scanf(&quot;%d&quot;, &amp;temp);
-            a[i][n] ^= temp;
-        }
-
-        int i, j;
-        //每个节点翻自己，自己肯定也会变呀 ，傻子
-        while(scanf(&quot;%d%d&quot;, &amp;i, &amp;j) &amp;&amp; i + j)
-            a[j - 1][i - 1] = 1; 
-        int ans = Gauss(n);
-        //n * n的矩阵
-        if(ans == 0)
-            printf(&quot;Oh,it&apos;s impossible~!!\n&quot;);
-        else
-            printf(&quot;%d\n&quot;, ans);
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tpaaaaaa.github.io/tpaaaaaa.github.io/2019/10/06/POJ1222EXTENDEDLIGHTSOUT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我玩维恩不学q">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/tpaaaaaa.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/tpaaaaaa.github.io/2019/10/06/POJ1222EXTENDEDLIGHTSOUT/" itemprop="url">POJ1222  EXTENDED LIGHTS OUT</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-06T22:44:16+08:00">
-                2019-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tpaaaaaa.github.io/categories/%E6%95%B0%E8%AE%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">数论</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>EXTENDED LIGHTS OUT</p>
-<p><strong>Time Limit:</strong> 1000MS</p>
-<p><strong>Memory Limit:</strong> 10000K</p>
-<p><strong>Total Submissions:</strong> 15282</p>
-<p><strong>Accepted:</strong> 9315</p>
-<p>DescriptionIn an extended version of the game Lights Out, is a puzzle with 5 rows of 6 buttons each (the actual puzzle has 5 rows of 5 buttons each). Each button has a light. When a button is pressed, that button and each of its (up to four) neighbors above, below, right and left, has the state of its light reversed. (If on, the light is turned off; if off, the light is turned on.) Buttons in the corners change the state of 3 buttons; buttons on an edge change the state of 4 buttons and other buttons change the state of 5. For example, if the buttons marked X on the left below were to be pressed,the display would change to the image on the right.   </p>
-<p><img src="http://poj.org/images/1222_1.jpg" alt=""></p>
-<p>The aim of the game is, starting from any initial set of lights on in the display, to press buttons to get the display to a state where all lights are off. When adjacent buttons are pressed, the action of one button can undo the effect of another. For instance, in the display below, pressing buttons marked X in the left display results in the right display.Note that the buttons in row 2 column 3 and row 2 column 5 both change the state of the button in row 2 column 4,so that, in the end, its state is unchanged.   </p>
-<p><img src="http://poj.org/images/1222_2.jpg" alt=""></p>
-<p>Note:<br>1. It does not matter what order the buttons are pressed.<br>2. If a button is pressed a second time, it exactly cancels the effect of the first press, so no button ever need be pressed more than once.<br>3. As illustrated in the second diagram, all the lights in the first row may be turned off, by pressing the corresponding buttons in the second row. By repeating this process in each row, all the lights in the first<br>four rows may be turned out. Similarly, by pressing buttons in columns 2, 3 ?, all lights in the first 5 columns may be turned off.<br>Write a program to solve the puzzle.</p>
-<p>InputThe first line of the input is a positive integer n which is the number of puzzles that follow. Each puzzle will be five lines, each of which has six 0 or 1 separated by one or more spaces. A 0 indicates that the light is off, while a 1 indicates that the light is on initially.</p>
-<p>OutputFor each puzzle, the output consists of a line with the string: “PUZZLE #m”, where m is the index of the puzzle in the input file. Following that line, is a puzzle-like display (in the same format as the input) . In this case, 1’s indicate buttons that must be pressed to solve the puzzle, while 0 indicate buttons, which are not pressed. There should be exactly one space between each 0 or 1 in the output puzzle-like display.</p>
-<p>Sample Input</p>
-<p>2<br>0 1 1 0 1 0<br>1 0 0 1 1 1<br>0 0 1 0 0 1<br>1 0 0 1 0 1<br>0 1 1 1 0 0<br>0 0 1 0 1 0<br>1 0 1 0 1 1<br>0 0 1 0 1 1<br>1 0 1 1 0 0<br>0 1 0 1 0 0</p>
-<p>Sample Output</p>
-<p>PUZZLE #1<br>1 0 1 0 0 1<br>1 1 0 1 0 1<br>0 0 1 0 1 1<br>1 0 0 1 0 0<br>0 1 0 0 0 0<br>PUZZLE #2<br>1 0 0 1 1 1<br>1 1 0 0 0 0<br>0 0 0 1 0 0<br>1 1 0 1 0 1<br>1 0 1 1 0 1</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>高斯消元法解开关问题。可做模板。解题的时候建议自己画一个矩阵</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>/*
-Date              : 2019-10-06    15:33:26
-By                : Tpaaaaaa
-File_Name         ：POJ1222EXTENDED LIGHTS OUT.cpp
-Description       : 
-目前正在专项刷题，为了保证效果。
-必须做到：
-   1，先想出完整思路，并分析复杂度。
-   2. 按照自己的思路过一遍样例，自己编几个复杂的样例
-   3. 编写代码的时候，规范风格（例如变量名）
-   4. 模块化答题
-这种开关问题
-    可以暴力枚举第一行的开关情况，然后下面一行为了保证第一行全灭，其操作也就固定了
-            一直到最后一行，然后判断最后一行是否全灭了。
-
-*/
-#include&lt;functional&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-#include&lt;bitset&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cmath&gt;
-#include&lt;set&gt;
-#include&lt;list&gt;
-#include&lt;deque&gt;
-#include&lt;map&gt;
-#include&lt;queue&gt;
-#define md(x, y)  (x + y) / 2
-#define ls(x)      x &lt;&lt; 1
-#define rs(x)      x &lt;&lt; 1 | 1
-#define fileopen freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin); freopen(&quot;out.txt&quot;, &quot;w&quot;, stdout)
-#define fileclose fclose(stdin); fclose(stdout)
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const double PI = acos(-1.0);
-const double eps = 1e-6;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 35;
-int a[MAXN][MAXN], x[MAXN];
-void getA()
-{
-    //5行，6列
-    for(int i = 0; i &lt; 5; i++)
-        for(int j = 0; j &lt; 6; j++)
-        {
-            int t = i * 6 + j;          //x的下标
-            a[t][t] = 1;                
-            int up = (i - 1) * 6 + j;
-            int down = (i + 1) * 6 + j;
-            int left = i * 6 + j - 1;
-            int right = i * 6 + j + 1;
-            if(i &gt; 0)   a[up][t] = 1;
-            if(i &lt; 4)   a[down][t] = 1;
-            if(j &gt; 0)   a[left][t] = 1;
-            if(j &lt; 5)   a[right][t] = 1;
-        }
-}
-int Gauss(int equ, int var)
-{
-    for(int i = 0; i &lt;= var; i++)    x[i] = 0;
-    int col = 0, row = 0;
-    int max_r;
-    for(; col &lt; var &amp;&amp; row &lt; equ; col ++, row ++)
-    {
-        max_r = row;
-        for(int i = row + 1; i &lt; equ; i++)
-            if(a[i][col] &gt; a[max_r][col])   max_r = i;
-        if(max_r != row)
-            for(int j = row; j &lt;= var; j++)
-                swap(a[row][j], a[max_r][j]);
-        if(a[row][col] == 0)
-        {
-            row --;
-            continue;
-        }
-        for(int i = row + 1; i &lt; equ; i++)
-            if(a[i][col] != 0)
-            {
-                for(int j = col; j &lt;= var; j++)
-                    a[i][j] ^= a[row][j];
-            }
-    }
-    for(int i = var - 1; i &gt;= 0; i--)
-    {
-        x[i] = a[i][var];
-        for(int j = i + 1; j &lt; var; j++)
-            x[i] ^= (a[i][j] &amp;&amp; x[j]);
-    }
-
-}
-int main()
-{
-    int t;
-    cin &gt;&gt; t;
-    //5 * 6的矩形,意思是有30个方程
-    //有30个变量.
-    //提前预处理知道每个方程的系数.
-    for(int kase = 1; kase &lt;= t; kase++)
-    {
-        memset(a, 0, sizeof a);
-        getA();                     //A的初始化
-        //录入30个方程的右边
-        //a[x][y] 表示第x个方程，第y个变量
-        for(int i = 0; i &lt; 30; i++)
-            scanf(&quot;%d&quot;, &amp;a[i][30]);
-        Gauss(30, 30);
-        printf(&quot;PUZZLE #%d\n&quot;, kase);
-        for(int i = 0; i &lt; 30; i++)
-        {
-            printf(&quot;%d&quot;, x[i]);
-            if((i + 1) % 6 == 0)    printf(&quot;\n&quot;);
-            else                    printf(&quot; &quot;);
-
-        }
-    }
-    return 0;
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3656,7 +3559,7 @@ int main()
               
                 <a href="/tpaaaaaa.github.io/archives">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -3667,7 +3570,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/tpaaaaaa.github.io/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -3678,7 +3581,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tpaaaaaa.github.io/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
