@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 
+ 
 
 
 
-<html class="theme-next pisces" lang="zh-CN">
+
+<html class="theme-next pisces motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -77,14 +79,14 @@
 
 
 
-<meta name="description" content="博客连接： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;cjjsb&#x2F;p&#x2F;9771868.html 何为SAT问题: SAT是适定性(Satisfiability)问题的简称 。一般形式为k-适定性问题，简称 k-SAT。  可以证明，当k&amp;gt;2k&amp;gt;2时，k-SAT是NP完全的。因此一般讨论的是k&#x3D;2k&#x3D;2的情况，即2-SAT问题。 我们通俗的说，就是给你nn个变量aiai，每个变量能">
+<meta name="description" content="博客连接： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;cjjsb&#x2F;p&#x2F;9771868.html 何为SAT问题: SAT是适定性(Satisfiability)问题的简称 。一般形式为k-适定性问题，简称 k-SAT。  可以证明，当k&amp;gt;2时，k-SAT是NP完全的。因此一般讨论的是k&#x3D;2的情况，即2-SAT问题。 我们通俗的说，就是给你n个变量ai，每个变量能且只能取0&#x2F;1的值。同时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[算法]2-SAT">
 <meta property="og:url" content="https:&#x2F;&#x2F;tpaaaaaa.github.io&#x2F;2019&#x2F;09&#x2F;02&#x2F;[%E7%AE%97%E6%B3%95]2-SAT&#x2F;index.html">
 <meta property="og:site_name" content="Tian&#39;s Blog">
-<meta property="og:description" content="博客连接： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;cjjsb&#x2F;p&#x2F;9771868.html 何为SAT问题: SAT是适定性(Satisfiability)问题的简称 。一般形式为k-适定性问题，简称 k-SAT。  可以证明，当k&amp;gt;2k&amp;gt;2时，k-SAT是NP完全的。因此一般讨论的是k&#x3D;2k&#x3D;2的情况，即2-SAT问题。 我们通俗的说，就是给你nn个变量aiai，每个变量能">
+<meta property="og:description" content="博客连接： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;cjjsb&#x2F;p&#x2F;9771868.html 何为SAT问题: SAT是适定性(Satisfiability)问题的简称 。一般形式为k-适定性问题，简称 k-SAT。  可以证明，当k&amp;gt;2时，k-SAT是NP完全的。因此一般讨论的是k&#x3D;2的情况，即2-SAT问题。 我们通俗的说，就是给你n个变量ai，每个变量能且只能取0&#x2F;1的值。同时">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-04T06:26:46.220Z">
+<meta property="og:updated_time" content="2020-02-27T10:01:03.007Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -98,7 +100,7 @@
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"slideUpOut","post_header":"slideUpOut","post_body":"slideUpOut","coll_header":"slideUpOut","sidebar":"slideUpOut"}},
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -376,17 +378,17 @@
 <h2 id="何为SAT问题"><a href="#何为SAT问题" class="headerlink" title="何为SAT问题:"></a>何为SAT问题:</h2><blockquote>
 <p>SAT是适定性(Satisfiability)问题的简称 。一般形式为k-适定性问题，简称 k-SAT。</p>
 </blockquote>
-<p>可以证明，当k&gt;2k&gt;2时，k-SAT是<strong>NP完全</strong>的。因此一般讨论的是k=2k=2的情况，即2-SAT问题。</p>
-<p>我们通俗的说，就是给你<strong>nn个变量aiai</strong>，每个变量<strong>能且只能</strong>取0/10/1的值。同时给出若干条件，形式诸如(not)aiopt(not) aj=0/1(not)aiopt⁡(not) aj=0/1，其中optopt表示and,or,xorand,or,xor中的一种</p>
+<p>可以证明，当k&gt;2时，k-SAT是<strong>NP完全</strong>的。因此一般讨论的是k=2的情况，即2-SAT问题。</p>
+<p>我们通俗的说，就是给你<strong>n个变量ai</strong>，每个变量<strong>能且只能</strong>取0/1的值。同时给出若干条件，形式诸如(not)ai <strong>opt</strong> (not) aj = 0/1，其中opt表示and,or,xor中的一种</p>
 <p>而求解2-SAT的解就是求出满足所有限制的一组a</p>
-<h2 id="如何将2-SAT问题转化为图论问题"><a href="#如何将2-SAT问题转化为图论问题" class="headerlink" title="如何将2-SAT问题转化为图论问题:"></a>如何将2-SAT问题转化为图论问题:</h2><p>首先我们考虑将2-SAT问题往图论的方向靠，我们发现每个点<strong>要么取0，要么取1</strong>。因此对于ai，我们建两个点<strong>2i−1与2i</strong>分别表示ai取0和1</p>
+<h2 id="如何将2-SAT问题转化为图论问题"><a href="#如何将2-SAT问题转化为图论问题" class="headerlink" title="如何将2-SAT问题转化为图论问题:"></a>如何将2-SAT问题转化为图论问题:</h2><p>首先我们考虑将2-SAT问题往图论的方向靠，我们发现每个点<strong>要么取0，要么取1</strong>。因此对于ai，我们建两个点<strong>2i−1与2i</strong>分别表示ai取0和1//奇0偶1</p>
 <p>然后我们考虑建边来表示这些关系，我们令一条<strong>有向边</strong>的意义：x→y表示如果选择了x就必须选y</p>
 <p>那么我们可以举一些简单的例子来总结下连边的规律（用i′表示i的反面）：</p>
 <ul>
 <li>i,j<strong>不能</strong>同时选：选了i就要选j′，选j就要选i′。故i→j′,j→i′。一般操作即为ai or aj = 1</li>
-<li>i,ji,j<strong>必须</strong>同时选：选了ii就要选jj，选jj就要选ii。故i→j,j→ii→j,j→i。一般操作即为aixoraj=0aixor⁡aj=0</li>
-<li>i,ji,j<strong>任选（但至少选一个）</strong>选一个：选了ii就要选j′j′，选jj就要选i′i′，选i′i′就要选jj，选j′j′就要选ii。故i→j′,j→i′,i′→j,j′→ii→j′,j→i′,i′→j,j′→i。一般操作即为aioraj=1aior⁡aj=1</li>
-<li>ii<strong>必须</strong>选：直接i′→ii′→i，可以保证无论怎样都选ii。一般操作为给出的ai=1ai=1或aiandaj=1aiand⁡aj=1</li>
+<li>i,j<strong>必须</strong>同时选：选了i就要选j，选j就要选i。故i→j,j→i。一般操作即为aixoraj=0</li>
+<li>i,j<strong>任选（但至少选一个）</strong>选一个：选了i就要选j′，选j就要选i′，选i′就要选j，选j′就要选i。故i→j′,j→i′,i′→j,j′→i。一般操作即为ai or aj=1</li>
+<li>i<strong>必须</strong>选：直接i′→i，可以保证无论怎样都选i。一般操作为给出的ai=1或ai and aj=1</li>
 </ul>
 <p>建好图然后就是考虑怎么用图论的方式解决2-SAT了。</p>
 
